@@ -79,6 +79,13 @@ section{padding:52px 0}
 .fc-nav button{background:#fff;border:1.5px solid var(--line);color:var(--indigo);font-weight:800;font-family:inherit;padding:8px 22px;border-radius:12px;cursor:pointer;transition:.15s}
 .fc-nav button:hover{border-color:var(--indigo);transform:scale(1.04)}
 .fc-count{color:var(--muted);font-weight:800;font-size:.9rem}
+/* speaker buttons */
+.spk{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.16);border:1.5px solid rgba(255,255,255,.55);color:#fff;font-family:inherit;font-weight:700;font-size:.85rem;padding:6px 16px;border-radius:99px;cursor:pointer;transition:.15s;white-space:nowrap}
+.spk:hover{background:rgba(255,255,255,.32)}
+.spk.playing{background:var(--rouge);border-color:var(--rouge)}
+.fc-back .spk{background:#ece8fa;border-color:var(--indigo);color:var(--indigo)}
+.fc-back .spk:hover{background:#ddd6f5}
+.fc-back .spk.playing{background:var(--indigo);border-color:var(--indigo);color:#fff}
 /* schedule */
 .days{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
 .day{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:0 2px 10px rgba(79,70,165,.05)}
@@ -196,15 +203,15 @@ footer .demo-mark{color:var(--rouge);font-weight:700}
 <section id="cards" class="reveal">
   <div class="container">
     <h2 class="sec-title">كروت الكلمات</h2>
-    <p class="sec-sub">دوس على الكارت يقلب ويقولك المعنى — عينة من طريقة تثبيت الكلمات عندنا.</p>
+    <p class="sec-sub">دوس على الكارت يقلب ويقولك المعنى، ودوس على زرار السماعة تسمع النطق الصح — عينة من طريقة تثبيت الكلمات عندنا.</p>
     <div class="fc-wrap">
       <div class="fc" id="fc">
         <div class="fc-inner">
-          <div class="fc-face fc-front"><b id="fcWord">Bonjour</b><small id="fcPron">بونجور</small></div>
-          <div class="fc-face fc-back"><b id="fcMeaning">صباح الخير / أهلاً</b><small id="fcEx">Bonjour, comment ça va? — أهلاً، عامل إيه؟</small></div>
+          <div class="fc-face fc-front"><b id="fcWord">Bonjour</b><small id="fcPron">بونجور</small><button class="spk" type="button">🔊 اسمع النطق</button></div>
+          <div class="fc-face fc-back"><b id="fcMeaning">صباح الخير / أهلاً</b><small id="fcEx">Bonjour, comment ça va? — أهلاً، عامل إيه؟</small><button class="spk" type="button">🔊 اسمع النطق</button></div>
         </div>
       </div>
-      <p class="fc-hint">👆 دوس على الكارت عشان يقلب</p>
+      <p class="fc-hint">👆 دوس على الكارت عشان يقلب — و🔊 تسمع النطق</p>
       <div class="fc-nav">
         <button id="fcPrev">السابق</button>
         <span class="fc-count" id="fcCount">1 / 6</span>
@@ -332,22 +339,41 @@ document.getElementById('bookForm').addEventListener('submit',function(e){
 });
 // flashcards
 const CARDS=[
- {w:'Bonjour',p:'بونجور',m:'صباح الخير / أهلاً',e:'Bonjour, comment ça va? — أهلاً، عامل إيه؟'},
- {w:'Merci',p:'ميرسي',m:'شكراً',e:'Merci beaucoup! — شكراً جداً!'},
- {w:'École',p:'إيكول',m:'مدرسة',e:'Je vais à l\'école. — أنا رايح المدرسة.'},
- {w:'Chat',p:'شا',m:'قطة',e:'Le chat est mignon. — القطة جميلة.'},
- {w:'Soleil',p:'سوليي',m:'شمس',e:'Le soleil brille. — الشمس مشرقة.'},
- {w:'Au revoir',p:'أو رفوار',m:'مع السلامة',e:'Au revoir, à demain! — مع السلامة، نتقابل بكرة!'}
+ {w:'Bonjour',p:'بونجور',m:'صباح الخير / أهلاً',e:'Bonjour, comment ça va? — أهلاً، عامل إيه؟',f:'bonjour'},
+ {w:'Merci',p:'ميرسي',m:'شكراً',e:'Merci beaucoup! — شكراً جداً!',f:'merci'},
+ {w:"S'il vous plaît",p:'سيل فو بليه',m:'من فضلك / لو سمحت',e:"Un café, s'il vous plaît. — قهوة من فضلك.",f:'silvousplait'},
+ {w:'Comment ça va?',p:'كومو سا فا',m:'إزيك؟ / عامل إيه؟',e:'Ça va bien, merci! — الحمد لله، شكراً!',f:'commentcava'},
+ {w:'Un, deux, trois',p:'أن، دو، تروا',m:'واحد، اتنين، تلاتة',e:'Un, deux, trois... partez! — واحد اتنين تلاتة... يلا!',f:'undeuxtrois'},
+ {w:"Je m'appelle…",p:'جو مابيل',m:'اسمي…',e:"Je m'appelle Omar. — اسمي عمر.",f:'jemappelle'},
+ {w:'École',p:'إيكول',m:'مدرسة',e:"Je vais à l'école. — أنا رايح المدرسة.",f:'ecole'},
+ {w:'Chat',p:'شا',m:'قطة',e:'Le chat est mignon. — القطة جميلة.',f:'chat'},
+ {w:'Soleil',p:'سوليي',m:'شمس',e:'Le soleil brille. — الشمس مشرقة.',f:'soleil'},
+ {w:"J'aime le français",p:'جيم لو فرونسيه',m:'بحب الفرنساوي',e:"J'aime le français! — بحب الفرنساوي!",f:'jaimelefrancais'},
+ {w:'Bonne nuit',p:'بون نوي',m:'تصبح على خير',e:'Bonne nuit, à demain. — تصبح على خير، نتقابل بكرة.',f:'bonnenuit'},
+ {w:'Au revoir',p:'أو رفوار',m:'مع السلامة',e:'Au revoir, à demain! — مع السلامة، نتقابل بكرة!',f:'aurevoir'}
 ];
 let ci=0;
 const fc=document.getElementById('fc');
+let audioEl=null;
+function playCardAudio(file,btn){
+  if(audioEl)audioEl.pause();
+  document.querySelectorAll('.spk').forEach(b=>b.classList.remove('playing'));
+  audioEl=new Audio('audio/'+file+'.mp3');
+  audioEl.preload='auto';
+  audioEl.onended=()=>btn.classList.remove('playing');
+  audioEl.onerror=()=>{btn.classList.remove('playing');btn.style.display='none';};
+  btn.classList.add('playing');
+  audioEl.play().catch(()=>btn.classList.remove('playing'));
+}
 function renderCard(){
+  if(audioEl)audioEl.pause();
   fc.classList.remove('flip');
   const c=CARDS[ci];
   document.getElementById('fcWord').textContent=c.w;
   document.getElementById('fcPron').textContent=c.p;
   document.getElementById('fcMeaning').textContent=c.m;
   document.getElementById('fcEx').textContent=c.e;
+  document.querySelectorAll('.spk').forEach(b=>{b.style.display='';b.onclick=e=>{e.stopPropagation();playCardAudio(c.f,b);};});
   document.getElementById('fcCount').textContent=(ci+1)+' / '+CARDS.length;
 }
 fc.addEventListener('click',()=>fc.classList.toggle('flip'));
