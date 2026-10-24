@@ -261,7 +261,7 @@ footer .demo-mark{color:#b3321b;font-weight:700}
   <div class="container" id="cats"></div>
 </div>
 
-<section>
+<section id="menu-sec" style="scroll-margin-top:140px">
   <div class="container">
     <span class="demo-note">الأصناف والأسعار من منيو قديم قدّمه العميل — الأسعار توضيحية وهتتحدث قبل التشغيل</span>
     <h2 class="sec-title">المنيو</h2>
@@ -491,7 +491,7 @@ function renderList(items){
   if(noImg.length){tbl.style.display='grid';tbl.innerHTML=noImg.map(rowHTML).join('');}
   else tbl.style.display='none';
 }
-function renderMenu(cat){curCat=cat;renderList(MENU.filter(i=>i.cat===cat));}
+function renderMenu(cat){curCat=cat;renderCats();renderList(MENU.filter(i=>i.cat===cat));}
 function renderOffers(){
   document.getElementById('offersGrid').innerHTML=OFFERS.map((o,i)=>`<div class="offer">
     <span class="old-tag">عرض قديم</span>
