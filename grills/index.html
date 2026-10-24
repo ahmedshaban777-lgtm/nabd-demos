@@ -78,7 +78,10 @@ header .container{display:flex;align-items:center;justify-content:space-between;
  85%{opacity:.28;transform:translate(42px,-195px) scale(1.55)}
  100%{opacity:0;transform:translate(55px,-240px) scale(1.8)}
 }
-@media (prefers-reduced-motion:reduce){.smoke{display:none}}
+@media (prefers-reduced-motion:reduce){
+ .puff{animation:puffFade 14s ease-in-out infinite}
+ @keyframes puffFade{0%,100%{opacity:0}50%{opacity:.3}}
+}
 @media (max-width:640px){.puff{animation-duration:7s}}
 .hero .text-col{position:relative;isolation:isolate}
 .hero .text-col::before{content:"";position:absolute;inset:-50px -70px;background:url('img/chef-t.png') no-repeat left bottom/330px auto;opacity:.08;z-index:-1;pointer-events:none;filter:grayscale(.35)}
