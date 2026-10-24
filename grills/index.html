@@ -56,11 +56,30 @@ header .container{display:flex;align-items:center;justify-content:space-between;
 .stat b{display:block;font-size:1.4rem;color:var(--ember);font-weight:800;font-family:'Changa'}
 .stat span{color:var(--muted);font-size:.78rem;font-weight:700}
 .hero .visual{display:flex;flex-direction:column;align-items:center;gap:16px;animation:heroIn .8s .2s ease both}
-.chef-hero{width:min(235px,56vw);filter:drop-shadow(0 16px 24px rgba(46,33,21,.32));animation:chefBob 4.5s ease-in-out infinite}
+.chef-hero{position:relative;z-index:2;width:min(235px,56vw);filter:drop-shadow(0 16px 24px rgba(46,33,21,.32));animation:chefBob 4.5s ease-in-out infinite}
 @keyframes chefBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(-1deg)}}
 .photo-frame{background:#fff;padding:12px 12px 44px;border-radius:20px;box-shadow:0 30px 60px rgba(46,33,21,.22);transform:rotate(-2deg);position:relative;width:100%}
 .photo-frame img{width:100%;border-radius:12px;display:block;aspect-ratio:16/10;object-fit:cover}
 .photo-frame .cap{position:absolute;bottom:12px;right:20px;font-family:'Changa';font-weight:700;color:var(--ink);font-size:.95rem}
+/* smoke experiment */
+.smoke{position:absolute;inset:0;pointer-events:none;z-index:3}
+.puff{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(252,250,246,.98) 0%,rgba(228,222,213,.72) 42%,rgba(228,222,213,0) 72%);filter:blur(4px);opacity:0;animation:puffRise 6s ease-in-out infinite;will-change:transform,opacity}
+.puff:nth-child(1){width:64px;height:64px;left:42%;top:40%;animation-delay:0s}
+.puff:nth-child(2){width:84px;height:84px;left:50%;top:44%;animation-delay:.9s}
+.puff:nth-child(3){width:52px;height:52px;left:58%;top:38%;animation-delay:1.9s}
+.puff:nth-child(4){width:72px;height:72px;left:46%;top:46%;animation-delay:2.8s}
+.puff:nth-child(5){width:48px;height:48px;left:62%;top:42%;animation-delay:3.7s}
+.puff:nth-child(6){width:78px;height:78px;left:38%;top:48%;animation-delay:4.6s}
+.puff:nth-child(7){width:56px;height:56px;left:54%;top:36%;animation-delay:5.3s}
+@keyframes puffRise{
+ 0%{opacity:0;transform:translate(0,0) scale(.55)}
+ 15%{opacity:.85}
+ 50%{opacity:.6;transform:translate(20px,-110px) scale(1.2)}
+ 85%{opacity:.28;transform:translate(42px,-195px) scale(1.55)}
+ 100%{opacity:0;transform:translate(55px,-240px) scale(1.8)}
+}
+@media (prefers-reduced-motion:reduce){.smoke{display:none}}
+@media (max-width:640px){.puff{animation-duration:7s}}
 .hero .text-col{position:relative;isolation:isolate}
 .hero .text-col::before{content:"";position:absolute;inset:-50px -70px;background:url('img/chef-t.png') no-repeat left bottom/330px auto;opacity:.08;z-index:-1;pointer-events:none;filter:grayscale(.35)}
 .wm{position:relative;isolation:isolate}
@@ -129,9 +148,15 @@ section{padding:46px 0}
 .price small{font-size:.7rem;color:var(--muted);font-weight:600;display:block}
 /* table rows */
 .tcard{background:transparent;border:none;box-shadow:none;margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;overflow:visible}
-.trow2{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 8px rgba(46,33,21,.05)}
+.trow2{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:inset -5px 0 0 0 var(--acc,#d96a5f),0 2px 8px rgba(46,33,21,.05)}
+.trow2 .thumb{width:46px;height:46px;border-radius:12px;object-fit:cover;border:2px solid var(--acc,#d96a5f);flex:0 0 auto}
 .trow2:hover{background:#fffaf2;border-color:var(--gold)}
-.trow2 .nm{font-weight:800;font-size:.96rem}
+.trow2 .id-block{display:flex;align-items:center;gap:8px;min-width:0}
+.trow2 .nm{font-weight:800;font-size:.93rem;white-space:nowrap}
+.trow2 .sizes{gap:6px}
+.trow2 .sizes .size{padding:4px 6px;min-width:52px;flex:0 0 auto}
+.trow2 .sizes .size b{font-size:.9rem}
+.trow2 .sizes .size span{font-size:.6rem}
 .trow2 .nm small{display:block;color:var(--muted);font-weight:600;font-size:.75rem}
 .trow2 .sizes{margin-top:0}
 .trow2 .size{min-width:64px;padding:5px 8px}
@@ -251,6 +276,7 @@ footer .demo-mark{color:#b3321b;font-weight:700}
       <img class="chef-hero" src="img/chef-t.png" alt="شيف مشويات مدحت الحديدي">
       <div class="photo-frame">
         <img src="img/hero.jpg" alt="مشويات على الفحم">
+        <div class="smoke" aria-hidden="true"><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span></div>
         <span class="cap">من قلب الفحم 🔥</span>
       </div>
     </div>
@@ -392,15 +418,15 @@ const MENU=[
  {id:'tawook',cat:'grills',name:'شيش طاووق',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[110,220,440],img:'img/tawook.jpg'},
  {id:'riash',cat:'grills',name:'ريش',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[240,480,960],img:'img/riash.jpg'},
  {id:'mixed',cat:'grills',name:'مشكل كباب وكفتة',desc:'كباب + كفتة — يُباع بالوزن.',prices:[180,360,720],img:'img/mixed.jpg'},
- {id:'ferakh',cat:'grills',name:'فراخ',prices:[100,180,360]},
- {id:'nefa',cat:'grills',name:'نيفة',prices:[240,480,960]},
- {id:'tarb',cat:'grills',name:'طرب',prices:[180,360,720]},
- {id:'kabda-gamali',cat:'grills',name:'كبدة جملي',prices:[220,440,880]},
- {id:'kabda-agali',cat:'grills',name:'كبدة عجالي',prices:[130,260,500]},
- {id:'kabda-dani',cat:'grills',name:'كبدة ضاني',prices:[200,400,800]},
- {id:'mombar',cat:'grills',name:'ممبار',prices:[100,200,400]},
- {id:'mombar-agali',cat:'grills',name:'ممبار عجالي',prices:[100,200,400]},
- {id:'hamam',cat:'grills',name:'حمام محشي',desc:'الوحدة/الحجم هيتأكد من العميل',price:150},
+  {id:'ferakh',cat:'grills',name:'فراخ',prices:[100,180,360],thumb:'img/thumb-farakh.jpg'},
+  {id:'nefa',cat:'grills',name:'نيفة',prices:[240,480,960],thumb:'img/thumb-nefa.jpg'},
+  {id:'tarb',cat:'grills',name:'طرب',prices:[180,360,720],thumb:'img/thumb-tarb.jpg'},
+  {id:'kabda-gamali',cat:'grills',name:'كبدة جملي',prices:[220,440,880],thumb:'img/thumb-kabda.jpg'},
+  {id:'kabda-agali',cat:'grills',name:'كبدة عجالي',prices:[130,260,500],thumb:'img/thumb-kabda.jpg'},
+  {id:'kabda-dani',cat:'grills',name:'كبدة ضاني',prices:[200,400,800],thumb:'img/thumb-kabda.jpg'},
+  {id:'mombar',cat:'grills',name:'ممبار',prices:[100,200,400],thumb:'img/thumb-mombar.jpg'},
+  {id:'mombar-agali',cat:'grills',name:'ممبار عجالي',prices:[100,200,400],thumb:'img/thumb-mombar.jpg'},
+  {id:'hamam',cat:'grills',name:'حمام محشي',desc:'الوحدة/الحجم هيتأكد من العميل',price:150,thumb:'img/thumb-hamam.jpg'},
  // ===== سندوتشات (صغير/وسط/كبير) =====
  {id:'s-hawawshi',cat:'sandwiches',name:'حواوشي',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[40,50,60],img:'img/hawawshi.jpg',hot:1},
  {id:'s-sogo2',cat:'sandwiches',name:'سجق',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[30,35,45],img:'img/sogok.jpg'},
@@ -479,8 +505,9 @@ function cardHTML(it){return `<div class="item">
   ${it.prices?`<div class="sizes">${sizeButtons(it)}</div>`:
   `<div class="price-line"><div class="price">${money(it.price)}<small>سعر توضيحي</small></div></div><button class="add" data-id="${it.id}">أضف للسلة +</button>`}
   </div></div>`}
-function rowHTML(it){return `<div class="trow2">
-  <div class="nm">${it.name}${it.desc?`<small>${it.desc}</small>`:''}</div>
+const ACC=['#d96a5f','#4a90d9','#4caf7d','#d9a44a','#8f7bd9','#3fa9a0'];
+function rowHTML(it,i){return `<div class="trow2" style="--acc:${ACC[(i||0)%ACC.length]}">
+  <div class="id-block">${it.thumb?`<img class="thumb" src="${it.thumb}" alt="${it.name}" loading="lazy">`:''}<div class="nm">${it.name}${it.desc?`<small>${it.desc}</small>`:''}</div></div>
   ${it.prices?`<div class="sizes">${sizeButtons(it)}</div>`:
   it.pending?`<div class="price" style="font-size:1.05rem">${it.pricetext} ج<small style="display:block;font-size:.68rem;color:var(--muted)">السعر هيتأكد</small></div>`:
   `<div class="price" style="font-size:1.05rem">${money(it.price)}</div><button class="add" data-id="${it.id}">أضف +</button>`}
@@ -488,7 +515,7 @@ function rowHTML(it){return `<div class="trow2">
 function renderList(items){
   const withImg=items.filter(i=>i.img),noImg=items.filter(i=>!i.img);
   grid.innerHTML=withImg.map(cardHTML).join('');
-  if(noImg.length){tbl.style.display='grid';tbl.innerHTML=noImg.map(rowHTML).join('');}
+  if(noImg.length){tbl.style.display='grid';tbl.innerHTML=noImg.map((it,i)=>rowHTML(it,i)).join('');}
   else tbl.style.display='none';
 }
 function renderMenu(cat){curCat=cat;renderCats();renderList(MENU.filter(i=>i.cat===cat));}
