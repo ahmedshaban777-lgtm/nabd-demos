@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مشويات مدحت الحديدي | أصل المشويات</title>
+<link rel="icon" href="img/chef-t.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@600;700;800&family=Cairo:wght@400;600;700;800;900&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#17110c; --bg2:#211810; --card:#2b2013; --line:#4a3a24;
+  --ink:#f7ecda; --muted:#bda98d;
+  --ember:#f06414; --ember2:#f27b2b; --gold:#f5a623; --red:#d64524;
+  --wa:#1fa055;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo','Noto Color Emoji',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+h1,h2,h3,.font-display{font-family:'Changa','Cairo','Noto Color Emoji',sans-serif}
+.container{max-width:1140px;margin:0 auto;padding:0 20px}
+/* header */
+header{position:sticky;top:0;z-index:60;background:rgba(23,17,12,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .container{display:flex;align-items:center;justify-content:space-between;height:74px;gap:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand .logo-wrap{width:52px;height:52px;border-radius:50%;background:#fff;border:2px solid var(--ember);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(240,100,20,.25);overflow:hidden}
+.brand .logo-wrap img{width:86%;height:86%;object-fit:contain}
+.brand b{font-family:'Changa';font-size:1.25rem;font-weight:700;color:var(--ink);display:block;line-height:1.2}
+.brand small{display:block;font-size:.7rem;color:var(--ember2);font-weight:700;letter-spacing:.5px}
+.cart-btn{position:relative;background:linear-gradient(135deg,var(--ember),var(--gold));color:#fff;border:none;border-radius:14px;padding:11px 20px;font-family:inherit;font-weight:800;font-size:.95rem;cursor:pointer;transition:.2s;box-shadow:0 4px 14px rgba(240,100,20,.3)}
+.cart-btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(240,100,20,.4)}
+.cart-count{position:absolute;top:-8px;left:-8px;background:var(--red);color:#fff;font-size:.75rem;font-weight:900;min-width:22px;height:22px;border-radius:99px;display:flex;align-items:center;justify-content:center;padding:0 5px;transition:transform .2s;border:2px solid #17110c}
+.cart-count.pop{transform:scale(1.4)}
+/* buttons */
+.btn{display:inline-block;background:linear-gradient(135deg,var(--ember),var(--gold));color:#fff;font-weight:800;padding:14px 30px;border-radius:16px;text-decoration:none;transition:.2s;border:none;cursor:pointer;font-family:inherit;font-size:1rem;box-shadow:0 6px 18px rgba(240,100,20,.35)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(240,100,20,.45)}
+.btn:active{transform:scale(.97)}
+.btn-ghost{background:transparent;color:var(--ember2);border:2px solid var(--ember);box-shadow:none}
+.btn-ghost:hover{background:#2b2013;box-shadow:none}
+/* hero */
+.hero{position:relative;padding:56px 0 64px;overflow:hidden;background:
+  radial-gradient(800px 400px at 85% 0%,rgba(240,100,20,.14),transparent 60%),
+  radial-gradient(600px 300px at 10% 100%,rgba(245,166,35,.12),transparent 60%),var(--bg)}
+.hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;background:rgba(240,100,20,.14);color:var(--ember2);border:1.5px solid #6b4a26;padding:7px 16px;border-radius:99px;font-size:.8rem;font-weight:800;box-shadow:0 2px 8px rgba(240,100,20,.12)}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--ember);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:3rem;font-weight:800;line-height:1.35;margin:20px 0 14px;color:var(--ink);animation:heroIn .8s ease both}
+.hero h1 span{color:var(--ember)}
+.hero p.sub{color:var(--muted);font-size:1.08rem;max-width:46ch;animation:heroIn .8s .15s ease both}
+@keyframes heroIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.hero .cta{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;animation:heroIn .8s .3s ease both}
+.stats{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap;animation:heroIn .8s .45s ease both}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 20px;box-shadow:0 4px 14px rgba(46,33,21,.07);text-align:center;min-width:104px}
+.stat b{display:block;font-size:1.4rem;color:var(--ember);font-weight:800;font-family:'Changa'}
+.stat span{color:var(--muted);font-size:.78rem;font-weight:700}
+.hero .visual{display:flex;flex-direction:column;align-items:center;gap:16px;animation:heroIn .8s .2s ease both}
+.chef-hero{position:relative;z-index:2;width:min(235px,56vw);filter:drop-shadow(0 16px 24px rgba(46,33,21,.32));animation:chefBob 4.5s ease-in-out infinite}
+@keyframes chefBob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(-1deg)}}
+.photo-frame{background:var(--card);padding:12px 12px 44px;border-radius:20px;box-shadow:0 30px 60px rgba(46,33,21,.22);transform:rotate(-2deg);position:relative;width:100%}
+.photo-frame img{width:100%;border-radius:12px;display:block;aspect-ratio:16/10;object-fit:cover}
+.photo-frame .cap{position:absolute;bottom:12px;right:20px;font-family:'Changa';font-weight:700;color:var(--ink);font-size:.95rem}
+/* smoke experiment */
+.smoke{position:absolute;inset:0;pointer-events:none;z-index:3}
+.puff{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(252,250,246,.98) 0%,rgba(228,222,213,.72) 42%,rgba(228,222,213,0) 72%);filter:blur(4px);opacity:0;animation:puffRise 6s ease-in-out infinite;will-change:transform,opacity}
+.puff:nth-child(1){width:64px;height:64px;left:42%;top:40%;animation-delay:0s}
+.puff:nth-child(2){width:84px;height:84px;left:50%;top:44%;animation-delay:.9s}
+.puff:nth-child(3){width:52px;height:52px;left:58%;top:38%;animation-delay:1.9s}
+.puff:nth-child(4){width:72px;height:72px;left:46%;top:46%;animation-delay:2.8s}
+.puff:nth-child(5){width:48px;height:48px;left:62%;top:42%;animation-delay:3.7s}
+.puff:nth-child(6){width:78px;height:78px;left:38%;top:48%;animation-delay:4.6s}
+.puff:nth-child(7){width:56px;height:56px;left:54%;top:36%;animation-delay:5.3s}
+@keyframes puffRise{
+ 0%{opacity:0;transform:translate(0,0) scale(.55)}
+ 15%{opacity:.85}
+ 50%{opacity:.6;transform:translate(20px,-110px) scale(1.2)}
+ 85%{opacity:.28;transform:translate(42px,-195px) scale(1.55)}
+ 100%{opacity:0;transform:translate(55px,-240px) scale(1.8)}
+}
+@media (prefers-reduced-motion:reduce){
+ .puff{animation:puffFade 14s ease-in-out infinite}
+ @keyframes puffFade{0%,100%{opacity:0}50%{opacity:.3}}
+}
+@media (max-width:640px){.puff{animation-duration:7s}}
+.hero .text-col{position:relative;isolation:isolate}
+.hero .text-col::before{content:"";position:absolute;inset:-50px -70px;background:url('img/chef-t.png') no-repeat left bottom/330px auto;opacity:.14;z-index:-1;pointer-events:none;filter:grayscale(.35)}
+.wm{position:relative;isolation:isolate}
+.wm::before{content:"";position:absolute;inset:0;background:url('img/chef-t.png') no-repeat center 40%/420px auto;opacity:.1;z-index:-1;pointer-events:none;filter:grayscale(.4)}
+.search-wrap{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:3px 16px;margin-bottom:20px;box-shadow:0 3px 10px rgba(46,33,21,.05)}
+.search-wrap span{font-size:1.05rem}
+.search-wrap input{flex:1;border:none;outline:none;font-family:inherit;font-size:.98rem;padding:11px 0;background:transparent;color:var(--ink)}
+.search-wrap:focus-within{border-color:var(--ember)}
+.dish-open{cursor:pointer}
+.dmodal{position:fixed;inset:0;background:rgba(46,33,21,.55);z-index:96;display:flex;align-items:center;justify-content:center;padding:18px;opacity:0;pointer-events:none;transition:.25s}
+.dmodal.open{opacity:1;pointer-events:auto}
+.dmodal-card{background:var(--card);border-radius:22px;max-width:420px;width:100%;padding:20px;position:relative;box-shadow:0 30px 60px rgba(0,0,0,.3);transform:translateY(14px);transition:.25s;max-height:88vh;overflow-y:auto}
+.dmodal.open .dmodal-card{transform:none}
+.dmodal-card .dimg img{width:100%;border-radius:14px;aspect-ratio:4/3;object-fit:cover}
+.dmodal-card h3{font-size:1.3rem;margin:12px 0 4px}
+.dmodal-card .dp{color:var(--muted);font-size:.88rem;margin-bottom:4px}
+.dmodal-card .sizes{margin-top:14px}
+.dmodal-card .add{width:100%}
+.dmodal-card .price{margin:10px 0}
+.dclose{position:absolute;top:12px;left:12px;width:34px;height:34px;border-radius:50%;border:none;background:rgba(255,255,255,.09);font-size:1.2rem;cursor:pointer;color:var(--ink);z-index:2}
+.otypes{display:flex;gap:8px;margin-bottom:10px}
+.otype{flex:1;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:8px;font-family:inherit;font-weight:800;font-size:.85rem;color:var(--muted);cursor:pointer;transition:.15s}
+.otype.on{background:rgba(240,100,20,.18);border-color:var(--ember);color:var(--ember2)}
+#orderNote{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:9px 12px;font-family:inherit;font-size:.85rem;resize:vertical;background:var(--bg);color:var(--ink);margin-bottom:10px;outline:none}
+#orderNote:focus{border-color:var(--ember)}
+.floater{position:absolute;font-size:1.9rem;opacity:.9;animation:float 5s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.15))}
+.floater.f1{top:8%;left:46%}
+.floater.f2{bottom:10%;left:3%;animation-delay:1.4s}
+.floater.f3{top:20%;right:2%;animation-delay:2.2s;font-size:1.5rem}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-6deg)}50%{transform:translateY(-12px) rotate(6deg)}}
+/* category bar */
+.catbar{position:sticky;top:74px;z-index:55;background:rgba(23,17,12,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0}
+.catbar .container{display:flex;gap:9px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.catbar .container::-webkit-scrollbar{display:none}
+.cat{flex:0 0 auto;background:var(--card);border:1.5px solid var(--line);color:var(--muted);font-family:inherit;font-weight:800;font-size:.9rem;padding:8px 18px;border-radius:99px;cursor:pointer;transition:.15s}
+.cat:hover{border-color:var(--ember);color:var(--ember2)}
+.cat.on{background:linear-gradient(135deg,var(--ember),var(--gold));color:#fff;border-color:transparent;box-shadow:0 5px 14px rgba(240,100,20,.35)}
+/* sections */
+section{padding:46px 0}
+.demo-note{display:inline-block;background:rgba(214,69,36,.16);border:1.5px dashed var(--red);color:#ff9a7e;font-size:.8rem;font-weight:800;padding:6px 15px;border-radius:99px;margin-bottom:16px}
+.sec-title{font-size:1.9rem;font-weight:800;margin-bottom:6px;color:var(--ink)}
+.sec-title::after{content:"";display:block;width:66px;height:4px;background:linear-gradient(90deg,var(--ember),var(--gold));border-radius:4px;margin-top:8px}
+.sec-sub{color:var(--muted);margin-bottom:24px;font-size:.95rem}
+/* menu grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.25s;display:flex;flex-direction:column;box-shadow:0 3px 10px rgba(46,33,21,.05)}
+.item:hover{transform:translateY(-6px);box-shadow:0 18px 38px rgba(46,33,21,.16);border-color:var(--gold)}
+.item .ph{position:relative;aspect-ratio:4/3;overflow:hidden}
+.item .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.item:hover .ph img{transform:scale(1.07)}
+.item .ribbon{position:absolute;top:12px;right:12px;background:linear-gradient(135deg,var(--red),var(--ember));color:#fff;font-size:.72rem;font-weight:800;padding:4px 12px;border-radius:99px;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+.item .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.item h3{font-size:1.12rem;color:var(--ink);font-weight:700}
+.item .desc{color:var(--muted);font-size:.82rem;flex:1;line-height:1.65}
+.sizes{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.size{flex:1;min-width:58px;background:var(--bg);border:1.5px solid var(--line);color:var(--ink);font-family:inherit;border-radius:12px;padding:7px 4px;cursor:pointer;transition:.15s;text-align:center}
+.size b{display:block;font-size:.95rem;color:var(--ember2);font-weight:900}
+.size span{font-size:.7rem;color:var(--muted);font-weight:700}
+.size:hover{border-color:var(--ember);transform:translateY(-2px);background:#382a18}
+.size:active{transform:scale(.95)}
+.add{flex:1;background:linear-gradient(135deg,var(--ember),var(--gold));color:#fff;border:none;font-family:inherit;font-weight:800;font-size:.9rem;padding:10px 16px;border-radius:12px;cursor:pointer;transition:.15s;margin-top:10px;box-shadow:0 4px 10px rgba(240,100,20,.25)}
+.add:hover{transform:scale(1.03)}
+.add:active{transform:scale(.95)}
+.price-line{display:flex;align-items:center;justify-content:space-between;margin-top:10px;gap:8px}
+.price{font-size:1.25rem;font-weight:900;color:var(--ember2)}
+.price small{font-size:.7rem;color:var(--muted);font-weight:600;display:block}
+/* table rows */
+.tcard{background:transparent;border:none;box-shadow:none;margin-top:16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;overflow:visible}
+.trow2{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:inset -5px 0 0 0 var(--acc,#d96a5f),0 2px 8px rgba(46,33,21,.05)}
+.trow2 .thumb{width:46px;height:46px;border-radius:12px;object-fit:cover;border:2px solid var(--acc,#d96a5f);flex:0 0 auto}
+.trow2:hover{background:#382a18;border-color:var(--gold)}
+.trow2 .id-block{display:flex;align-items:center;gap:8px;min-width:0}
+.trow2 .nm{font-weight:800;font-size:.93rem;white-space:nowrap}
+.trow2 .sizes{gap:6px}
+.trow2 .sizes .size{padding:4px 6px;min-width:52px;flex:0 0 auto}
+.trow2 .sizes .size b{font-size:.9rem}
+.trow2 .sizes .size span{font-size:.6rem}
+.trow2 .nm small{display:block;color:var(--muted);font-weight:600;font-size:.75rem}
+.trow2 .sizes{margin-top:0}
+.trow2 .size{min-width:64px;padding:5px 8px}
+.trow2 .add{margin-top:0;flex:0 0 auto}
+/* offers */
+.offers{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.offer{background:linear-gradient(160deg,#33250f,#241a10);border:1.5px solid #6b4a26;border-radius:20px;padding:22px;position:relative;overflow:hidden;box-shadow:0 3px 10px rgba(46,33,21,.05);transition:.2s}
+.offer:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(46,33,21,.13)}
+.offer::before{content:"🔥";position:absolute;left:14px;top:12px;font-size:1.5rem;opacity:.85}
+.offer h3{color:var(--ink);font-size:1.15rem;margin-bottom:6px;padding-left:34px;font-weight:700}
+.offer p{color:var(--muted);font-size:.86rem;min-height:56px}
+.offer .pr{display:flex;align-items:center;justify-content:space-between;margin-top:12px}
+.offer .price{font-size:1.35rem}
+.old-tag{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:99px}
+/* why */
+.why-sec{background:var(--bg2)}
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.feat{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 20px;text-align:center;transition:.25s;box-shadow:0 3px 10px rgba(46,33,21,.05)}
+.feat:hover{transform:translateY(-5px);box-shadow:0 16px 32px rgba(46,33,21,.13);border-color:var(--gold)}
+.feat .ic{display:inline-flex;width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,rgba(240,100,20,.28),rgba(245,166,35,.2));align-items:center;justify-content:center;font-size:1.9rem;margin-bottom:12px;box-shadow:inset 0 0 0 2px #6b4a26}
+.feat h3{color:var(--ink);margin-bottom:5px;font-size:1.08rem;font-weight:700}
+.feat p{color:var(--muted);font-size:.87rem}
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}
+.review{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 3px 10px rgba(46,33,21,.05)}
+.review .stars{color:var(--ember);letter-spacing:3px;margin-bottom:8px}
+.review p{font-size:.93rem}
+.review .who{margin-top:12px;font-size:.8rem;color:var(--muted);font-weight:700}
+/* info */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.info-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:center;box-shadow:0 3px 10px rgba(46,33,21,.05)}
+.info-card .ic{font-size:1.9rem;display:block;margin-bottom:8px}
+.info-card h3{color:var(--ink);font-size:1.02rem;margin-bottom:4px;font-weight:700}
+.info-card p{color:var(--muted);font-size:.88rem;direction:rtl}
+/* qr */
+.qr-card{display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;background:linear-gradient(135deg,var(--ember2),var(--ember) 55%,var(--gold));border-radius:26px;padding:36px;color:#fff;box-shadow:0 24px 48px rgba(240,100,20,.35)}
+.qr-card img{width:165px;border-radius:16px;background:#fff;padding:10px;transition:transform .3s;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.qr-card img:hover{transform:scale(1.05) rotate(1.5deg)}
+.qr-card h3{font-size:1.35rem;margin-bottom:8px;color:#fff;font-weight:700}
+.qr-card p{color:#fff3e2;font-size:.94rem}
+/* footer */
+footer{border-top:1px solid var(--line);background:var(--bg2);padding:28px 0;color:var(--muted);font-size:.84rem;text-align:center}
+footer .demo-mark{color:#ff9a7e;font-weight:700}
+/* cart drawer */
+.overlay{position:fixed;inset:0;background:rgba(46,33,21,.5);z-index:90;opacity:0;pointer-events:none;transition:.25s}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(400px,93vw);background:var(--bg);z-index:95;transform:translateX(-105%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:8px 0 40px rgba(0,0,0,.25)}
+.drawer.open{transform:none}
+.drawer .head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:linear-gradient(135deg,var(--ember),var(--gold));color:#fff}
+.drawer .head b{font-size:1.15rem;font-family:'Changa'}
+.drawer .close{background:none;border:none;color:#fff;font-size:1.6rem;cursor:pointer;line-height:1}
+.drawer .items{flex:1;overflow-y:auto;padding:14px 16px}
+.empty{text-align:center;color:var(--muted);padding:50px 0}
+.empty .big{font-size:3rem;display:block;margin-bottom:10px}
+.citem{display:flex;gap:11px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:10px;box-shadow:0 2px 6px rgba(46,33,21,.05)}
+.citem .nm{flex:1;font-size:.88rem;font-weight:800}
+.citem .nm small{display:block;color:var(--muted);font-weight:600}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:27px;height:27px;border-radius:9px;border:1.5px solid var(--line);background:var(--bg);font-weight:900;cursor:pointer;color:var(--ember2);font-size:.95rem;line-height:1}
+.qty b{min-width:20px;text-align:center}
+.citem .rm{background:none;border:none;color:#d33;cursor:pointer;font-size:1.05rem}
+.drawer .foot{border-top:1px solid var(--line);padding:14px 18px;background:var(--card)}
+.tline{display:flex;justify-content:space-between;font-size:.92rem;color:var(--muted);margin-bottom:6px}
+.tline.total{font-size:1.2rem;font-weight:900;color:var(--ember2);border-top:1px dashed var(--line);padding-top:10px;margin-top:8px}
+.drawer .btn{width:100%;text-align:center;margin-top:12px;background:linear-gradient(135deg,#25c05f,#149a4b);box-shadow:0 6px 16px rgba(20,154,75,.3)}
+.wa-note{font-size:.74rem;color:var(--muted);text-align:center;margin-top:8px}
+.wa-float{position:fixed;bottom:22px;right:22px;z-index:80;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25c05f,#149a4b);display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:1.7rem;box-shadow:0 8px 24px rgba(20,154,75,.45);transition:.2s;animation:waPulse 2.5s infinite}
+.wa-float:hover{transform:scale(1.1)}
+@keyframes waPulse{0%,100%{box-shadow:0 8px 24px rgba(20,154,75,.45)}50%{box-shadow:0 8px 34px rgba(20,154,75,.7)}}
+.reveal{opacity:0;transform:translateY(24px);transition:.7s ease}
+.reveal.on{opacity:1;transform:none}
+@media(max-width:880px){
+  .hero .container{grid-template-columns:1fr}
+  .hero h1{font-size:2.1rem}
+  .floater{display:none}
+  .qr-card{grid-template-columns:1fr;text-align:center}
+  .qr-card img{margin:0 auto}
+  .brand b{font-size:1.05rem}
+  .cart-btn{padding:9px 14px;font-size:.85rem}
+  .stats{gap:10px}
+  .stat{padding:8px 14px;min-width:92px}
+}
+
+/* v2 compact cards */
+.cd h3,.cd .desc{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+.cd .size b{white-space:nowrap}
+@media(max-width:360px){.cd .th{flex-basis:60px;width:60px;height:60px}.cd .size b{font-size:.85rem}.buyline .add{padding:10px 14px}}
+.grid{grid-template-columns:1fr;gap:10px}
+.cd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 12px 12px;box-shadow:0 3px 10px rgba(0,0,0,.18)}
+.cd-top{display:flex;gap:12px;align-items:center}
+.cd .th{position:relative;flex:0 0 72px;width:72px;height:72px;border-radius:14px;overflow:hidden;background:#241a12;cursor:pointer}
+.cd .th img{width:100%;height:100%;object-fit:cover}
+.cd .hotb{position:absolute;top:2px;right:2px;font-size:.8rem}
+.cd-tx{min-width:0;flex:1}
+.cd h3{font-size:1.05rem;font-weight:800;cursor:pointer}
+.cd h3 em{font-style:normal;font-size:.68rem;background:linear-gradient(135deg,var(--red),var(--ember));color:#fff;padding:2px 8px;border-radius:99px;margin-right:4px;vertical-align:middle}
+.cd .desc{font-size:.78rem;margin-top:2px;line-height:1.5;color:var(--muted)}
+.cd .sizes{margin-top:10px;gap:8px;flex-wrap:nowrap}
+.cd .size{min-width:0;min-height:52px;padding:6px 4px}
+.size.sel{border-color:var(--ember);background:rgba(240,100,20,.16);box-shadow:0 0 0 1px var(--ember) inset}
+.size.sel span{color:var(--ember2)}
+.buyline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px}
+.buyline .price{font-size:1.2rem}
+.buyline .add{flex:0 0 auto;margin-top:0;min-height:44px;padding:10px 20px}
+.dmodal-card .buyline{margin-top:14px}
+.catbar .container{padding-inline:14px;-webkit-mask-image:linear-gradient(to left,#000 92%,transparent);mask-image:linear-gradient(to left,#000 92%,transparent)}
+@media(min-width:700px){.grid{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a class="brand" href="#top">
+      <span class="logo-wrap"><img src="img/chef-t.png" alt="لوجو مشويات مدحت الحديدي"></span>
+      <span><b>مشويات مدحت الحديدي</b><small>أصل المشويات</small></span>
+    </a>
+    <button class="cart-btn" id="cartOpen">🛒 السلة <span class="cart-count" id="cartCount">0</span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <span class="floater f1">🔥</span>
+  <span class="floater f2">🍢</span>
+  <span class="floater f3">🥩</span>
+  <div class="container">
+    <div class="text-col">
+      <span class="pill"><span class="dot"></span> نموذج تجريبي — الأسعار والعروض من منيو قديم، للتوضيح فقط</span>
+      <h1>أصل المشويات...<br><span>طعم الفحم</span> اللي يجمع العيلة.</h1>
+      <p class="sub">كباب وكفتة وريش على الفحم، صواني تكفي العيلة كلها، وسندوتشات للجوع السريع. اختار صنفك ووزنك، وسلتك بتتحول لرسالة واتساب جاهزة بضغطة واحدة.</p>
+      <div class="cta">
+        <a class="btn" href="#menu">اطلب من المنيو 🍖</a>
+        <a class="btn btn-ghost" href="#offers-sec">شوف العروض</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>+60</b><span>صنف في المنيو</span></div>
+        <div class="stat"><b>9</b><span>صواني عائلية</span></div>
+        <div class="stat"><b>⚖️</b><span>اختيار الوزن والحجم</span></div>
+      </div>
+    </div>
+    <div class="visual">
+      <img class="chef-hero" src="img/chef-t.png" alt="شيف مشويات مدحت الحديدي">
+      <div class="photo-frame">
+        <img src="img/hero.jpg" alt="مشويات على الفحم">
+        <div class="smoke" aria-hidden="true"><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span></div>
+        <span class="cap">من قلب الفحم 🔥</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="catbar" id="menu">
+  <div class="container" id="cats"></div>
+</div>
+
+<section id="menu-sec" style="scroll-margin-top:140px">
+  <div class="container">
+    <span class="demo-note">الأصناف والأسعار من منيو قديم قدّمه العميل — الأسعار توضيحية وهتتحدث قبل التشغيل</span>
+    <h2 class="sec-title">المنيو</h2>
+    <p class="sec-sub">في المشاوي والسندوتشات اختار الوزن أو الحجم وبعدها دوس «أضف للسلة».</p>
+    <div class="search-wrap"><span>🔍</span><input id="searchInput" type="text" placeholder="دوّر على صنف... (مثال: كبدة)"></div>
+    <div class="grid" id="menuGrid"></div>
+    <div class="tcard" id="menuTable" style="display:none"></div>
+  </div>
+</section>
+
+<section id="offers-sec" class="reveal">
+  <div class="container">
+    <span class="demo-note">العروض دي من منيو قديم — موجودة للتوضيح فقط ومش عروض سارية</span>
+    <h2 class="sec-title">العروض</h2>
+    <p class="sec-sub">شكل قسم العروض في الصفحة — العروض الفعلية هتتحدد مع العميل.</p>
+    <div class="offers" id="offersGrid"></div>
+  </div>
+</section>
+
+<section class="why-sec wm reveal">
+  <div class="container">
+    <h2 class="sec-title">ليه الحديدي؟</h2>
+    <p class="sec-sub">المميزات دي نصوص توضيحية للعرض — هتتأكد من العميل.</p>
+    <div class="feats">
+      <div class="feat"><span class="ic">🔥</span><h3>تسوية على الفحم</h3><p>الطعم الحقيقي بيبدأ من الفحم، مش شواية جاز.</p></div>
+      <div class="feat"><span class="ic">🥩</span><h3>لحوم بلدي</h3><p>اختيار اللحمة وتجهيزها بيتم يومياً قبل الشغل.</p></div>
+      <div class="feat"><span class="ic">👨‍👩‍👧‍👦</span><h3>صواني للعيلة</h3><p>صواني مجمعة تكفي من 2 لـ 10 أفراد بضغطة واحدة.</p></div>
+      <div class="feat"><span class="ic">🛵</span><h3>طلبك في دقيقة</h3><p>السلة بتجهز رسالة واتساب بطلبك كامل — من غير مكالمات.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <span class="demo-note">نموذج تجريبي — الآراء دي توضيحية للعرض فقط</span>
+    <h2 class="sec-title">آراء العملاء</h2>
+    <p class="sec-sub">لما الصفحة تشتغل فعلياً، التقييمات بتتحط من العملاء الحقيقيين.</p>
+    <div class="reviews">
+      <div class="review"><div class="stars">★★★★★</div><p>"الكفتة بتدوب في البق، والصينية كفت العيلة كلها. الطلب بالواتساب وفر عليا المكالمة."</p><div class="who">— عميل دائم (توضيحي)</div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>"أحسن حواوشي في المنطقة، والعيش البلدي طازة. بقيت أطلب من المنيو على طول."</p><div class="who">— أول مرة يجرب (توضيحي)</div></div>
+      <div class="review"><div class="stars">★★★★☆</div><p>"الريش مظبوطة والتتبيلة مختلفة فعلاً. صينية أبو العروسة تجربة تتعاد."</p><div class="who">— عميل (توضيحي)</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <span class="demo-note">بيانات من المنيو القديم — هتتأكد من العميل قبل التشغيل</span>
+    <h2 class="sec-title">المكان والتواصل</h2>
+    <p class="sec-sub">الأرقام والعنوان معروضة للتوضيح — زرار الطلب في الصفحة بيستخدم رقم تجريبي.</p>
+    <div class="info-grid">
+      <div class="info-card"><span class="ic">📍</span><h3>العنوان</h3><p>حي السوق — أمام الإدارة التعليمية الجديدة</p></div>
+      <div class="info-card"><span class="ic">📞</span><h3>أرقام المنيو القديم</h3><p>01022962986 — 01095195707</p></div>
+      <div class="info-card"><span class="ic">🕐</span><h3>المواعيد</h3><p>هتتحدد مع العميل قبل التشغيل</p></div>
+      <div class="info-card"><span class="ic">🛵</span><h3>التوصيل</h3><p>رسوم التوصيل بتتحدد حسب المنطقة</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="container">
+    <div class="qr-card">
+      <img src="qr-grills.png" alt="كود QR لمنيو مشويات مدحت الحديدي">
+      <div>
+        <h3>الكود ده يتطبع على الطاولة والكرتونة 📄</h3>
+        <p>العميل يمسح الكود بكاميرا الموبايل فيفتح المنيو على طول ويطلب — من غير ما يكتب ولا ينزل تطبيق. ولو المنيو اتغير، الصفحة بتتحدث والكود بيفضل هو هو.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p class="demo-mark">صفحة تجريبية لعرض إمكانيات التصميم — المحتوى من منيو قديم قدّمه العميل، والأسعار والعروض والآراء توضيحية وليست للطلب الفعلي. رقم الواتساب في الأزرار تجريبي.</p>
+    <p>مشويات مدحت الحديدي © 2026</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/201000000000?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A3%D8%B7%D9%84%D8%A8" target="_blank" rel="noopener" title="اطلب واتساب">💬</a>
+
+<div class="dmodal" id="dishModal" role="dialog" aria-label="تفاصيل الصنف">
+  <div class="dmodal-card">
+    <button class="dclose" id="dishClose">×</button>
+    <div class="dimg" id="dishImgWrap"></div>
+    <h3 id="dishName"></h3>
+    <p class="dp" id="dishDesc"></p>
+    <div id="dishAction"></div>
+  </div>
+</div>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="سلة الطلب">
+  <div class="head"><b>🛒 سلة الطلب</b><button class="close" id="cartClose">×</button></div>
+  <div class="items" id="cartItems"></div>
+  <div class="foot">
+    <div class="otypes">
+      <button class="otype on" data-t="استلام من الفرع">🥡 استلام من الفرع</button>
+      <button class="otype" data-t="توصيل">🛵 توصيل</button>
+    </div>
+    <textarea id="orderNote" rows="2" placeholder="ملاحظات للطلب (اختياري): زيادة بهارات، من غير بصل..."></textarea>
+    <div class="tline"><span>التوصيل</span><span>بيتحدد حسب المنطقة</span></div>
+    <div class="tline total"><span>الإجمالي</span><span id="grandTotal">0 ج</span></div>
+    <button class="btn" id="checkout">أكد الطلب واتساب ✅</button>
+    <p class="wa-note">الرقم تجريبي للعرض — مفيش طلب حقيقي بيتبعت.</p>
+  </div>
+</aside>
+
+<script>
+const CATS=[
+ {id:'grills',name:'المشاوي 🔥'},
+ {id:'sandwiches',name:'سندوتشات 🥖'},
+ {id:'meals',name:'الوجبات 🍽️'},
+ {id:'trays',name:'الصواني 🥘'},
+ {id:'tagines',name:'الطواجن 🍲'},
+ {id:'extras',name:'الإضافات 🍚'}
+];
+const OFFERS=[
+ {name:'عرض المزاج',desc:'2 سندوتش كفتة + سندوتش كبدة + سندوتش سجق + حواوشي',price:150},
+ {name:'عرض الـ 200 (1)',desc:'قطعة لحمة + 2 قطعة طرب + كفتة + سجق + أرز',price:200},
+ {name:'عرض الـ 200 (2)',desc:'قطعتين شيش + ممبار + كفتة + كباب + أرز',price:200},
+ {name:'دلع آخر الأسبوع',desc:'ربع كفتة + ربع طرب + فرخة كاملة + أرز + طحينة + سلطة + شوربة',price:670},
+ {name:'صينية الشاويش',desc:'فرخة + نص كفتة + نص كباب + نص ريش + نص ممبار + 2 حواوشي + أرز بسمتي',price:2000}
+];
+const MENU=[
+ // ===== المشاوي (ربع/نصف/كيلو) =====
+ {id:'kebab',cat:'grills',name:'كباب',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[240,480,960],img:'img/kebab.jpg',hot:1},
+ {id:'kofta',cat:'grills',name:'كفتة',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[150,300,600],img:'img/kofta.jpg'},
+ {id:'tawook',cat:'grills',name:'شيش طاووق',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[110,220,440],img:'img/tawook.jpg'},
+ {id:'riash',cat:'grills',name:'ريش',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[240,480,960],img:'img/riash.jpg'},
+ {id:'mixed',cat:'grills',name:'مشكل كباب وكفتة',desc:'كباب + كفتة — يُباع بالوزن.',prices:[180,360,720],img:'img/mixed.jpg'},
+  {id:'ferakh',cat:'grills',name:'فراخ',prices:[100,180,360],thumb:'img/thumb-farakh.jpg'},
+  {id:'nefa',cat:'grills',name:'نيفة',prices:[240,480,960],thumb:'img/thumb-nefa.jpg'},
+  {id:'tarb',cat:'grills',name:'طرب',prices:[180,360,720],thumb:'img/thumb-tarb.jpg'},
+  {id:'kabda-gamali',cat:'grills',name:'كبدة جملي',prices:[220,440,880],thumb:'img/thumb-kabda.jpg'},
+  {id:'kabda-agali',cat:'grills',name:'كبدة عجالي',prices:[130,260,500],thumb:'img/thumb-kabda.jpg'},
+  {id:'kabda-dani',cat:'grills',name:'كبدة ضاني',prices:[200,400,800],thumb:'img/thumb-kabda.jpg'},
+  {id:'mombar',cat:'grills',name:'ممبار',prices:[100,200,400],thumb:'img/thumb-mombar.jpg'},
+  {id:'mombar-agali',cat:'grills',name:'ممبار عجالي',prices:[100,200,400],thumb:'img/thumb-mombar.jpg'},
+  {id:'hamam',cat:'grills',name:'حمام محشي',desc:'الوحدة/الحجم هيتأكد من العميل',price:150,thumb:'img/thumb-hamam.jpg'},
+ // ===== سندوتشات (صغير/وسط/كبير) =====
+ {id:'s-hawawshi',cat:'sandwiches',name:'حواوشي',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[40,50,60],img:'img/hawawshi.jpg',hot:1},
+ {id:'s-sogo2',cat:'sandwiches',name:'سجق',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[30,35,45],img:'img/sogok.jpg'},
+ {id:'s-kabda-esk',cat:'sandwiches',name:'كبدة اسكندراني',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[30,40,50],img:'img/kabda.jpg'},
+ {id:'s-kofta',cat:'sandwiches',name:'كفتة',prices:[30,35,45]},
+ {id:'s-tarb',cat:'sandwiches',name:'طرب',prices:[50,60,70]},
+ {id:'s-kebab',cat:'sandwiches',name:'كباب',prices:[70,100,120]},
+ {id:'s-shawerma',cat:'sandwiches',name:'شاورما لحمة',prices:[30,40,50]},
+ {id:'s-kabda-agali',cat:'sandwiches',name:'كبدة عجالي',prices:[30,40,50]},
+ {id:'s-kabda-zarda',cat:'sandwiches',name:'كبدة زردة',prices:[30,40,50]},
+ {id:'s-kabda-gamali',cat:'sandwiches',name:'كبدة جملي',prices:[40,50,60]},
+ {id:'s-kabda-dani',cat:'sandwiches',name:'كبدة ضاني',prices:[50,70,80]},
+ // ===== الوجبات =====
+ {id:'m1',cat:'meals',name:'وجبة رقم 1',desc:'ربع فرخة + ربع كفتة + أرز + سلطة + عيش',price:270},
+ {id:'m2',cat:'meals',name:'وجبة رقم 2',desc:'ربع فرخة + ربع طرب + أرز + طحينة + عيش',price:300},
+ {id:'m3',cat:'meals',name:'وجبة رقم 3',desc:'ربع شيش طاووق + ربع كفتة + أرز + طحينة + عيش',price:250},
+ {id:'m4',cat:'meals',name:'وجبة رقم 4',desc:'ربع فرخة + 2 ق كفتة + أرز + طحينة + سلطة + عيش',price:120},
+ {id:'m5',cat:'meals',name:'وجبة رقم 5',desc:'ربع فرخة وراك + أرز + طحينة + خضار + عيش',price:100},
+ {id:'m6',cat:'meals',name:'وجبة رقم 6',desc:'ربع كفتة + نص طرب + أرز + طحينة + خضار + عيش',price:320},
+ {id:'m7',cat:'meals',name:'وجبة رقم 7',desc:'نص فرخة + نص كفتة + أرز + طحينة + خضار + عيش',price:480},
+ {id:'m8',cat:'meals',name:'وجبة رقم 8',desc:'فرد حمام + نص شيش طاووق + سلطة + طحينة + خضار + عيش',price:370},
+ {id:'m9',cat:'meals',name:'وجبة رقم 9',desc:'ربع كفتة + نص ممبار + أرز + طحينة + خضار + عيش',price:350},
+ {id:'m10',cat:'meals',name:'وجبة رقم 10',desc:'ربع سجق + نص كفتة + أرز + طحينة + خضار + عيش',price:400},
+ {id:'m11',cat:'meals',name:'وجبة رقم 11',desc:'ربع ممبار + ربع كفتة + أرز + طحينة + خضار + عيش',price:500},
+ {id:'m-hamam',cat:'meals',name:'وجبة جوز حمام',desc:'جوز حمام + أرز + سلطة + طحينة + عيش',price:300},
+ {id:'m-sadr',cat:'meals',name:'وجبة صدر',desc:'صدر + أرز + سلطة + طحينة + عيش',price:120},
+ {id:'m-nos',cat:'meals',name:'وجبة نص فرخة',desc:'نص فرخة + أرز + سلطة + طحينة + عيش',price:180},
+ {id:'m-kamla',cat:'meals',name:'وجبة فرخة كاملة',desc:'فرخة كاملة + أرز + سلطة + طحينة + عيش',price:360},
+ // ===== الصواني =====
+ {id:'t-saada',cat:'trays',name:'صينية السعادة',desc:'نص فرخة + ربع كفتة + أرز + سلطة + طحينة',price:350},
+ {id:'t-supermix',cat:'trays',name:'وجبة سوبر ميكس',desc:'ربع فرخة + 2 كفتة + 2 كباب + سلطة + طحينة',price:300},
+ {id:'t-layali',cat:'trays',name:'صينية ليالي الحظر',desc:'نص فرخة مشوية + تلت كفتة + أرز بسمتي + شوربة + سلطة + طحينة',price:300},
+ {id:'t-nemra6',cat:'trays',name:'صينية نمرة 6',desc:'ك كفتة + فرخة + محاشي + ممبار + أرز بسمتي + طحينة + سلطة + عيش + ملوخية',price:1000},
+ {id:'t-sohab',cat:'trays',name:'صينية الصحاب',desc:'فرخة كاملة + ك كفتة + 1/2 ك محاشي + 1/2 ك ممبار + طاجن ملوخية + أرز بسمتي + عيش + طحينة',price:1000},
+ {id:'t-3ela',cat:'trays',name:'صينية العيلة',desc:'2 فرخة + 1/2 ك كفتة + 1/2 ك ممبار + ك أرز بسمتي + طاجن ملوخية + 4 سمبوسة + طحينة + عيش',price:1300},
+ {id:'t-habayeb',cat:'trays',name:'صينية الحبايب',desc:'فرخة مشوية + ك كفتة + 1/2 ك محشي + 1/2 ك ممبار + 4 بروست + حواوشي + مكرونة بشاميل + ك أرز + كول سلو + طحينة + مخلل + عيش',price:1160},
+ {id:'t-abo3rosa',cat:'trays',name:'صينية أبو العروسة',desc:'2 فرخة مشوية + نص ك كفتة + نص ك ممبار + نص ك محشي + طاجن ملوخية + أرز بسمتي + 4 طحينة + 2 سلطة + ويسكي حلال + 5 عيش',price:1300},
+ {id:'t-3ersein',cat:'trays',name:'صينية العروسين',desc:'بطة 2.5 ك + 4 حمام + 1/2 ك كباب مشكل + 1/2 ك ممبار + 1/2 ك أرز بسمتي + 1/2 ك محشي + طاجن ملوخية + 4 سمبوسة + طحينة + عيش',price:1850},
+ // ===== الطواجن =====
+ {id:'tg-basal',cat:'tagines',name:'طاجن لحم بالبصل',desc:'لحم مطهو بالبصل والتوابل',price:200},
+ {id:'tg-khodar',cat:'tagines',name:'طاجن خضار باللحم',desc:'ملوخية أو بامية أو بطاطس باللحمة',price:200},
+ {id:'tg-war2a',cat:'tagines',name:'وجبة ورقة لحمة',desc:'ورقة لحمة بالخضار + أرز + سلطة + طحينة',price:250},
+ {id:'tg-fetta',cat:'tagines',name:'وجبة فتة موزة',desc:'موزة ضاني كاملة + فتة + سلطة',price:450},
+ // ===== الإضافات =====
+ {id:'e-macarona',cat:'extras',name:'مكرونة بشاميل',price:60},
+ {id:'e-mombar',cat:'extras',name:'طبق ممبار',price:100},
+ {id:'e-ross-basm',cat:'extras',name:'أرز بسمتي',desc:'المنيو القديم فيه سعرين: 35 / 30 — الحجم هيتأكد من العميل',pricetext:'35 / 30',pending:1},
+ {id:'e-ross-sh3r',cat:'extras',name:'أرز بالشعرية',desc:'المنيو القديم فيه سعرين: 30 / 25 — الحجم هيتأكد من العميل',pricetext:'30 / 25',pending:1},
+ {id:'e-salata',cat:'extras',name:'سلطة',price:10},
+ {id:'e-tahina',cat:'extras',name:'طحينة',price:10},
+ {id:'e-taboula',cat:'extras',name:'تبولة',price:10},
+ {id:'e-baba',cat:'extras',name:'بابا غنوج',price:15},
+ {id:'e-kanz',cat:'extras',name:'كانز',price:20},
+ {id:'e-maya',cat:'extras',name:'مياه معدنية صغيرة',price:10}
+];
+const SIZE_LABELS={grills:['ربع','نصف','كيلو'],sandwiches:['صغير','وسط','كبير']};
+const WA='201000000000';
+
+let cart={};
+try{cart=JSON.parse(localStorage.getItem('hodeidyCart')||'{}')}catch(e){cart={}}
+let curCat='grills',orderType='استلام من الفرع';
+const grid=document.getElementById('menuGrid'),tbl=document.getElementById('menuTable');
+function money(n){return n+' ج'}
+function itemById(id){return MENU.find(m=>m.id===id)}
+function renderCats(){setTimeout(()=>{const o=document.querySelector('.cat.on');if(o)o.scrollIntoView({inline:'center',block:'nearest',behavior:'smooth'})},0);
+  document.getElementById('cats').innerHTML=CATS.map(c=>`<button class="cat${c.id===curCat?' on':''}" data-cat="${c.id}">${c.name}</button>`).join('');
+}
+function sizeButtons(it){
+  const labels=SIZE_LABELS[it.cat];
+  return it.prices.map((p,i)=>p==null?'':
+    `<button class="size${i===0?' sel':''}" data-id="${it.id}" data-sz="${i}" data-p="${p}" aria-pressed="${i===0}"><b>${money(p)}</b><span>${labels[i]}</span></button>`).join('');
+}
+function actionHTML(it){
+  if(it.prices){const p=it.prices.find(x=>x!=null);
+    return `<div class="sizes">${sizeButtons(it)}</div><div class="buyline"><div class="price"><span class="curp">${money(p)}</span><small>سعر توضيحي</small></div><button class="add" data-id="${it.id}" data-sized="1">أضف للسلة +</button></div>`;}
+  if(it.pending)return `<div class="buyline"><div class="price">${it.pricetext} ج<small>السعر هيتأكد</small></div></div>`;
+  return `<div class="buyline"><div class="price">${money(it.price)}<small>سعر توضيحي</small></div><button class="add" data-id="${it.id}">أضف للسلة +</button></div>`;
+}
+function cardHTML(it){const im=it.thumb||it.img;return `<div class="cd">
+  <div class="cd-top">${im?`<div class="th dish-open" data-id="${it.id}"><img src="${im}" alt="${it.name}" loading="lazy">${it.hot?'<span class="hotb">🔥</span>':''}</div>`:''}
+  <div class="cd-tx"><h3 class="dish-open" data-id="${it.id}">${it.name}${it.hot?' <em>الأكثر طلباً</em>':''}</h3>${it.desc?`<p class="desc">${it.desc}</p>`:''}</div></div>
+  ${actionHTML(it)}</div>`}
+function rowHTML(it){return cardHTML(it)}
+function renderList(items){
+  grid.innerHTML=items.map(cardHTML).join('');
+  tbl.style.display='none';
+}
+function renderMenu(cat){curCat=cat;renderCats();renderList(MENU.filter(i=>i.cat===cat));}
+function renderOffers(){
+  document.getElementById('offersGrid').innerHTML=OFFERS.map((o,i)=>`<div class="offer">
+    <span class="old-tag">عرض قديم</span>
+    <h3>${o.name}</h3><p>${o.desc}</p>
+    <div class="pr"><div class="price">${money(o.price)}<small>توضيحي</small></div>
+    <button class="add" data-offer="${i}" style="flex:0 0 auto;margin-top:0">أضف +</button></div></div>`).join('');
+}
+document.getElementById('cats').addEventListener('click',e=>{
+  const b=e.target.closest('.cat');if(!b)return;
+  document.getElementById('searchInput').value='';
+  renderMenu(b.dataset.cat);
+});
+document.getElementById('searchInput').addEventListener('input',e=>{
+  const q=e.target.value.trim();
+  if(!q){renderMenu(curCat);return;}
+  renderList(MENU.filter(i=>i.name.includes(q)||(i.desc||'').includes(q)));
+});
+/* dish modal */
+const dmodal=document.getElementById('dishModal');
+function openDish(id){
+  const it=itemById(id);if(!it)return;
+  const w=document.getElementById('dishImgWrap');
+  w.innerHTML=it.img?`<img src="${it.img}" alt="${it.name}">`:'';
+  w.style.display=it.img?'block':'none';
+  document.getElementById('dishName').textContent=it.name;
+  document.getElementById('dishDesc').textContent=it.desc||'';
+  document.getElementById('dishAction').innerHTML=actionHTML(it);
+  dmodal.classList.add('open');
+}
+document.getElementById('dishClose').addEventListener('click',()=>dmodal.classList.remove('open'));
+dmodal.addEventListener('click',e=>{if(e.target===dmodal)dmodal.classList.remove('open')});
+/* cart */
+function flashBtn(b,txt){const o=b.innerHTML;b.innerHTML=txt;setTimeout(()=>b.innerHTML=o,900);}
+function addToCart(key,label,price,btn){
+  if(!cart[key])cart[key]={label,price,qty:0};
+  cart[key].qty++;saveCart();
+  const cc=document.getElementById('cartCount');cc.classList.add('pop');setTimeout(()=>cc.classList.remove('pop'),200);
+  if(btn)flashBtn(btn,'اتضاف ✓');
+}
+document.addEventListener('click',e=>{
+  const sz=e.target.closest('.size');
+  if(sz&&sz.dataset.id){
+    const box=sz.closest('.sizes');
+    box.querySelectorAll('.size').forEach(x=>{x.classList.remove('sel');x.setAttribute('aria-pressed','false')});
+    sz.classList.add('sel');sz.setAttribute('aria-pressed','true');
+    const cp=box.parentElement.querySelector('.curp');if(cp)cp.textContent=money(+sz.dataset.p);
+    return;
+  }
+  const add=e.target.closest('.add');
+  if(add&&add.dataset.id){
+    const it=itemById(add.dataset.id);
+    if(add.dataset.sized){
+      const sel=add.closest('.cd,.dmodal-card').querySelector('.size.sel');
+      const i=+sel.dataset.sz,labels=SIZE_LABELS[it.cat];
+      addToCart(it.id+'|'+labels[i],`${it.name} (${labels[i]})`,it.prices[i],add);return;
+    }
+    addToCart(it.id,it.name,it.price,add);return;
+  }
+  if(add&&add.dataset.offer!==undefined&&add.dataset.offer!==''){
+    const o=OFFERS[+add.dataset.offer];
+    addToCart('offer-'+add.dataset.offer,o.name,o.price,add);return;
+  }
+  const dp=e.target.closest('.dish-open');
+  if(dp&&dp.dataset.id){openDish(dp.dataset.id);}
+});
+function saveCart(){localStorage.setItem('hodeidyCart',JSON.stringify(cart));renderCart();}
+function cartCount(){return Object.values(cart).reduce((a,b)=>a+b.qty,0)}
+function cartTotal(){return Object.values(cart).reduce((a,b)=>a+b.price*b.qty,0)}
+function renderCart(){
+  document.getElementById('cartCount').textContent=cartCount();
+  const box=document.getElementById('cartItems');
+  const keys=Object.keys(cart).filter(k=>cart[k].qty>0);
+  if(!keys.length){box.innerHTML='<div class="empty"><span class="big">🍢</span>السلة فاضية — اختار من المنيو وارجع هنا.</div>';}
+  else box.innerHTML=keys.map(k=>{const c=cart[k];return `<div class="citem">
+    <div class="nm">${c.label}<small>${money(c.price)} × ${c.qty} = ${money(c.price*c.qty)}</small></div>
+    <div class="qty"><button data-act="dec" data-key="${k}">−</button><b>${c.qty}</b><button data-act="inc" data-key="${k}">+</button></div>
+    <button class="rm" data-act="rm" data-key="${k}">🗑</button></div>`}).join('');
+  document.getElementById('grandTotal').textContent=money(cartTotal());
+}
+document.getElementById('cartItems').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  const {act,key}=b.dataset;
+  if(act==='inc')cart[key].qty++;
+  if(act==='dec'){cart[key].qty--;if(cart[key].qty<=0)delete cart[key];}
+  if(act==='rm')delete cart[key];
+  saveCart();
+});
+document.querySelectorAll('.otype').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.otype').forEach(x=>x.classList.remove('on'));
+  b.classList.add('on');orderType=b.dataset.t;
+}));
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay');
+document.getElementById('cartOpen').addEventListener('click',()=>{drawer.classList.add('open');overlay.classList.add('open');});
+document.getElementById('cartClose').addEventListener('click',()=>{drawer.classList.remove('open');overlay.classList.remove('open');});
+overlay.addEventListener('click',()=>{drawer.classList.remove('open');overlay.classList.remove('open');});
+document.getElementById('checkout').addEventListener('click',()=>{
+  const keys=Object.keys(cart).filter(k=>cart[k].qty>0);
+  if(!keys.length){alert('السلة فاضية — ضيف حاجة الأول 🙂');return;}
+  const lines=keys.map(k=>{const c=cart[k];return `• ${c.label} × ${c.qty} = ${c.price*c.qty} ج`;});
+  const note=document.getElementById('orderNote').value.trim();
+  let msg=`السلام عليكم، عايز أطلب من مشويات مدحت الحديدي:\n${lines.join('\n')}\nنوع الطلب: ${orderType}\n`;
+  if(note)msg+=`ملاحظات: ${note}\n`;
+  msg+=`الإجمالي: ${cartTotal()} ج\n(طلب من صفحة المنيو التجريبية)`;
+  window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(msg),'_blank');
+});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+renderCats();renderMenu('grills');renderOffers();renderCart();
+</script>
+</body>
+</html>
