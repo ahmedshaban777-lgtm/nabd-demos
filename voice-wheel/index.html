@@ -189,7 +189,7 @@ function tick() {
 requestAnimationFrame(tick);
 
 scene.addEventListener('pointerdown', e => {
-  scene.setPointerCapture && scene.setPointerCapture(e.pointerId);
+  try { scene.setPointerCapture(e.pointerId); } catch (_) {}
   drag = { startX: e.clientX, startAngle: angle, moved: false, vel: 0, lastA: angle, lastT: performance.now() };
 });
 scene.addEventListener('pointermove', e => {
