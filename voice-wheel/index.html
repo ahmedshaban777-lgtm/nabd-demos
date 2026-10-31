@@ -77,6 +77,9 @@ body {
 .wcard.is-front { border-color:rgba(95,214,207,.65); }
 .wcard.is-playing { border-color:#5fd6cf; box-shadow:0 18px 50px rgba(95,214,207,.25); }
 
+.showreel { margin:18px auto 4px; max-width:300px; }
+.sr-label { font-size:12.5px; color:#5fd6cf; margin-bottom:6px; }
+.showreel video { width:100%; border-radius:14px; border:1px solid rgba(95,214,207,.35); display:block; background:#0d2224; }
 .wheel-nav { display:flex; justify-content:center; gap:18px; margin-top:8px; }
 .wheel-nav button {
   width:44px; height:44px; border-radius:50%;
@@ -112,6 +115,10 @@ body {
     <span class="chip">معلّق صوتي</span>
     <h1>أحمد شعبان</h1>
     <p class="tagline">اجعل كلماتك تنبض بالحياة</p>
+    <div class="showreel">
+      <div class="sr-label">الشو ريل</div>
+      <video src="https://ahmedshaban.lovable.app/__l5e/assets-v1/13c60b7a-fe0a-4247-89ce-b3925441ee37/featured-reel.mp4" poster="photos/reel.jpg" preload="metadata" playsinline controls></video>
+    </div>
     <div class="wheel-wrap">
       <div class="wheel-hint">اسحب العجلة أو دوس على الفيديو اللي في النص</div>
       <div class="scene" id="scene"><div class="ring" id="ring"></div></div>
@@ -138,7 +145,6 @@ const VIDEOS = [
   { src: BASE+'ab8550bc-12ba-4ec5-bb17-0dd15db1ff14/reel-b.mp4',           poster:'photos/watha2i.jpg',  title:'قطع وثائقي سينمائي', kind:'وثائقي'  },
   { src: BASE+'217f47e6-ef09-46da-8a77-8163581f97f9/ad-fashion-brand.mp4', poster:'photos/fashion.jpg',  title:'براند ملابس',        kind:'إعلاني'  },
   { src: BASE+'b4742d05-b85c-4327-afa2-bc70a12066cf/vo-batal.mp4',         poster:'photos/batal.jpg',    title:'انت بطل قصتك',      kind:'تحفيزي'  },
-  { src: BASE+'13c60b7a-fe0a-4247-89ce-b3925441ee37/featured-reel.mp4',    poster:'photos/reel.jpg',     title:'مونتاج الفيديو',    kind:'ريل'     },
 ];
 const N = VIDEOS.length, STEP = 360/N, IDLE = 0.08;
 const ring = document.getElementById('ring');
