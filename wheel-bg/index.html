@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>فكرة خلفية العجلة — أحمد شعبان</title>
+<title>أشكال عرض الشغل — أحمد شعبان</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
@@ -14,28 +14,33 @@ body {
 }
 .page { width:100%; max-width:1120px; padding:26px 14px 48px; }
 
-.intro { text-align:center; margin-bottom:18px; }
+.intro { text-align:center; margin-bottom:16px; }
 .chip {
   display:inline-block; font-size:12.5px; letter-spacing:.04em;
   color:#5fd6cf; border:1px solid #2c6b66; border-radius:999px;
   padding:4px 14px; margin-bottom:10px; background:rgba(95,214,207,.08);
 }
-.intro h1 { font-size:26px; font-weight:800; color:#f2fbfa; }
-.intro p { font-size:14px; color:#9fc9c5; margin-top:6px; line-height:1.8; max-width:560px; margin-inline:auto; }
-.toggle {
-  margin-top:14px; font-size:13.5px; font-weight:700;
-  color:#062625; background:#5fd6cf; border:none; border-radius:999px;
-  padding:10px 22px; cursor:pointer;
-}
-.toggle.off { background:transparent; color:#5fd6cf; border:1px solid #2c6b66; }
+.intro h1 { font-size:25px; font-weight:800; color:#f2fbfa; }
+.intro p { font-size:14px; color:#9fc9c5; margin-top:6px; line-height:1.8; max-width:580px; margin-inline:auto; }
 
-/* ---------- stage: plain vs concept ---------- */
+.controls { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:16px 0 14px; }
+.controls button {
+  font-size:13.5px; font-weight:700; font-family:inherit;
+  color:#5fd6cf; background:transparent; border:1px solid #2c6b66; border-radius:999px;
+  padding:9px 18px; cursor:pointer;
+}
+.controls button.active { background:#5fd6cf; color:#062625; border-color:#5fd6cf; }
+.controls .sep { flex-basis:100%; height:0; }
+.controls button.bg-toggle.on { background:rgba(95,214,207,.14); }
+
+/* ---------- stage ---------- */
 .stage {
   --radius:405px;
+  --card-w:170px; --card-h:220px;
   position:relative; border-radius:22px; overflow:hidden;
   background:#060f10;
   border:1px solid rgba(95,214,207,.14);
-  padding:30px 6px 24px;
+  padding:26px 6px 22px;
   transition:background .6s;
 }
 .stage.bg-on {
@@ -43,10 +48,7 @@ body {
 }
 .bg-fx { position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .6s; }
 .stage.bg-on .bg-fx { opacity:1; }
-.bg-fx .rim-l, .bg-fx .rim-r {
-  position:absolute; top:-10%; bottom:-10%; width:34%;
-  filter:blur(6px);
-}
+.bg-fx .rim-l, .bg-fx .rim-r { position:absolute; top:-10%; bottom:-10%; width:34%; filter:blur(6px); }
 .bg-fx .rim-l { left:-6%; background:radial-gradient(60% 55% at 30% 45%, rgba(56,224,238,.20), transparent 70%); }
 .bg-fx .rim-r { right:-6%; background:radial-gradient(60% 55% at 70% 45%, rgba(56,224,238,.16), transparent 70%); }
 .bg-fx .floor {
@@ -69,21 +71,20 @@ body {
   perspective:1000px; perspective-origin:50% 42%;
   touch-action:pan-y; cursor:grab; user-select:none; -webkit-user-select:none;
 }
+.stage[data-form="fan"] .scene, .stage[data-form="strip"] .scene { height:300px; }
 .scene:active { cursor:grabbing; }
-.ring {
-  position:absolute; left:50%; top:30px; margin-left:-85px;
-  width:170px; height:220px;
-  transform-style:preserve-3d;
-  will-change:transform;
-}
+.ring { position:absolute; inset:0; transform-style:preserve-3d; }
 .wcard {
-  position:absolute; inset:0;
+  position:absolute; left:50%; top:26px;
+  width:var(--card-w); height:var(--card-h);
+  margin-left:calc(var(--card-w) / -2);
   border-radius:14px; overflow:hidden;
   border:1px solid rgba(95,214,207,.18);
   box-shadow:0 18px 40px rgba(0,0,0,.45);
   backface-visibility:hidden; -webkit-backface-visibility:hidden;
   background:#0d2224;
 }
+.stage[data-form="fan"] .wcard, .stage[data-form="strip"] .wcard { backface-visibility:visible; -webkit-backface-visibility:visible; }
 .wcard video { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
 .wcard-shade { position:absolute; inset:0; background:rgba(4,14,15,.45); transition:background .25s; }
 .wcard.is-front .wcard-shade { background:rgba(4,14,15,0); }
@@ -105,66 +106,71 @@ body {
 .wcard.is-front:not(.is-playing) .wcard-play { display:block; }
 .wcard.is-front { border-color:rgba(95,214,207,.65); }
 .wcard.is-playing { border-color:#5fd6cf; box-shadow:0 18px 50px rgba(95,214,207,.25); }
-.wheel-nav { position:relative; display:flex; justify-content:center; gap:18px; margin-top:10px; }
+.wheel-nav { position:relative; display:flex; justify-content:center; gap:18px; margin-top:8px; }
 .wheel-nav button {
   width:44px; height:44px; border-radius:50%;
   border:1px solid #2c6b66; background:rgba(95,214,207,.08);
   color:#5fd6cf; font-size:22px; cursor:pointer;
 }
 
-.info { margin-top:22px; display:grid; gap:10px; grid-template-columns:1fr; }
-.row {
-  background:#101a1c; border:1px solid #1d3134; border-radius:12px;
-  padding:12px 14px;
+.form-note { text-align:center; margin-top:14px; font-size:13px; color:#9fc9c5; line-height:1.8; }
+.form-note b { color:#eaf6f5; }
+
+.opinion {
+  margin-top:20px; background:#101a1c; border:1px solid #1d3134; border-radius:12px;
+  padding:14px 16px; font-size:13.5px; line-height:1.9; color:#9fc9c5;
 }
-.row b { display:block; font-size:14px; color:#eaf6f5; margin-bottom:2px; }
-.row b::before { content:attr(data-n); color:#5fd6cf; margin-left:6px; }
-.row p { font-size:13px; color:#9fc9c5; line-height:1.7; }
-.closing { text-align:center; font-size:12.5px; color:#6d8583; margin-top:20px; }
+.opinion b { color:#5fd6cf; }
+.closing { text-align:center; font-size:12.5px; color:#6d8583; margin-top:16px; }
 
 @media (min-width:640px) {
-  .stage { --radius:505px; }
+  .stage { --radius:505px; --card-w:210px; --card-h:265px; }
   .scene { height:390px; perspective:1250px; }
-  .ring { width:210px; height:265px; margin-left:-105px; }
-  .info { grid-template-columns:repeat(3, 1fr); }
+  .stage[data-form="fan"] .scene, .stage[data-form="strip"] .scene { height:350px; }
 }
 @media (min-width:1024px) {
-  .stage { --radius:585px; }
+  .stage { --radius:585px; --card-w:240px; --card-h:300px; }
   .scene { height:440px; perspective:1450px; }
-  .ring { width:240px; height:300px; margin-left:-120px; top:40px; }
+  .stage[data-form="fan"] .scene, .stage[data-form="strip"] .scene { height:400px; }
 }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="intro">
-    <span class="chip">فكرة للمعاينة — مش على الموقع</span>
-    <h1>خلفية جديدة ورا عجلة الشغل</h1>
-    <p>عمق استوديو غامق بإضاءة سماوية هادية على الجانبين وملمس خفيف، يبرز الفيديوهات من غير ما يزاحمها. قارن بنفسك:</p>
-    <button class="toggle" id="toggle">شوفها من غير الخلفية</button>
+    <span class="chip">تصورات للمعاينة — مش على الموقع</span>
+    <h1>أشكال عرض الشغل + فكرة الخلفية</h1>
+    <p>نفس الـ ١٣ فيديو بتاعك في ٣ أشكال مختلفة، وبالخلفية المقترحة (عمق استوديو غامق بإضاءة سماوية جانبية). جرّب كل شكل وقارن:</p>
   </div>
 
-  <div class="stage bg-on" id="stage">
+  <div class="controls">
+    <button data-form="wheel" class="active">العجلة الدائرية (الحالية)</button>
+    <button data-form="fan">المروحة المفتوحة</button>
+    <button data-form="strip">الشريط</button>
+    <span class="sep"></span>
+    <button class="bg-toggle on" id="bgToggle">الخلفية: شغالة</button>
+  </div>
+
+  <div class="stage bg-on" id="stage" data-form="wheel">
     <div class="bg-fx">
       <div class="rim-l"></div><div class="rim-r"></div>
       <div class="floor"></div>
       <div class="bokeh b1"></div><div class="bokeh b2"></div><div class="bokeh b3"></div>
       <div class="grain"></div>
     </div>
-    <div class="wheel-hint">اسحب العجلة أو دوس على الفيديو اللي في النص</div>
+    <div class="wheel-hint">اسحب أو دوس على الفيديو اللي في النص</div>
     <div class="scene" id="scene"><div class="ring" id="ring"></div></div>
     <div class="wheel-nav">
       <button id="prev" aria-label="اللي قبله">‹</button>
       <button id="next" aria-label="اللي بعده">›</button>
     </div>
   </div>
+  <div class="form-note" id="formNote"></div>
 
-  <div class="info">
-    <div class="row"><b data-n="1.">عمق استوديو</b><p>تدرج غامق بيبعد الخلفية عن العين، فالفيديوهات تطلع قدام كأنها معروضة في ستوديو.</p></div>
-    <div class="row"><b data-n="2.">إضاءة سماوية جانبية</b><p>وهج هادي يمين وشمال بنفس روح ألوان موقعك، يدّي إحساس إضاءة حقيقية من غير ما يسرق النظر.</p></div>
-    <div class="row"><b data-n="3.">ملمس خفيف</b><p>حبيبات ناعمة جدًا تكسر المسطح السادة، خفيفة وما تاثرش على سرعة التحميل.</p></div>
+  <div class="opinion">
+    <b>رأيي:</b> لو عايز أقوى انطباع أول وحركة مرحة، العجلة الدائرية. لو الأولوية إن الزائر يتصفح كل الشغل بسهولة ووضوح، الشريط — وده ترشيحي لموقع شغل. المروحة حل وسط شيك بين الاتنين.
   </div>
-  <div class="closing">دي معاينة للفكرة بس — موقعك الحالي زي ما هو لحد ما تقول رأيك.</div>
+  <div class="closing">دي تصورات للمعاينة بس — موقعك الحالي زي ما هو لحد ما تقول رأيك.</div>
 </div>
 
 <script>
@@ -184,18 +190,25 @@ const VIDEOS = [
   { src: BASE+'86b0e42c-fddc-4a8a-b8cf-c233abc4f98d/reel-e.mp4',           poster:'photos/reel-e.jpg',           title:'مونتاج ريل مميز',         kind:'ريل مميز'   },
   { src: BASE+'34ba99da-4e5d-47e1-bcdd-d05584f5414a/reel-events.mp4',      poster:'photos/reel-events.jpg',      title:'مونتاج مناسبات',          kind:'مناسبات'    },
 ];
+const NOTES = {
+  wheel: '<b>العجلة الدائرية</b> — الشكل الحالي: الفيديوهات بتعدي في عمق وبتلف لوحدها؛ أكثر شكل ملفت ومرح.',
+  fan:   '<b>المروحة المفتوحة</b> — الكروت متفرشة قدامك كأنها في إيدك؛ أوضح من العجلة وفيها نفس الروح.',
+  strip: '<b>الشريط</b> — اللي في النص كبير والباقي واضح جنبه؛ أبسط وأسرع تصفح لكل الشغل.',
+};
 const N = VIDEOS.length, STEP = 360/N;
-const IDLE = 0.06, DRAG_SPEED = 0.6, EASE = 0.14, FRICTION = 0.945, MIN_SPIN = 0.12, STALE_MS = 80;
+const DRAG_K = { wheel: 0.0217, fan: 0.011, strip: 0.0068 };
+const IDLE_V = 0.0024, EASE = 0.14, FRIC = 0.945, MIN_SPIN = 0.002, STALE_MS = 80;
 const ring = document.getElementById('ring');
 const scene = document.getElementById('scene');
-let angle = 0, target = 0, vel = 0, mode = 'idle';
-let drag = null, playingIdx = null, frontIdx = 0;
+const stage = document.getElementById('stage');
+let form = 'wheel';
+let p = 0, pTarget = 0, vel = 0, mode = 'idle';
+let drag = null, playingIdx = null, frontIdx = -1;
 const cards = [], vids = [];
 
 VIDEOS.forEach((v, i) => {
   const c = document.createElement('div');
-  c.className = 'wcard' + (i===0 ? ' is-front' : '');
-  c.style.transform = `rotateY(${i*STEP}deg) translateZ(var(--radius))`;
+  c.className = 'wcard';
   c.innerHTML = `<video src="${v.src}" poster="${v.poster}" preload="metadata" playsinline loop></video>
     <div class="wcard-shade"></div>
     <div class="wcard-label"><span class="wcard-kind">${v.kind}</span><span class="wcard-title">${v.title}</span></div>
@@ -217,25 +230,57 @@ function stopVideo() {
   vids.forEach(v => { if (!v.paused) v.pause(); });
   setPlaying(null);
 }
-function tick() {
-  if (mode === 'drag') {
-    angle = target;
-  } else if (mode === 'spin') {
-    angle += vel;
-    vel *= FRICTION;
-    if (Math.abs(vel) < MIN_SPIN) { mode = 'settle'; target = Math.round(angle/STEP)*STEP; }
-  } else {
-    if (playingIdx !== null) target = Math.round(angle/STEP)*STEP;
-    else if (mode === 'settle') { if (Math.abs(target-angle) < 0.05) mode = 'idle'; }
-    else target += IDLE;
-    angle += (target-angle)*EASE;
+function wrapD(d){ d = d % N; if (d > N/2) d -= N; if (d < -N/2) d += N; return d; }
+function cardW(){ return cards[0].offsetWidth; }
+
+function render() {
+  for (let i = 0; i < N; i++) {
+    const c = cards[i];
+    if (form === 'wheel') {
+      const d = i - p;
+      c.style.opacity = 1; c.style.pointerEvents = 'auto'; c.style.zIndex = '';
+      c.style.transform = `translateZ(calc(var(--radius) * -1)) rotateY(${d*STEP}deg) translateZ(var(--radius))`;
+    } else {
+      const d = wrapD(i - p);
+      if (Math.abs(d) > 3.6) { c.style.opacity = 0; c.style.pointerEvents = 'none'; continue; }
+      c.style.opacity = 1; c.style.pointerEvents = 'auto';
+      c.style.zIndex = 200 - Math.round(Math.abs(d)*10);
+      if (form === 'fan') {
+        const x = -d * cardW() * 0.60;
+        const y = Math.pow(Math.abs(d), 1.6) * 12;
+        const rot = d * 9;
+        const z = -Math.abs(d) * 70;
+        const s = 1 - Math.abs(d)*0.05;
+        c.style.transform = `translate3d(${x}px, ${y}px, ${z}px) rotate(${rot}deg) scale(${s})`;
+      } else {
+        const x = -d * cardW() * 1.06;
+        const z = -Math.abs(d) * 130;
+        const ry = d * -14;
+        const s = 1 - Math.abs(d)*0.07;
+        c.style.transform = `translate3d(${x}px, 0, ${z}px) rotateY(${ry}deg) scale(${s})`;
+      }
+    }
   }
-  ring.style.transform = `translateZ(calc(var(--radius) * -1)) rotateY(${angle}deg)`;
-  const fi = ((Math.round(-angle/STEP) % N) + N) % N;
+  const fi = ((Math.round(p) % N) + N) % N;
   if (fi !== frontIdx) {
     frontIdx = fi;
     cards.forEach((c, j) => c.classList.toggle('is-front', j === fi));
   }
+}
+function tick() {
+  if (mode === 'drag') {
+    p = pTarget;
+  } else if (mode === 'spin') {
+    p += vel;
+    vel *= FRIC;
+    if (Math.abs(vel) < MIN_SPIN) { mode = 'settle'; pTarget = Math.round(p); }
+  } else {
+    if (playingIdx !== null) pTarget = Math.round(p);
+    else if (mode === 'settle') { if (Math.abs(pTarget-p) < 0.002) mode = 'idle'; }
+    else pTarget -= IDLE_V;
+    p += (pTarget-p)*EASE;
+  }
+  render();
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);
@@ -244,26 +289,25 @@ scene.addEventListener('pointerdown', e => {
   try { scene.setPointerCapture(e.pointerId); } catch (_) {}
   if (playingIdx !== null) stopVideo();
   mode = 'drag'; vel = 0;
-  drag = { startX: e.clientX, startAngle: angle, moved: false, vel: 0, lastA: angle, lastT: performance.now() };
+  drag = { startX: e.clientX, startP: p, moved: false, vel: 0, lastP: p, lastT: performance.now() };
 });
 scene.addEventListener('pointermove', e => {
   if (!drag) return;
   const dx = e.clientX - drag.startX;
   if (Math.abs(dx) > 4) drag.moved = true;
-  const na = drag.startAngle + dx * DRAG_SPEED;
+  const np = drag.startP - dx * DRAG_K[form];
   const now = performance.now();
   const dt = Math.max(now - drag.lastT, 1);
-  drag.vel = 0.8 * drag.vel + 0.2 * ((na - drag.lastA) / dt);
-  drag.lastA = na; drag.lastT = now;
-  target = na;
+  drag.vel = 0.8 * drag.vel + 0.2 * ((np - drag.lastP) / dt);
+  drag.lastP = np; drag.lastT = now;
+  pTarget = np;
 });
 function endDrag() {
   mode = 'settle';
-  target = Math.round(angle/STEP)*STEP;
+  pTarget = Math.round(p);
   if (drag && performance.now() - drag.lastT <= STALE_MS) {
     let v = drag.vel * 16.7;
-    const cap = STEP * 0.9;
-    if (v > cap) v = cap; if (v < -cap) v = -cap;
+    if (v > 0.5) v = 0.5; if (v < -0.5) v = -0.5;
     if (Math.abs(v) > MIN_SPIN * 2) { vel = v; mode = 'spin'; }
   }
   drag = null;
@@ -274,11 +318,11 @@ scene.addEventListener('pointercancel', endDrag);
 function goTo(i) {
   stopVideo();
   mode = 'settle';
-  const cur = ((Math.round(-target/STEP) % N) + N) % N;
+  const cur = ((Math.round(pTarget) % N) + N) % N;
   let d = i - cur;
   if (d > N/2) d -= N;
   if (d < -N/2) d += N;
-  target = Math.round(target/STEP)*STEP - d*STEP;
+  pTarget = Math.round(pTarget) + d;
 }
 function onCardClick(i) {
   if (drag && drag.moved) return;
@@ -289,15 +333,25 @@ function onCardClick(i) {
   v.currentTime = 0; v.muted = false;
   v.play().then(() => setPlaying(i)).catch(() => { v.muted = true; v.play().then(() => setPlaying(i)).catch(()=>{}); });
 }
-document.getElementById('prev').addEventListener('click', () => { stopVideo(); mode='settle'; target = Math.round(target/STEP)*STEP + STEP; });
-document.getElementById('next').addEventListener('click', () => { stopVideo(); mode='settle'; target = Math.round(target/STEP)*STEP - STEP; });
+document.getElementById('prev').addEventListener('click', () => { stopVideo(); mode='settle'; pTarget = Math.round(pTarget) - 1; });
+document.getElementById('next').addEventListener('click', () => { stopVideo(); mode='settle'; pTarget = Math.round(pTarget) + 1; });
 
-const stage = document.getElementById('stage');
-const toggle = document.getElementById('toggle');
-toggle.addEventListener('click', () => {
+const note = document.getElementById('formNote');
+note.innerHTML = NOTES.wheel;
+document.querySelectorAll('.controls [data-form]').forEach(b => {
+  b.addEventListener('click', () => {
+    form = b.dataset.form;
+    stage.dataset.form = form;
+    document.querySelectorAll('.controls [data-form]').forEach(x => x.classList.toggle('active', x === b));
+    note.innerHTML = NOTES[form];
+    stopVideo(); mode = 'settle'; pTarget = Math.round(p);
+  });
+});
+const bgToggle = document.getElementById('bgToggle');
+bgToggle.addEventListener('click', () => {
   const on = stage.classList.toggle('bg-on');
-  toggle.textContent = on ? 'شوفها من غير الخلفية' : 'شوفها بالخلفية';
-  toggle.classList.toggle('off', !on);
+  bgToggle.textContent = on ? 'الخلفية: شغالة' : 'الخلفية: مقفولة';
+  bgToggle.classList.toggle('on', on);
 });
 </script>
 </body>
