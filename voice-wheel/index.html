@@ -205,8 +205,11 @@ scene.addEventListener('pointermove', e => {
 });
 function endDrag() {
   if (drag) {
-    let flingTarget = angle + drag.vel * FLING;
-    target = Math.round(flingTarget/STEP)*STEP;
+    let v = drag.vel;
+    if (v > 3) v = 3; if (v < -3) v = -3;
+    let t = Math.round(angle/STEP)*STEP;
+    if (v < -0.2) t -= STEP; else if (v > 0.2) t += STEP;
+    target = t;
   }
   drag = null;
 }
