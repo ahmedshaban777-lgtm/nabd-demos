@@ -32,6 +32,10 @@
     background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 55%,#4facfe));
     display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px color-mix(in srgb,var(--ac) 45%,transparent)}
   .pbtn svg{width:18px;height:18px;fill:#06121f}
+  .pbtn::before,.pbtn::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--ac);opacity:0;pointer-events:none;animation:ripple 2.6s ease-out infinite}
+  .pbtn::after{animation-delay:1.3s}
+  @keyframes ripple{0%{transform:scale(1);opacity:.55}70%{opacity:.18}100%{transform:scale(1.9);opacity:0}}
+  .card.on .pbtn::before,.card.on .pbtn::after{animation-duration:1.4s;border-width:2.5px}
   .pbtn .ic-pause{display:none}
   .card.on .pbtn .ic-play{display:none}
   .card.on .pbtn .ic-pause{display:block}
