@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مكتبة الأسطوانات — نسخة تجريبية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  :root{
+    --bg0:#0a0e16; --bg1:#070b12; --line:rgba(212,176,74,.22);
+    --gold:#d4b04a; --gold2:#e9c76b; --txt:#f2f4f8; --mut:#96a0b4;
+    --cyan:#22d3ee; --blue:#3b82f6;
+  }
+  html,body{ min-height:100%; }
+  body{
+    font-family:'Cairo','Noto Sans Arabic',sans-serif; color:var(--txt);
+    background:radial-gradient(120% 90% at 50% 0%, #101828 0%, var(--bg0) 45%, var(--bg1) 100%) fixed;
+    padding:30px 16px 26px; max-width:1180px; margin:0 auto;
+  }
+  .kicker{ text-align:center; color:var(--gold); font-size:11px; font-weight:700; letter-spacing:.35em; }
+  h1{ text-align:center; font-size:clamp(26px,5vw,42px); font-weight:900; margin-top:6px; }
+  .sub{ text-align:center; color:var(--mut); font-size:clamp(12px,2.4vw,15px); margin-top:4px; font-weight:600; }
+
+  .chips{ display:flex; justify-content:center; flex-wrap:wrap; gap:7px; margin:18px 0 6px; }
+  .chip{ font-family:inherit; cursor:pointer; font-size:12px; font-weight:700; padding:5px 16px; border-radius:99px; border:1px solid rgba(150,160,180,.28); color:var(--mut); background:rgba(255,255,255,.02); transition:.2s; }
+  .chip.on{ background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#171106; border-color:transparent; }
+
+  /* ---------- shelf ---------- */
+  .shelf-wrap{ margin-top:22px; }
+  .shelf{
+    display:flex; align-items:flex-end; gap:12px; padding:30px 10px 4px;
+    overflow-x:auto; scrollbar-width:thin; scrollbar-color:rgba(212,176,74,.35) transparent;
+    scroll-behavior:smooth;
+  }
+  .shelf::-webkit-scrollbar{ height:5px; }
+  .shelf::-webkit-scrollbar-thumb{ background:rgba(212,176,74,.3); border-radius:99px; }
+  .sleeve{
+    width:96px; height:96px; border-radius:9px; position:relative; flex:none; cursor:pointer;
+    box-shadow:0 10px 22px rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.09);
+    display:flex; flex-direction:column; justify-content:space-between; padding:8px;
+    transition:transform .25s ease, border-color .25s, box-shadow .25s;
+  }
+  .sleeve::before{
+    content:""; position:absolute; top:-19px; right:10px; left:10px; height:38px; border-radius:50% 50% 0 0/100% 100% 0 0;
+    background:repeating-radial-gradient(circle at 50% 100%, #16181d 0 1.5px, #23262e 1.5px 3px);
+    border:1px solid rgba(255,255,255,.10); border-bottom:none; z-index:-1; transition:.25s;
+  }
+  .sleeve.sel{ transform:translateY(-16px); border:1.5px solid var(--gold); box-shadow:0 16px 30px rgba(0,0,0,.65), 0 0 0 3px rgba(212,176,74,.18); }
+  .sleeve.sel::before{ top:-25px; right:8px; left:8px; height:50px; border-color:rgba(212,176,74,.5); border-bottom:none; }
+  .sleeve .badge{ position:relative; z-index:2; align-self:flex-start; font-size:9px; font-weight:800; padding:2px 7px; border-radius:99px; background:rgba(0,0,0,.45); border:1px solid rgba(255,255,255,.16); color:#fff; }
+  .sleeve .t{ font-size:10.5px; font-weight:800; line-height:1.35; text-shadow:0 1px 6px rgba(0,0,0,.85); }
+  .sleeve .d{ position:absolute; bottom:6px; left:7px; font-size:9px; font-weight:700; color:rgba(255,255,255,.75); direction:ltr; font-variant-numeric:tabular-nums; text-shadow:0 1px 4px rgba(0,0,0,.8); }
+  @media(min-width:760px){
+    .shelf{ gap:16px; }
+    .sleeve{ width:128px; height:128px; }
+    .sleeve::before{ top:-25px; right:13px; left:13px; height:50px; }
+    .sleeve.sel{ transform:translateY(-20px); }
+    .sleeve.sel::before{ top:-33px; right:10px; left:10px; height:66px; }
+    .sleeve .t{ font-size:13px; } .sleeve .badge{ font-size:10px; } .sleeve .d{ font-size:10px; }
+  }
+  .plank{ height:5px; margin:10px 8px 0; border-radius:3px; background:linear-gradient(90deg,transparent,#3a2f16 12%,#6b5424 50%,#3a2f16 88%,transparent); box-shadow:0 3px 8px rgba(0,0,0,.6); }
+
+  /* ---------- player ---------- */
+  .player{
+    margin:26px auto 0; max-width:640px;
+    background:linear-gradient(180deg,#121a2c,#0c1220); border:1px solid var(--line);
+    border-radius:18px; padding:16px; box-shadow:0 18px 40px rgba(0,0,0,.5);
+  }
+  .p-top{ display:flex; gap:14px; align-items:center; }
+  .disc{
+    width:110px; height:110px; border-radius:50%; flex:none; position:relative;
+    background:repeating-radial-gradient(circle, #14161b 0 2px, #22252c 2px 4px);
+    box-shadow:0 8px 20px rgba(0,0,0,.7), inset 0 0 0 1px rgba(255,255,255,.06);
+    animation:spin 7s linear infinite; animation-play-state:paused;
+  }
+  body.is-playing .disc{ animation-play-state:running; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .disc::after{ content:""; position:absolute; inset:0; border-radius:50%;
+    background:conic-gradient(from 40deg, transparent 0deg, rgba(255,255,255,.10) 24deg, transparent 60deg, transparent 180deg, rgba(255,255,255,.06) 210deg, transparent 250deg); }
+  .dlabel{ position:absolute; inset:33px; border-radius:50%; background:radial-gradient(circle at 35% 30%, var(--gold2), var(--gold) 60%, #a8863a); display:flex; align-items:center; justify-content:center; flex-direction:column; }
+  .dlabel b{ font-size:13px; font-weight:900; color:#241a05; margin-top:-2px; }
+  .dlabel i{ width:7px; height:7px; border-radius:50%; background:var(--bg1); border:1px solid rgba(0,0,0,.35); margin-top:3px; }
+  .p-info{ min-width:0; flex:1; }
+  .p-badge{ display:inline-block; font-size:10px; font-weight:800; color:var(--gold2); border:1px solid var(--line); border-radius:99px; padding:2px 10px; background:rgba(212,176,74,.07); }
+  .p-title{ font-size:17px; font-weight:900; margin-top:5px; }
+  .p-sub{ font-size:11px; color:var(--mut); font-weight:600; margin-top:2px; }
+  .eq{ display:flex; align-items:flex-end; gap:2.5px; height:18px; margin-top:10px; }
+  .eq span{ width:3px; border-radius:2px; background:linear-gradient(180deg,var(--cyan),var(--blue)); animation:eqb 1s ease-in-out infinite alternate; animation-play-state:paused; transform-origin:bottom; }
+  body.is-playing .eq span{ animation-play-state:running; }
+  @keyframes eqb{ from{ transform:scaleY(.35);} to{ transform:scaleY(1);} }
+
+  .seek{ margin-top:14px; direction:ltr; }
+  input[type=range]{
+    -webkit-appearance:none; appearance:none; width:100%; height:5px; border-radius:99px;
+    background:rgba(255,255,255,.09); outline:none; cursor:pointer; display:block;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; width:14px; height:14px; border-radius:50%; background:#fff;
+    box-shadow:0 0 0 4px rgba(34,211,238,.25); cursor:pointer; margin-top:0;
+  }
+  input[type=range]::-moz-range-thumb{ width:14px; height:14px; border:none; border-radius:50%; background:#fff; box-shadow:0 0 0 4px rgba(34,211,238,.25); cursor:pointer; }
+  .times{ display:flex; justify-content:space-between; direction:ltr; font-size:11px; color:var(--mut); font-weight:700; margin-top:7px; font-variant-numeric:tabular-nums; }
+
+  .ctrls{ display:flex; justify-content:center; align-items:center; gap:24px; margin-top:12px; }
+  .cbtn{ width:38px; height:38px; border-radius:50%; border:1px solid rgba(150,160,180,.3); background:transparent; display:flex; align-items:center; justify-content:center; color:var(--mut); cursor:pointer; transition:.2s; }
+  .cbtn:hover{ color:var(--txt); border-color:rgba(212,176,74,.5); }
+  .cbtn svg{ width:15px; height:15px; fill:currentColor; }
+  .cplay{ width:50px; height:50px; background:linear-gradient(135deg,var(--gold),var(--gold2)); border:none; color:#171106; box-shadow:0 6px 16px rgba(212,176,74,.35); }
+  .cplay svg{ width:18px; height:18px; }
+
+  .legend{ margin:22px auto 0; max-width:640px; display:flex; flex-direction:column; gap:7px; }
+  @media(min-width:900px){ .legend{ max-width:900px; flex-direction:row; gap:14px; } .leg{ flex:1; } }
+  .leg{ display:flex; align-items:center; gap:9px; background:rgba(212,176,74,.05); border:1px solid rgba(212,176,74,.14); border-radius:12px; padding:8px 12px; }
+  .n{ width:20px; height:20px; flex:none; border-radius:50%; background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#171106; font-size:11px; font-weight:900; display:flex; align-items:center; justify-content:center; }
+  .leg p{ font-size:12px; font-weight:700; color:#d8dde8; }
+  .foot{ text-align:center; color:#5b6474; font-size:10px; margin-top:16px; font-weight:600; }
+
+  .cov0{ background:linear-gradient(160deg,#4d2c07,#221302 70%); }
+  .cov1{ background:linear-gradient(160deg,#3f3a06,#1c1a03 70%); }
+  .cov2{ background:linear-gradient(160deg,#3d1350,#1c0726 70%); }
+  .cov3{ background:linear-gradient(160deg,#0e3a40,#071d22 70%); }
+  .cov4{ background:linear-gradient(160deg,#0f2a5e,#081434 70%); }
+  .cov5{ background:linear-gradient(160deg,#4a3a1c,#241c0b 70%); }
+  .cov6{ background:linear-gradient(160deg,#4d1030,#260718 70%); }
+  .cov7{ background:linear-gradient(160deg,#10401f,#071f0e 70%); }
+</style>
+</head>
+<body>
+  <div class="kicker">استوديو ونس</div>
+  <h1>مكتبة الأسطوانات</h1>
+  <div class="sub">كل تسجيل له غلافه باسمه ونوعه — اختار واسمع</div>
+
+  <div class="chips" id="chips">
+    <button class="chip on" data-f="all">الكل</button>
+    <button class="chip" data-f="commercial">إعلاني</button>
+    <button class="chip" data-f="storytelling">سردي</button>
+    <button class="chip" data-f="documentary">وثائقي</button>
+  </div>
+
+  <div class="shelf-wrap">
+    <div class="shelf" id="shelf"></div>
+    <div class="plank"></div>
+  </div>
+
+  <div class="player">
+    <div class="p-top">
+      <div class="disc"><div class="dlabel"><b>ونس</b><i></i></div></div>
+      <div class="p-info">
+        <span class="p-badge" id="pBadge">إعلاني</span>
+        <div class="p-title" id="pTitle"></div>
+        <div class="p-sub" id="pSub"></div>
+        <div class="eq" id="eq"></div>
+      </div>
+    </div>
+    <div class="seek">
+      <input type="range" id="range" min="0" max="100" step="0.1" value="0" aria-label="شريط التشغيل">
+      <div class="times"><span id="tCur">0:00</span><span id="tTot">0:00</span></div>
+    </div>
+    <div class="ctrls">
+      <button class="cbtn" id="bNext" aria-label="التالي"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+      <button class="cbtn cplay" id="bPlay" aria-label="تشغيل / إيقاف"><svg viewBox="0 0 24 24" id="playIcon"><path d="M8 5v14l11-7z"/></svg></button>
+      <button class="cbtn" id="bPrev" aria-label="السابق"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18l8.5-6L6 6z"/></svg></button>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><span class="n">1</span><p>تختار أي غلاف من الرف — بيطلع في المشغّل تحت</p></div>
+    <div class="leg"><span class="n">2</span><p>الأسطوانة بتلف بهدوء وقت التشغيل، وتقف أول ما توقّف</p></div>
+    <div class="leg"><span class="n">3</span><p>شريط التشغيل تتقدّم وترجّع منه في التسجيل براحتك</p></div>
+  </div>
+
+  <div class="foot">نسخة تجريبية للمعاينة والنقاش — مش الموقع الرسمي</div>
+
+<script>
+const CDN = "https://ahmedshaban.lovable.app";
+const TRACKS = [
+  { id:"orange",   t:"أورانج ترافيل — حملة السياحة",   c:"commercial",   cl:"إعلاني", d:45,  u:"/__l5e/assets-v1/5ed148fe-e1c3-4fe7-859e-7b3b9d73a4fe/orange-travel.mp4" },
+  { id:"alsaif",   t:"السيف الذهبي — للشحن الدولي",    c:"commercial",   cl:"إعلاني", d:36,  u:"/__l5e/assets-v1/16ea24b2-84ed-458b-b60c-c9ac2df39c6f/alsaif-aldhahabi.mp4" },
+  { id:"kawkab",   t:"كوكب أطفالي — الإعلان الرسمي",   c:"commercial",   cl:"إعلاني", d:89,  u:"/__l5e/assets-v1/4268901e-5843-45b0-a0cb-15e6eeb07b7b/kawkab-atfaly.mp3" },
+  { id:"fashion",  t:"براند ملابس — الإعلان الرسمي",   c:"commercial",   cl:"إعلاني", d:35,  u:"/__l5e/assets-v1/868ebe51-1445-4950-92f4-a75c504b72eb/fashion-brand.mp4" },
+  { id:"wanas",    t:"ونس — دعم نفسي",                 c:"commercial",   cl:"إعلاني", d:59,  u:"/__l5e/assets-v1/13c70999-79f0-409e-8d4f-48522897c3c1/wanas-psych.mp3" },
+  { id:"almazoun", t:"المأذون",                        c:"storytelling", cl:"سردي",   d:71,  u:"/__l5e/assets-v1/4e554a31-9033-442d-9f2e-3b2787e1d4b8/almazoun.mp3" },
+  { id:"relations",t:"العلاقات خُلقت للراحة والرحمة",  c:"documentary",  cl:"وثائقي", d:68,  u:"/__l5e/assets-v1/5a0c77fc-a367-489f-a5bf-056b7da778dd/relationships.mp4" },
+  { id:"tastahel", t:"كل حاجة مش صح تستاهل تتساب",     c:"storytelling", cl:"سردي",   d:61,  u:"/__l5e/assets-v1/b6b70d44-2121-4764-8a53-0131fb0a1892/tastahel-tetsab.mp3" },
+  { id:"qararto",  t:"قررت أخد جنب",                   c:"storytelling", cl:"سردي",   d:56,  u:"/__l5e/assets-v1/76706d68-ce37-4904-a5e1-c4b4f466a2a1/qararto-akhod-ganb.mp3" },
+  { id:"motiv",    t:"تحفيز وأسلوب حياة",              c:"storytelling", cl:"سردي",   d:89,  u:"/__l5e/assets-v1/674719c3-f111-4705-b802-4bbc2f2f1ce9/motivation-lifestyle.mp3" },
+  { id:"shrug",    t:"نصيحة للعلاقات",                 c:"storytelling", cl:"سردي",   d:53,  u:"/__l5e/assets-v1/c1742058-88e3-4f2b-bcea-62afdf742e1f/shrug.mp3" },
+  { id:"qalbo",    t:"اللي قلبه حلو",                  c:"storytelling", cl:"سردي",   d:46,  u:"/__l5e/assets-v1/62b73a0c-2053-460e-97a7-60fe43df916a/qalbo-helw.mp3" },
+  { id:"alsabr",   t:"الصبر",                          c:"documentary",  cl:"وثائقي", d:66,  u:"/__l5e/assets-v1/4effa775-325a-438d-9ab0-7c95db709aa5/alsabr.mp3" },
+  { id:"alkhanqa", t:"الخنقة",                         c:"storytelling", cl:"سردي",   d:113, u:"/__l5e/assets-v1/3e1f2ee5-5bfc-4362-9095-0004c6ce11f5/alkhanqa.mp3" },
+  { id:"sampleA",  t:"عينة صوتية — جلسة استوديو",      c:"commercial",   cl:"إعلاني", d:47,  u:"/__l5e/assets-v1/8d86bcda-9fab-4f63-9a5b-3be14e527252/voice-sample-a.mp4" },
+  { id:"sampleB",  t:"عينة صوتية — قراءة براند",       c:"commercial",   cl:"إعلاني", d:59,  u:"/__l5e/assets-v1/c75ee4de-3823-4e55-9da2-0004b26bef50/voice-sample-b.mp4" },
+  { id:"sampleC",  t:"عينة صوتية — قراءة ترويجية",     c:"commercial",   cl:"إعلاني", d:65,  u:"/__l5e/assets-v1/20f6ac7b-e08a-49aa-8a61-4d880a01cac7/voice-sample-c.mp4" },
+];
+TRACKS.forEach(tr => tr.u = CDN + tr.u);
+
+const CAT_AR = { commercial:"إعلاني", storytelling:"سردي", documentary:"وثائقي" };
+let filter = "all", activeId = "wanas";
+const audio = new Audio();
+audio.preload = "auto";
+
+const shelf = document.getElementById("shelf");
+const pTitle = document.getElementById("pTitle"), pBadge = document.getElementById("pBadge"), pSub = document.getElementById("pSub");
+const range = document.getElementById("range"), tCur = document.getElementById("tCur"), tTot = document.getElementById("tTot");
+const bPlay = document.getElementById("bPlay"), playIcon = document.getElementById("playIcon");
+const fmt = s => `${Math.floor(s/60)}:${Math.floor(s%60).toString().padStart(2,"0")}`;
+
+// EQ bars
+const eq = document.getElementById("eq");
+const EQH = [7,11,15,9,13,17,8,12,16,10,14,18,9,13,16,8,12,15,10,14,11,7];
+EQH.forEach((h,i)=>{ const s=document.createElement("span"); s.style.height=h+"px"; s.style.animationDuration=(0.6+(i%5)*0.13)+"s"; s.style.animationDelay=(-i*0.07)+"s"; eq.appendChild(s); });
+
+function visibleTracks(){ return TRACKS.filter(t => filter==="all" || t.c===filter); }
+
+function renderShelf(){
+  shelf.innerHTML = "";
+  visibleTracks().forEach((tr,i)=>{
+    const el = document.createElement("div");
+    el.className = `sleeve cov${TRACKS.indexOf(tr)%8}` + (tr.id===activeId ? " sel" : "");
+    el.dataset.id = tr.id;
+    el.innerHTML = `<span class="badge">${tr.cl}</span><span class="t">${tr.t}</span><span class="d">${fmt(tr.d)}</span>`;
+    el.addEventListener("click", ()=> selectTrack(tr.id, true));
+    shelf.appendChild(el);
+  });
+}
+
+function updatePlayer(){
+  const tr = TRACKS.find(t=>t.id===activeId);
+  pTitle.textContent = tr.t;
+  pBadge.textContent = tr.cl;
+  const list = visibleTracks();
+  pSub.textContent = `من رفّ «${filter==="all" ? "الكل" : CAT_AR[filter]}» — التسجيل ${list.indexOf(tr)+1 || "—"} من ${list.length}`;
+  tTot.textContent = fmt(tr.d);
+  document.querySelectorAll(".sleeve").forEach(s => s.classList.toggle("sel", s.dataset.id===activeId));
+  const sel = shelf.querySelector(".sleeve.sel");
+  if (sel) sel.scrollIntoView({behavior:"smooth", inline:"center", block:"nearest"});
+}
+
+function setPlayingUI(on){
+  document.body.classList.toggle("is-playing", on);
+  playIcon.innerHTML = on ? '<path d="M6 5h4v14H6zm8 0h4v14h-4z"/>' : '<path d="M8 5v14l11-7z"/>';
+}
+
+function selectTrack(id, autoplay){
+  const tr = TRACKS.find(t=>t.id===id);
+  if (id === activeId){ // toggle
+    if (audio.paused) audio.play().catch(()=>{}); else audio.pause();
+    return;
+  }
+  activeId = id;
+  audio.src = tr.u;
+  audio.load();
+  range.value = 0; tCur.textContent = "0:00";
+  updatePlayer();
+  if (autoplay !== false) audio.play().catch(()=>{});
+}
+
+function step(dir){
+  const list = visibleTracks();
+  let i = list.findIndex(t=>t.id===activeId);
+  if (i < 0) i = 0;
+  i = (i + dir + list.length) % list.length;
+  selectTrack(list[i].id, true);
+}
+
+document.getElementById("bNext").addEventListener("click", ()=>step(1));
+document.getElementById("bPrev").addEventListener("click", ()=>step(-1));
+bPlay.addEventListener("click", ()=>{ if (audio.paused) audio.play().catch(()=>{}); else audio.pause(); });
+
+audio.addEventListener("play", ()=>setPlayingUI(true));
+audio.addEventListener("pause", ()=>setPlayingUI(false));
+audio.addEventListener("ended", ()=>{ setPlayingUI(false); step(1); });
+audio.addEventListener("timeupdate", ()=>{
+  if (!seeking && audio.duration){
+    range.value = (audio.currentTime / audio.duration) * 100;
+    tCur.textContent = fmt(audio.currentTime);
+    paintRange();
+  }
+});
+audio.addEventListener("loadedmetadata", ()=>{ if (audio.duration && isFinite(audio.duration)) tTot.textContent = fmt(audio.duration); });
+
+let seeking = false;
+function paintRange(){
+  const p = range.value;
+  range.style.background = `linear-gradient(90deg, var(--blue) 0%, var(--cyan) ${p}%, rgba(255,255,255,.09) ${p}%)`;
+}
+range.addEventListener("input", ()=>{ paintRange(); if (audio.duration) tCur.textContent = fmt(range.value/100*audio.duration); });
+range.addEventListener("pointerdown", ()=> seeking = true);
+range.addEventListener("change", ()=>{ if (audio.duration) audio.currentTime = range.value/100*audio.duration; seeking = false; });
+
+document.getElementById("chips").addEventListener("click", e=>{
+  const b = e.target.closest(".chip"); if (!b) return;
+  filter = b.dataset.f;
+  document.querySelectorAll(".chip").forEach(c=>c.classList.toggle("on", c===b));
+  renderShelf(); updatePlayer();
+});
+
+renderShelf();
+// initial load without autoplay
+(function(){ const tr = TRACKS.find(t=>t.id===activeId); audio.src = tr.u; updatePlayer(); paintRange(); })();
+</script>
+</body>
+</html>
