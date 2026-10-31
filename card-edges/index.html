@@ -44,6 +44,14 @@
   .card.on .eq i{animation:eq 0.9s ease-in-out infinite alternate;background:linear-gradient(180deg,var(--ac),#4facfe)}
   @keyframes eq{from{height:18%}to{height:96%}}
   .hidden-card{display:none}
+  @media (max-width:639px){
+    .player{flex-wrap:wrap;gap:8px 12px;padding:10px 14px;width:94vw;bottom:8px}
+    .pinfo{width:100%;order:1}
+    .seek{order:2;flex:1;align-self:center}
+    .ptimes{order:3;align-self:center}
+    .pctrl{order:4;margin-inline-start:auto}
+  }
+
   .more{display:block;margin:22px auto 0;font-size:14.5px;font-weight:800;color:#7df9ff;background:rgba(0,242,254,.08);
     border:1px solid rgba(0,242,254,.35);border-radius:999px;padding:11px 30px;cursor:pointer}
   /* bottom player */
