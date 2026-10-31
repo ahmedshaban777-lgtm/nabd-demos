@@ -144,6 +144,7 @@ const N = VIDEOS.length, STEP = 360/N, IDLE = 0.08;
 const ring = document.getElementById('ring');
 const scene = document.getElementById('scene');
 let angle = 0, target = 0, drag = null, playingIdx = null, frontIdx = 0;
+const DRAG_SPEED = 0.5, FLING = 220, EASE = 0.09;
 const cards = [], vids = [];
 
 VIDEOS.forEach((v, i) => {
@@ -176,7 +177,7 @@ function tick() {
     if (playingIdx !== null) target = Math.round(angle/STEP)*STEP;
     else target += IDLE;
   }
-  angle += (target - angle) * (drag ? 1 : 0.06);
+  angle += (target - angle) * (drag ? 1 : EASE);
   ring.style.transform = `translateZ(calc(var(--radius) * -1)) rotateY(${angle}deg)`;
   const fi = ((Math.round(-angle/STEP) % N) + N) % N;
   if (fi !== frontIdx) {
@@ -189,16 +190,24 @@ requestAnimationFrame(tick);
 
 scene.addEventListener('pointerdown', e => {
   scene.setPointerCapture && scene.setPointerCapture(e.pointerId);
-  drag = { startX: e.clientX, startAngle: angle, moved: false };
+  drag = { startX: e.clientX, startAngle: angle, moved: false, vel: 0, lastA: angle, lastT: performance.now() };
 });
 scene.addEventListener('pointermove', e => {
   if (!drag) return;
   const dx = e.clientX - drag.startX;
   if (Math.abs(dx) > 4) drag.moved = true;
-  angle = target = drag.startAngle + dx * 0.35;
+  const na = drag.startAngle + dx * DRAG_SPEED;
+  const now = performance.now();
+  const dt = Math.max(now - drag.lastT, 1);
+  drag.vel = 0.8 * drag.vel + 0.2 * ((na - drag.lastA) / dt);
+  drag.lastA = na; drag.lastT = now;
+  angle = target = na;
 });
 function endDrag() {
-  if (drag) target = Math.round(angle/STEP)*STEP;
+  if (drag) {
+    let flingTarget = angle + drag.vel * FLING;
+    target = Math.round(flingTarget/STEP)*STEP;
+  }
   drag = null;
 }
 scene.addEventListener('pointerup', endDrag);
