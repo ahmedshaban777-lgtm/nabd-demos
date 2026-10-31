@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>فكرة خلفية العجلة — أحمد شعبان</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#0b0f11;
+  font-family:'Segoe UI', Tahoma, Arial, sans-serif;
+  color:#dce9e8;
+  display:flex; justify-content:center;
+}
+.page { width:100%; max-width:1120px; padding:26px 14px 48px; }
+
+.intro { text-align:center; margin-bottom:18px; }
+.chip {
+  display:inline-block; font-size:12.5px; letter-spacing:.04em;
+  color:#5fd6cf; border:1px solid #2c6b66; border-radius:999px;
+  padding:4px 14px; margin-bottom:10px; background:rgba(95,214,207,.08);
+}
+.intro h1 { font-size:26px; font-weight:800; color:#f2fbfa; }
+.intro p { font-size:14px; color:#9fc9c5; margin-top:6px; line-height:1.8; max-width:560px; margin-inline:auto; }
+.toggle {
+  margin-top:14px; font-size:13.5px; font-weight:700;
+  color:#062625; background:#5fd6cf; border:none; border-radius:999px;
+  padding:10px 22px; cursor:pointer;
+}
+.toggle.off { background:transparent; color:#5fd6cf; border:1px solid #2c6b66; }
+
+/* ---------- stage: plain vs concept ---------- */
+.stage {
+  --radius:405px;
+  position:relative; border-radius:22px; overflow:hidden;
+  background:#060f10;
+  border:1px solid rgba(95,214,207,.14);
+  padding:30px 6px 24px;
+  transition:background .6s;
+}
+.stage.bg-on {
+  background:radial-gradient(135% 105% at 50% 14%, #0e2a2f 0%, #081a1d 46%, #02090b 100%);
+}
+.bg-fx { position:absolute; inset:0; pointer-events:none; opacity:0; transition:opacity .6s; }
+.stage.bg-on .bg-fx { opacity:1; }
+.bg-fx .rim-l, .bg-fx .rim-r {
+  position:absolute; top:-10%; bottom:-10%; width:34%;
+  filter:blur(6px);
+}
+.bg-fx .rim-l { left:-6%; background:radial-gradient(60% 55% at 30% 45%, rgba(56,224,238,.20), transparent 70%); }
+.bg-fx .rim-r { right:-6%; background:radial-gradient(60% 55% at 70% 45%, rgba(56,224,238,.16), transparent 70%); }
+.bg-fx .floor {
+  position:absolute; left:50%; bottom:-14%; width:78%; height:44%;
+  transform:translateX(-50%);
+  background:radial-gradient(50% 60% at 50% 50%, rgba(45,212,191,.13), transparent 72%);
+}
+.bg-fx .bokeh { position:absolute; border-radius:50%; filter:blur(14px); }
+.bg-fx .b1 { width:90px; height:90px; left:12%; top:22%; background:rgba(95,214,207,.10); }
+.bg-fx .b2 { width:56px; height:56px; right:16%; top:30%; background:rgba(95,214,207,.12); }
+.bg-fx .b3 { width:120px; height:120px; right:8%; bottom:16%; background:rgba(45,150,160,.10); }
+.bg-fx .grain {
+  position:absolute; inset:0; opacity:.05; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wheel-hint { position:relative; text-align:center; color:#7fb3ae; font-size:13px; margin:2px 0 6px; }
+.scene {
+  position:relative; height:320px;
+  perspective:1000px; perspective-origin:50% 42%;
+  touch-action:pan-y; cursor:grab; user-select:none; -webkit-user-select:none;
+}
+.scene:active { cursor:grabbing; }
+.ring {
+  position:absolute; left:50%; top:30px; margin-left:-85px;
+  width:170px; height:220px;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.wcard {
+  position:absolute; inset:0;
+  border-radius:14px; overflow:hidden;
+  border:1px solid rgba(95,214,207,.18);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  backface-visibility:hidden; -webkit-backface-visibility:hidden;
+  background:#0d2224;
+}
+.wcard video { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
+.wcard-shade { position:absolute; inset:0; background:rgba(4,14,15,.45); transition:background .25s; }
+.wcard.is-front .wcard-shade { background:rgba(4,14,15,0); }
+.wcard-label {
+  position:absolute; right:0; left:0; bottom:0;
+  padding:8px 10px; text-align:right;
+  background:linear-gradient(0deg, rgba(4,14,15,.85), transparent);
+}
+.wcard-kind { display:block; font-size:10px; color:#5fd6cf; }
+.wcard-title { display:block; font-size:12.5px; font-weight:700; color:#eaf6f5; }
+.wcard-play {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:52px; height:52px; border-radius:50%;
+  background:rgba(95,214,207,.95); color:#062625;
+  font-size:19px; line-height:52px; text-align:center; padding-right:4px;
+  box-shadow:0 6px 20px rgba(95,214,207,.4);
+  display:none;
+}
+.wcard.is-front:not(.is-playing) .wcard-play { display:block; }
+.wcard.is-front { border-color:rgba(95,214,207,.65); }
+.wcard.is-playing { border-color:#5fd6cf; box-shadow:0 18px 50px rgba(95,214,207,.25); }
+.wheel-nav { position:relative; display:flex; justify-content:center; gap:18px; margin-top:10px; }
+.wheel-nav button {
+  width:44px; height:44px; border-radius:50%;
+  border:1px solid #2c6b66; background:rgba(95,214,207,.08);
+  color:#5fd6cf; font-size:22px; cursor:pointer;
+}
+
+.info { margin-top:22px; display:grid; gap:10px; grid-template-columns:1fr; }
+.row {
+  background:#101a1c; border:1px solid #1d3134; border-radius:12px;
+  padding:12px 14px;
+}
+.row b { display:block; font-size:14px; color:#eaf6f5; margin-bottom:2px; }
+.row b::before { content:attr(data-n); color:#5fd6cf; margin-left:6px; }
+.row p { font-size:13px; color:#9fc9c5; line-height:1.7; }
+.closing { text-align:center; font-size:12.5px; color:#6d8583; margin-top:20px; }
+
+@media (min-width:640px) {
+  .stage { --radius:505px; }
+  .scene { height:390px; perspective:1250px; }
+  .ring { width:210px; height:265px; margin-left:-105px; }
+  .info { grid-template-columns:repeat(3, 1fr); }
+}
+@media (min-width:1024px) {
+  .stage { --radius:585px; }
+  .scene { height:440px; perspective:1450px; }
+  .ring { width:240px; height:300px; margin-left:-120px; top:40px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="intro">
+    <span class="chip">فكرة للمعاينة — مش على الموقع</span>
+    <h1>خلفية جديدة ورا عجلة الشغل</h1>
+    <p>عمق استوديو غامق بإضاءة سماوية هادية على الجانبين وملمس خفيف، يبرز الفيديوهات من غير ما يزاحمها. قارن بنفسك:</p>
+    <button class="toggle" id="toggle">شوفها من غير الخلفية</button>
+  </div>
+
+  <div class="stage bg-on" id="stage">
+    <div class="bg-fx">
+      <div class="rim-l"></div><div class="rim-r"></div>
+      <div class="floor"></div>
+      <div class="bokeh b1"></div><div class="bokeh b2"></div><div class="bokeh b3"></div>
+      <div class="grain"></div>
+    </div>
+    <div class="wheel-hint">اسحب العجلة أو دوس على الفيديو اللي في النص</div>
+    <div class="scene" id="scene"><div class="ring" id="ring"></div></div>
+    <div class="wheel-nav">
+      <button id="prev" aria-label="اللي قبله">‹</button>
+      <button id="next" aria-label="اللي بعده">›</button>
+    </div>
+  </div>
+
+  <div class="info">
+    <div class="row"><b data-n="1.">عمق استوديو</b><p>تدرج غامق بيبعد الخلفية عن العين، فالفيديوهات تطلع قدام كأنها معروضة في ستوديو.</p></div>
+    <div class="row"><b data-n="2.">إضاءة سماوية جانبية</b><p>وهج هادي يمين وشمال بنفس روح ألوان موقعك، يدّي إحساس إضاءة حقيقية من غير ما يسرق النظر.</p></div>
+    <div class="row"><b data-n="3.">ملمس خفيف</b><p>حبيبات ناعمة جدًا تكسر المسطح السادة، خفيفة وما تاثرش على سرعة التحميل.</p></div>
+  </div>
+  <div class="closing">دي معاينة للفكرة بس — موقعك الحالي زي ما هو لحد ما تقول رأيك.</div>
+</div>
+
+<script>
+const BASE = 'https://ahmedshaban.lovable.app/__l5e/assets-v1/';
+const VIDEOS = [
+  { src: BASE+'f483280b-b930-45f4-805d-fd2f9b2959e5/reel-f.mp4',           poster:'photos/reel-f.jpg',           title:'انت اللى عملت كده ف نفسك', kind:'تعليق صوتي' },
+  { src: BASE+'0f3d99fe-ba6d-4af5-8060-b6ccfced362a/reel-g.mp4',           poster:'photos/reel-g.jpg',           title:'مونتاج سينمائي',           kind:'مونتاج'     },
+  { src: BASE+'670843b5-c403-4f36-9451-b62500847749/ad-orange-travel.mp4', poster:'photos/ad-orange-travel.jpg', title:'اورانج ترافيل للسياحة',   kind:'إعلان رسمي' },
+  { src: BASE+'d1001a7f-b812-4dc9-a911-541a071f1421/ad-golden-sword.mp4',  poster:'photos/ad-golden-sword.jpg',  title:'السيف الذهبي للشحن الدولي', kind:'إعلان رسمي' },
+  { src: BASE+'217f47e6-ef09-46da-8a77-8163581f97f9/ad-fashion-brand.mp4', poster:'photos/ad-fashion-brand.jpg', title:'براند ملابس',              kind:'إعلان براند' },
+  { src: BASE+'b4742d05-b85c-4327-afa2-bc70a12066cf/vo-batal.mp4',         poster:'photos/vo-batal.jpg',         title:'انت بطل قصتك',            kind:'تعليق صوتي' },
+  { src: BASE+'1592b6e8-3b1c-42b4-b251-3242b9c98f8d/vo-almazoun.mp4',      poster:'photos/vo-almazoun.jpg',      title:'المأذون',                 kind:'سردي'       },
+  { src: BASE+'d7bc75ba-4006-4df9-a830-d33cfca47419/reel-a.mp4',           poster:'photos/reel-a.jpg',           title:'مونتاج سوشيال سريع',      kind:'ريلز سوشيال' },
+  { src: BASE+'ab8550bc-12ba-4ec5-bb17-0dd15db1ff14/reel-b.mp4',           poster:'photos/reel-b.jpg',           title:'قطع وثائقي سينمائي',      kind:'طابع وثائقي' },
+  { src: BASE+'e09ed284-9189-4219-a41b-a600836977e8/reel-c.mp4',           poster:'photos/reel-c.jpg',           title:'مونتاج سينمائي قصير',     kind:'فيلم قصير'  },
+  { src: BASE+'e31d5599-5c65-445d-a8ba-bed251a409e6/reel-d.mp4',           poster:'photos/reel-d.jpg',           title:'برومو صفحة متفتحتش — أ. أمل فتحي', kind:'برومو برنامج' },
+  { src: BASE+'86b0e42c-fddc-4a8a-b8cf-c233abc4f98d/reel-e.mp4',           poster:'photos/reel-e.jpg',           title:'مونتاج ريل مميز',         kind:'ريل مميز'   },
+  { src: BASE+'34ba99da-4e5d-47e1-bcdd-d05584f5414a/reel-events.mp4',      poster:'photos/reel-events.jpg',      title:'مونتاج مناسبات',          kind:'مناسبات'    },
+];
+const N = VIDEOS.length, STEP = 360/N;
+const IDLE = 0.06, DRAG_SPEED = 0.6, EASE = 0.14, FRICTION = 0.945, MIN_SPIN = 0.12, STALE_MS = 80;
+const ring = document.getElementById('ring');
+const scene = document.getElementById('scene');
+let angle = 0, target = 0, vel = 0, mode = 'idle';
+let drag = null, playingIdx = null, frontIdx = 0;
+const cards = [], vids = [];
+
+VIDEOS.forEach((v, i) => {
+  const c = document.createElement('div');
+  c.className = 'wcard' + (i===0 ? ' is-front' : '');
+  c.style.transform = `rotateY(${i*STEP}deg) translateZ(var(--radius))`;
+  c.innerHTML = `<video src="${v.src}" poster="${v.poster}" preload="metadata" playsinline loop></video>
+    <div class="wcard-shade"></div>
+    <div class="wcard-label"><span class="wcard-kind">${v.kind}</span><span class="wcard-title">${v.title}</span></div>
+    <div class="wcard-play">▶</div>`;
+  c.addEventListener('click', () => onCardClick(i));
+  ring.appendChild(c);
+  cards.push(c);
+  const vid = c.querySelector('video');
+  vid.addEventListener('pause', () => { if (playingIdx === i) setPlaying(null); });
+  vid.addEventListener('ended', () => setPlaying(null));
+  vids.push(vid);
+});
+
+function setPlaying(i) {
+  playingIdx = i;
+  cards.forEach((c, j) => c.classList.toggle('is-playing', j === i));
+}
+function stopVideo() {
+  vids.forEach(v => { if (!v.paused) v.pause(); });
+  setPlaying(null);
+}
+function tick() {
+  if (mode === 'drag') {
+    angle = target;
+  } else if (mode === 'spin') {
+    angle += vel;
+    vel *= FRICTION;
+    if (Math.abs(vel) < MIN_SPIN) { mode = 'settle'; target = Math.round(angle/STEP)*STEP; }
+  } else {
+    if (playingIdx !== null) target = Math.round(angle/STEP)*STEP;
+    else if (mode === 'settle') { if (Math.abs(target-angle) < 0.05) mode = 'idle'; }
+    else target += IDLE;
+    angle += (target-angle)*EASE;
+  }
+  ring.style.transform = `translateZ(calc(var(--radius) * -1)) rotateY(${angle}deg)`;
+  const fi = ((Math.round(-angle/STEP) % N) + N) % N;
+  if (fi !== frontIdx) {
+    frontIdx = fi;
+    cards.forEach((c, j) => c.classList.toggle('is-front', j === fi));
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+
+scene.addEventListener('pointerdown', e => {
+  try { scene.setPointerCapture(e.pointerId); } catch (_) {}
+  if (playingIdx !== null) stopVideo();
+  mode = 'drag'; vel = 0;
+  drag = { startX: e.clientX, startAngle: angle, moved: false, vel: 0, lastA: angle, lastT: performance.now() };
+});
+scene.addEventListener('pointermove', e => {
+  if (!drag) return;
+  const dx = e.clientX - drag.startX;
+  if (Math.abs(dx) > 4) drag.moved = true;
+  const na = drag.startAngle + dx * DRAG_SPEED;
+  const now = performance.now();
+  const dt = Math.max(now - drag.lastT, 1);
+  drag.vel = 0.8 * drag.vel + 0.2 * ((na - drag.lastA) / dt);
+  drag.lastA = na; drag.lastT = now;
+  target = na;
+});
+function endDrag() {
+  mode = 'settle';
+  target = Math.round(angle/STEP)*STEP;
+  if (drag && performance.now() - drag.lastT <= STALE_MS) {
+    let v = drag.vel * 16.7;
+    const cap = STEP * 0.9;
+    if (v > cap) v = cap; if (v < -cap) v = -cap;
+    if (Math.abs(v) > MIN_SPIN * 2) { vel = v; mode = 'spin'; }
+  }
+  drag = null;
+}
+scene.addEventListener('pointerup', endDrag);
+scene.addEventListener('pointercancel', endDrag);
+
+function goTo(i) {
+  stopVideo();
+  mode = 'settle';
+  const cur = ((Math.round(-target/STEP) % N) + N) % N;
+  let d = i - cur;
+  if (d > N/2) d -= N;
+  if (d < -N/2) d += N;
+  target = Math.round(target/STEP)*STEP - d*STEP;
+}
+function onCardClick(i) {
+  if (drag && drag.moved) return;
+  if (i !== frontIdx) { goTo(i); return; }
+  const v = vids[i];
+  if (playingIdx === i && !v.paused) { v.pause(); return; }
+  stopVideo();
+  v.currentTime = 0; v.muted = false;
+  v.play().then(() => setPlaying(i)).catch(() => { v.muted = true; v.play().then(() => setPlaying(i)).catch(()=>{}); });
+}
+document.getElementById('prev').addEventListener('click', () => { stopVideo(); mode='settle'; target = Math.round(target/STEP)*STEP + STEP; });
+document.getElementById('next').addEventListener('click', () => { stopVideo(); mode='settle'; target = Math.round(target/STEP)*STEP - STEP; });
+
+const stage = document.getElementById('stage');
+const toggle = document.getElementById('toggle');
+toggle.addEventListener('click', () => {
+  const on = stage.classList.toggle('bg-on');
+  toggle.textContent = on ? 'شوفها من غير الخلفية' : 'شوفها بالخلفية';
+  toggle.classList.toggle('off', !on);
+});
+</script>
+</body>
+</html>
