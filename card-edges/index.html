@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تجربة الحواف الملوّنة — نماذج صوتية | ونس</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:"Noto Sans Arabic",system-ui,sans-serif}
+  body{background:radial-gradient(1200px 700px at 70% -10%,#12203a 0%,#0a0e1a 55%,#070a12 100%);color:#eaf2ff;min-height:100vh;padding:34px 22px 120px}
+  .wrap{max-width:1160px;margin:0 auto}
+  .note{background:rgba(0,242,254,.08);border:1px solid rgba(0,242,254,.3);color:#7df9ff;font-size:13.5px;font-weight:700;border-radius:12px;padding:9px 16px;text-align:center;margin-bottom:22px}
+  .brand{font-size:14px;color:#9fb3d1;text-align:center}.brand b{color:#00f2fe;font-weight:800}
+  h1{font-size:38px;font-weight:800;margin:6px 0 4px;text-align:center;background:linear-gradient(90deg,#00f2fe,#4facfe);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:#9fb3d1;font-size:15px;text-align:center;margin-bottom:18px}
+  .chips{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+  .chip{font-size:14px;font-weight:700;padding:8px 20px;border-radius:999px;border:1px solid rgba(159,179,209,.28);color:#c9d7ee;background:rgba(255,255,255,.03);cursor:pointer}
+  .chip.on{background:linear-gradient(90deg,#00f2fe,#4facfe);color:#06121f;border:none;box-shadow:0 6px 24px rgba(0,242,254,.35)}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+  @media (max-width:1023px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media (max-width:639px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}}
+  .card{position:relative;border-radius:20px;overflow:hidden;background:#0d1220;border:1px solid rgba(255,255,255,.09);cursor:pointer;
+    box-shadow:0 14px 30px rgba(0,0,0,.5), -8px 0 26px -14px var(--ac);transition:box-shadow .25s,border-color .25s}
+  .card::before{content:"";position:absolute;top:0;bottom:0;right:0;width:6px;background:var(--ac);z-index:3;border-radius:0 3px 3px 0}
+  .card:hover{border-color:color-mix(in srgb,var(--ac) 45%,transparent)}
+  .card.on{border-color:color-mix(in srgb,var(--ac) 65%,transparent);
+    box-shadow:0 0 0 1.5px color-mix(in srgb,var(--ac) 60%,transparent),0 18px 44px color-mix(in srgb,var(--ac) 26%,transparent)}
+  .ph{height:140px;position:relative}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,16,0) 55%,rgba(13,18,32,.95))}
+  .dur{position:absolute;top:10px;left:10px;font-size:11px;font-weight:700;color:#eaf2ff;background:rgba(5,10,18,.78);padding:3px 9px;border-radius:8px;z-index:2;font-family:monospace;direction:ltr}
+  .pbtn{position:absolute;bottom:-20px;left:13px;width:42px;height:42px;border-radius:50%;z-index:4;border:none;cursor:pointer;
+    background:linear-gradient(135deg,var(--ac),color-mix(in srgb,var(--ac) 55%,#4facfe));
+    display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px color-mix(in srgb,var(--ac) 45%,transparent)}
+  .pbtn svg{width:18px;height:18px;fill:#06121f}
+  .pbtn .ic-pause{display:none}
+  .card.on .pbtn .ic-play{display:none}
+  .card.on .pbtn .ic-pause{display:block}
+  .bd{padding:24px 13px 12px}
+  .nm{font-size:14.5px;font-weight:800;line-height:1.4;min-height:42px}
+  .bdg{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:999px;color:var(--ac);
+    background:color-mix(in srgb,var(--ac) 14%,transparent);border:1px solid color-mix(in srgb,var(--ac) 45%,transparent);margin-top:6px}
+  .eq{display:flex;align-items:flex-end;gap:2px;height:14px;margin-top:10px}
+  .eq i{flex:1;border-radius:1px;background:color-mix(in srgb,var(--ac) 45%,#39435c);height:30%}
+  .card.on .eq i{animation:eq 0.9s ease-in-out infinite alternate;background:linear-gradient(180deg,var(--ac),#4facfe)}
+  @keyframes eq{from{height:18%}to{height:96%}}
+  .hidden-card{display:none}
+  .more{display:block;margin:22px auto 0;font-size:14.5px;font-weight:800;color:#7df9ff;background:rgba(0,242,254,.08);
+    border:1px solid rgba(0,242,254,.35);border-radius:999px;padding:11px 30px;cursor:pointer}
+  /* bottom player */
+  .player{position:fixed;bottom:14px;right:50%;transform:translateX(50%);width:min(680px,92vw);z-index:50;
+    display:none;align-items:center;gap:14px;border-radius:18px;padding:12px 18px;
+    background:rgba(13,18,32,.92);backdrop-filter:blur(10px);border:1px solid rgba(0,242,254,.35);box-shadow:0 18px 50px rgba(0,0,0,.6)}
+  .player.show{display:flex}
+  .pinfo{min-width:0;width:170px;flex:none}
+  .pt{font-size:13.5px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pm{font-size:11px;color:#6b7a99;margin-top:2px}
+  .seek{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.10);cursor:pointer;position:relative;min-width:60px}
+  .seek i{position:absolute;top:0;bottom:0;right:0;width:0;border-radius:4px;background:linear-gradient(90deg,#4facfe,#00f2fe)}
+  .ptimes{font-size:11.5px;color:#6b7a99;font-family:monospace;flex:none;direction:ltr}
+  .pctrl{display:flex;align-items:center;gap:10px;flex:none}
+  .bplay{width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#00f2fe,#4facfe);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,242,254,.45)}
+  .bplay svg{width:18px;height:18px;fill:#06121f}
+  .bplay .ic-pause{display:none}
+  .player.playing .bplay .ic-play{display:none}
+  .player.playing .bplay .ic-pause{display:block}
+  .iconbtn{width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);cursor:pointer;display:flex;align-items:center;justify-content:center;color:#9fb3d1;text-decoration:none}
+  .iconbtn svg{width:15px;height:15px;stroke:#9fb3d1;fill:none;stroke-width:2;stroke-linecap:round}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="note">نموذج تجريبي للحواف الملوّنة — الموقع الأساسي متغيّرش</div>
+  <div class="brand"><b>ونس</b> • أحمد شعبان — تعليق صوتي</div>
+  <h1>نماذج صوتية</h1>
+  <div class="sub">كل كارت ليه حافة بلون مختلف، والكارت اللي شغّال بينور أكتر</div>
+  <div class="chips" id="chips">
+    <button class="chip on" data-f="all">الكل</button>
+    <button class="chip" data-f="commercial">إعلاني</button>
+    <button class="chip" data-f="documentary">وثائقي</button>
+    <button class="chip" data-f="storytelling">سردي</button>
+  </div>
+  <div class="grid" id="grid"></div>
+  <button class="more" id="more">عرض المزيد</button>
+</div>
+
+<div class="player" id="player">
+  <div class="pinfo"><div class="pt" id="pt"></div><div class="pm" id="pm"></div></div>
+  <div class="seek" id="seek"><i id="seekfill"></i></div>
+  <div class="ptimes" id="ptimes">0:00 / 0:00</div>
+  <div class="pctrl">
+    <button class="bplay" id="bplay" aria-label="تشغيل">
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="ic-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>
+    </button>
+    <a class="iconbtn" id="bdl" download aria-label="تحميل"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4.5-4.5M12 15l4.5-4.5M4 20h16"/></svg></a>
+    <button class="iconbtn" id="bclose" aria-label="إغلاق"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+</div>
+
+<audio id="audio" preload="none"></audio>
+<script>
+const CDN="https://ahmedshaban.lovable.app/__l5e/assets-v1/";
+const IMG={curtain:CDN+"8d0e7b82-4927-45e3-81a0-1f9463dab203/curtain-stage.jpg",waves:CDN+"3c8e4984-c8cb-4f58-b9b3-1a1ab6da1089/mic-waves.jpg",studio:CDN+"1329b960-8b18-4836-b7bd-875937dc3a37/mic-studio.jpg",onair:CDN+"208958f8-d6d5-4479-a79f-23ff482690b1/studio-onair.jpg",bg:CDN+"fe853bfb-eb80-4d4c-88ba-56ab6ac9d8ad/studio-bg.jpeg"};
+const COVERS=[IMG.curtain,IMG.waves,IMG.studio,IMG.onair,IMG.bg];
+const ACC=["#00f2fe","#4facfe","#7b6cff","#37d99a","#e8c37a","#ff7aa2","#6ec6ff","#8ef0d2"];
+const CATL={commercial:"إعلاني",documentary:"وثائقي",storytelling:"سردي"};
+const T=[
+ {id:"orange",t:"أورانج ترافيل — حملة السياحة",c:"commercial",d:45,s:CDN+"5ed148fe-e1c3-4fe7-859e-7b3b9d73a4fe/orange-travel.mp4"},
+ {id:"alsaif",t:"السيف الذهبي — للشحن الدولي",c:"commercial",d:36,s:CDN+"16ea24b2-84ed-458b-b60c-c9ac2df39c6f/alsaif-aldhahabi.mp4"},
+ {id:"kawkab",t:"كوكب أطفالي — الإعلان الرسمي",c:"commercial",d:89,s:CDN+"4268901e-5843-45b0-a0cb-15e6eeb07b7b/kawkab-atfaly.mp3"},
+ {id:"fashion",t:"براند ملابس — الإعلان الرسمي",c:"commercial",d:35,s:CDN+"868ebe51-1445-4950-92f4-a75c504b72eb/fashion-brand.mp4"},
+ {id:"wanas",t:"ونس — دعم نفسي",c:"commercial",d:59,s:CDN+"13c70999-79f0-409e-8d4f-48522897c3c1/wanas-psych.mp3"},
+ {id:"almazoun",t:"المأذون",c:"storytelling",d:71,s:CDN+"4e554a31-9033-442d-9f2e-3b2787e1d4b8/almazoun.mp3"},
+ {id:"relationships",t:"العلاقات خُلقت للراحة والرحمة",c:"documentary",d:68,s:CDN+"5a0c77fc-a367-489f-a5bf-056b7da778dd/relationships.mp4"},
+ {id:"tastahel",t:"كل حاجة مش صح تستاهل تتساب",c:"storytelling",d:61,s:CDN+"b6b70d44-2121-4764-8a53-0131fb0a1892/tastahel-tetsab.mp3"},
+ {id:"qararto",t:"قررت أخد جنب",c:"storytelling",d:56,s:CDN+"76706d68-ce37-4904-a5e1-c4b4f466a2a1/qararto-akhod-ganb.mp3"},
+ {id:"motivation",t:"تحفيز وأسلوب حياة",c:"storytelling",d:89,s:CDN+"674719c3-f111-4705-b802-4bbc2f2f1ce9/motivation-lifestyle.mp3"},
+ {id:"shrug",t:"نصيحة للعلاقات",c:"storytelling",d:53,s:CDN+"c1742058-88e3-4f2b-bcea-62afdf742e1f/shrug.mp3"},
+ {id:"qalbo",t:"اللي قلبه حلو",c:"storytelling",d:46,s:CDN+"62b73a0c-2053-460e-97a7-60fe43df916a/qalbo-helw.mp3"},
+ {id:"alsabr",t:"الصبر",c:"documentary",d:66,s:CDN+"4effa775-325a-438d-9ab0-7c95db709aa5/alsabr.mp3"},
+ {id:"alkhanqa",t:"الخنقة",c:"storytelling",d:113,s:CDN+"3e1f2ee5-5bfc-4362-9095-0004c6ce11f5/alkhanqa.mp3"},
+ {id:"sampleA",t:"عينة صوتية — جلسة استوديو",c:"commercial",d:47,s:CDN+"8d86bcda-9fab-4f63-9a5b-3be14e527252/voice-sample-a.mp4"},
+ {id:"sampleB",t:"عينة صوتية — قراءة براند",c:"commercial",d:59,s:CDN+"c75ee4de-3823-4e55-9da2-0004b26bef50/voice-sample-b.mp4"},
+ {id:"sampleC",t:"عينة صوتية — قراءة ترويجية",c:"commercial",d:65,s:CDN+"20f6ac7b-e08a-49aa-8a61-4d880a01cac7/voice-sample-c.mp4"},
+];
+const fmt=s=>`${Math.floor(s/60)}:${Math.floor(s%60).toString().padStart(2,"0")}`;
+const grid=document.getElementById("grid"),audio=document.getElementById("audio"),player=document.getElementById("player");
+let active=null,filter="all",expanded=false;
+const PLAY='<svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24"><path d="M7 5h4v14H7zm6 0h4v14h-4z"/></svg>';
+T.forEach((tr,i)=>{
+  const ac=ACC[i%ACC.length];
+  const card=document.createElement("div");
+  card.className="card";card.style.setProperty("--ac",ac);card.dataset.cat=tr.c;card.dataset.id=tr.id;
+  let bars="";for(let b=0;b<22;b++)bars+=`<i style="animation-delay:-${(b*0.13).toFixed(2)}s"></i>`;
+  card.innerHTML=`<div class="ph"><img loading="lazy" src="${COVERS[i%COVERS.length]}" alt=""><div class="dur">${fmt(tr.d)}</div>
+    <button class="pbtn" aria-label="تشغيل ${tr.t}">${PLAY}</button></div>
+    <div class="bd"><div class="nm">${tr.t}</div><span class="bdg">${CATL[tr.c]}</span><div class="eq">${bars}</div></div>`;
+  card.addEventListener("click",()=>select(tr,card));
+  grid.appendChild(card);
+});
+function select(tr,card){
+  if(active&&active.id===tr.id){ audio.paused?audio.play():audio.pause(); return; }
+  active=tr;
+  document.querySelectorAll(".card").forEach(c=>c.classList.remove("on"));
+  card.classList.add("on");
+  audio.src=tr.s; audio.play().catch(()=>{});
+  document.getElementById("pt").textContent=tr.t;
+  document.getElementById("pm").textContent=CATL[tr.c];
+  document.getElementById("bdl").href=tr.s;
+  player.classList.add("show");
+  sync();
+}
+function sync(){
+  document.querySelectorAll(".card").forEach(c=>{ if(active&&c.dataset.id===active.id){ c.classList.toggle("on",!audio.paused); } });
+  player.classList.toggle("playing",!audio.paused);
+}
+audio.addEventListener("play",sync); audio.addEventListener("pause",sync);
+audio.addEventListener("timeupdate",()=>{
+  if(!active)return;
+  document.getElementById("ptimes").textContent=fmt(audio.currentTime)+" / "+fmt(audio.duration||active.d);
+  const p=audio.duration?audio.currentTime/audio.duration*100:0;
+  document.getElementById("seekfill").style.width=p+"%";
+});
+document.getElementById("bplay").addEventListener("click",e=>{e.stopPropagation(); if(!active)return; audio.paused?audio.play():audio.pause();});
+document.getElementById("bclose").addEventListener("click",()=>{audio.pause();player.classList.remove("show");document.querySelectorAll(".card").forEach(c=>c.classList.remove("on"));active=null;});
+document.getElementById("seek").addEventListener("click",e=>{
+  if(!active||!audio.duration)return;
+  const r=e.currentTarget.getBoundingClientRect();
+  audio.currentTime=((r.right-e.clientX)/r.width)*audio.duration;
+});
+document.getElementById("chips").addEventListener("click",e=>{
+  const b=e.target.closest(".chip"); if(!b)return;
+  document.querySelectorAll(".chip").forEach(c=>c.classList.remove("on")); b.classList.add("on");
+  filter=b.dataset.f; applyView();
+});
+function applyView(){
+  const cards=[...document.querySelectorAll(".card")];
+  const vis=cards.filter(c=>filter==="all"||c.dataset.cat===filter);
+  cards.forEach(c=>c.classList.add("hidden-card"));
+  vis.forEach((c,i)=>{ if(expanded||i<8)c.classList.remove("hidden-card"); });
+  document.getElementById("more").style.display=(vis.length>8&&!expanded)?"block":"none";
+}
+document.getElementById("more").addEventListener("click",()=>{expanded=true;applyView();});
+applyView();
+</script>
+</body>
+</html>
