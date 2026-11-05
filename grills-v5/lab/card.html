@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>كارت وجبة — مشويات مدحت الحديدي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@600;700;800&family=Cairo:wght@400;600;700;800;900&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0a07; --ink:#f9f2e6; --muted:#c9b698;
+  --ember:#f4631e; --ember2:#ff8a3d; --gold:#ffb02e; --line:#33271a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cairo',sans-serif;background:#000;color:var(--ink)}
+.card{position:relative;width:1080px;height:1350px;overflow:hidden;background:
+  radial-gradient(90% 55% at 50% -8%, rgba(244,99,30,.16), transparent 60%),
+  radial-gradient(70% 45% at 8% 108%, rgba(244,99,30,.22), transparent 62%),
+  radial-gradient(60% 40% at 96% 104%, rgba(255,138,61,.15), transparent 60%),
+  linear-gradient(180deg,#171009 0%,var(--bg) 34%,#0c0705 100%);
+}
+.card::before{content:'';position:absolute;inset:0;opacity:.05;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");}
+.spark{position:absolute;border-radius:50%;background:var(--gold);pointer-events:none;filter:blur(.4px);
+  box-shadow:0 0 10px 2px rgba(255,176,46,.55);opacity:.85}
+.spark.s1{width:5px;height:5px;top:14%;right:6%}
+.spark.s2{width:4px;height:4px;top:24%;left:5%;opacity:.6}
+.spark.s3{width:6px;height:6px;top:52%;right:3.5%;opacity:.5}
+.spark.s4{width:3px;height:3px;top:62%;left:7%;opacity:.7}
+.spark.s5{width:4px;height:4px;top:38%;left:3%;opacity:.45}
+.spark.s6{width:5px;height:5px;top:70%;right:9%;opacity:.6}
+.inner{position:relative;height:100%;display:flex;flex-direction:column;align-items:center;padding:52px 60px 46px}
+.brand{display:flex;align-items:center;gap:18px;align-self:stretch}
+.brand img{width:92px;height:92px;border-radius:50%;border:2.5px solid var(--gold);background:#1d140c;object-fit:cover;box-shadow:0 0 26px rgba(255,176,46,.28)}
+.brand .bt b{display:block;font-family:'Changa';font-weight:800;font-size:42px;line-height:1.2}
+.brand .bt span{display:block;font-family:'Aref Ruqaa',serif;color:var(--ember2);font-size:27px;line-height:1.6}
+.brand .meal-tag{margin-inline-start:auto;font-family:'Changa';font-weight:700;font-size:26px;color:var(--gold);
+  border:1.6px solid rgba(255,176,46,.5);border-radius:99px;padding:10px 26px;background:rgba(255,176,46,.07)}
+.photo{position:relative;width:100%;height:520px;margin-top:38px;border-radius:484px 484px 34px 34px;overflow:hidden;
+  border:2.5px solid rgba(255,176,46,.55);
+  box-shadow:0 0 0 7px rgba(244,99,30,.10), 0 26px 70px rgba(0,0,0,.65), 0 -30px 90px rgba(244,99,30,.22)}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center 62%}
+.photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 62%,rgba(12,7,5,.55) 100%)}
+.name{margin-top:44px;font-family:'Changa';font-weight:800;font-size:63px;line-height:1.35;text-align:center;color:var(--ink);
+  text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.comps{margin-top:10px;font-family:'Cairo';font-weight:600;font-size:33px;color:var(--muted);text-align:center;line-height:1.7}
+.price{display:flex;align-items:baseline;gap:14px;margin-top:26px;
+  background:linear-gradient(135deg,rgba(244,99,30,.16),rgba(255,176,46,.10));
+  border:2px solid rgba(255,176,46,.45);border-radius:28px;padding:14px 54px;
+  box-shadow:0 12px 40px rgba(244,99,30,.22)}
+.price b{font-family:'Changa';font-weight:800;font-size:118px;line-height:1;color:var(--gold);
+  text-shadow:0 0 34px rgba(255,176,46,.4)}
+.price span{font-family:'Changa';font-weight:700;font-size:44px;color:var(--ember2)}
+.foot{margin-top:auto;width:100%;border-top:1.6px solid var(--line);padding-top:26px;display:flex;flex-direction:column;gap:8px;align-items:center}
+.foot .phones{font-family:'Cairo';font-weight:800;font-size:32px;color:var(--ink)}
+.foot .phones em{font-style:normal;color:var(--gold)}
+.foot .phones b{direction:ltr;unicode-bidi:isolate;letter-spacing:1px}
+.foot .addr{font-family:'Cairo';font-weight:600;font-size:27px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="card">
+  <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
+  <span class="spark s4"></span><span class="spark s5"></span><span class="spark s6"></span>
+  <div class="inner">
+    <div class="brand">
+      <img src="../img/chef-t.png" alt="شعار مشويات مدحت الحديدي">
+      <div class="bt"><b>مشويات مدحت الحديدي</b><span>أصل المشويات</span></div>
+      <div class="meal-tag">وجبة</div>
+    </div>
+    <div class="photo"><img src="../img/mixed.jpg" alt="مشويات مشكلة على الفحم"></div>
+    <h1 class="name">ربع مشكل كباب وكفتة + ربع فرخة</h1>
+    <p class="comps">+ رز + سلطة + عيش + طحينة + شوربة</p>
+    <div class="price"><b>300</b><span>جنيه</span></div>
+    <div class="foot">
+      <div class="phones"><em>للطلب:</em> <b>01022962986</b> — <b>01095195707</b></div>
+      <div class="addr">حي السوق — أمام الإدارة التعليمية الجديدة</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
