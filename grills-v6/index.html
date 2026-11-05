@@ -178,6 +178,23 @@ footer .demo-mark{color:var(--brick);font-weight:700;max-width:70ch;margin:0 aut
 .reveal{opacity:0;transform:translateY(22px);transition:.7s ease}
 .reveal.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* hero smoke (subtle, CSS-only) */
+.smoke{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:visible}
+.puff{position:absolute;border-radius:50%;filter:blur(14px);
+  background:radial-gradient(circle, rgba(255,255,255,.85), rgba(255,255,255,0) 68%);
+  opacity:0;animation:puffRise 8s ease-in-out infinite}
+.puff:nth-child(1){width:64px;height:64px;left:18%;bottom:52%;animation-delay:0s}
+.puff:nth-child(2){width:88px;height:88px;left:38%;bottom:46%;animation-delay:2.2s;animation-duration:9.5s}
+.puff:nth-child(3){width:56px;height:56px;left:58%;bottom:55%;animation-delay:4.1s;animation-duration:7.4s}
+.puff:nth-child(4){width:76px;height:76px;left:74%;bottom:48%;animation-delay:5.6s;animation-duration:10s}
+@keyframes puffRise{
+  0%{opacity:0;transform:translate(0,0) scale(.55)}
+  18%{opacity:.34}
+  55%{opacity:.26;transform:translate(-16px,-110px) scale(1.05)}
+  100%{opacity:0;transform:translate(-34px,-230px) scale(1.5)}
+}
+@media (prefers-reduced-motion:reduce){.puff{animation:none}}
 @media(max-width:880px){
   .hero{padding:34px 0 26px}
   .hero .container{grid-template-columns:1fr;gap:26px}
@@ -241,6 +258,7 @@ footer .demo-mark{color:var(--brick);font-weight:700;max-width:70ch;margin:0 aut
     </div>
     <div class="hero-fig">
       <img src="img/hero.jpg" alt="مشويات على الفحم">
+      <div class="smoke" aria-hidden="true"><span class="puff"></span><span class="puff"></span><span class="puff"></span><span class="puff"></span></div>
       <span class="tag">تسوية على الفحم على الطبيعة</span>
     </div>
   </div>
