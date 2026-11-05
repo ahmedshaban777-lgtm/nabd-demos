@@ -76,6 +76,7 @@ section{padding:42px 0}
 .sec-sub{color:var(--muted);margin-bottom:22px;font-size:.92rem}
 .demo-note{display:inline-flex;align-items:center;gap:7px;background:rgba(214,69,36,.13);border:1.5px dashed var(--red);color:#ff9a7e;font-size:.76rem;font-weight:800;padding:5px 14px;border-radius:99px;margin-bottom:14px}
 .feat-sec{padding:26px 0 8px}
+.cat-note{grid-column:1/-1;background:rgba(214,69,36,.10);border:1.5px dashed var(--red);color:#ffb59a;font-size:.78rem;font-weight:800;padding:6px 14px;border-radius:99px;text-align:center}
 .feat-row{display:flex;gap:13px;overflow-x:auto;padding:4px 20px 16px;scroll-snap-type:x proximity;scrollbar-width:none}
 .feat-row::-webkit-scrollbar{display:none}
 .fcard{flex:0 0 150px;scroll-snap-align:start;position:relative;border-radius:18px;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--line2);cursor:pointer;transition:transform .25s}
@@ -246,7 +247,7 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
   <div class="embers" aria-hidden="true"><span class="ember-p"></span><span class="ember-p"></span><span class="ember-p"></span><span class="ember-p"></span><span class="ember-p"></span><span class="ember-p"></span></div>
   <div class="smoke" aria-hidden="true"><span class="puff"></span><span class="puff"></span><span class="puff"></span></div>
   <div class="container hero-in">
-    <span class="pill">نموذج تجريبي — الأسعار والعروض من منيو قديم، للتوضيح فقط</span>
+    <span class="pill">معاينة قبل التشغيل — الأصناف والأسعار من المنيو المطبوع الجديد</span>
     <div class="eyebrow">من قلب الفحم</div>
     <h1>أصل المشويات...<br><span>طعم الفحم</span> اللي يجمع العيلة.</h1>
     <p class="sub">كباب وكفتة وريش على الفحم، صواني تكفي العيلة كلها، وسندوتشات للجوع السريع. اختار صنفك ووزنك، وسلتك بتتحول لرسالة واتساب جاهزة بضغطة واحدة.</p>
@@ -255,8 +256,8 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
       <a class="btn btn-ghost" href="#offers-sec">شوف العروض</a>
     </div>
     <div class="stats">
-      <div class="stat"><b>+60</b><span>صنف في المنيو</span></div>
-      <div class="stat"><b>9</b><span>صواني عائلية</span></div>
+      <div class="stat"><b>48</b><span>صنف في المنيو</span></div>
+      <div class="stat"><b>10</b><span>صواني عائلية</span></div>
       <div class="stat"><b><svg class="ic"><use href="#i-scale"/></svg></b><span>اختار الوزن والحجم</span></div>
     </div>
   </div>
@@ -276,7 +277,7 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
 
 <section id="menu-sec" style="scroll-margin-top:130px">
   <div class="container">
-    <span class="demo-note">الأصناف والأسعار من منيو قديم قدّمه العميل — الأسعار توضيحية وهتتحدث قبل التشغيل</span>
+    <span class="demo-note">الأصناف والأسعار من منيو الحديدي المطبوع الجديد — دي معاينة قبل التشغيل</span>
     <h2 class="sec-title">المنيو</h2>
     <p class="sec-sub">في المشاوي والسندوتشات اختار الوزن أو الحجم وبعدها دوس «أضف للسلة».</p>
     <div class="search-wrap"><svg class="ic"><use href="#i-search"/></svg><input id="searchInput" type="text" placeholder="دوّر على صنف... (مثال: كبدة)"></div>
@@ -287,9 +288,9 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
 
 <section id="offers-sec" class="reveal">
   <div class="container">
-    <span class="demo-note">العروض دي من منيو قديم — موجودة للتوضيح فقط ومش عروض سارية</span>
+    <span class="demo-note">العروض من المنيو المطبوع الجديد — دي معاينة قبل التشغيل</span>
     <h2 class="sec-title">العروض</h2>
-    <p class="sec-sub">شكل قسم العروض في الصفحة — العروض الفعلية هتتحدد مع العميل.</p>
+    <p class="sec-sub">عروض منيو الحديدي المطبوع الجديد.</p>
     <div class="offers" id="offersGrid"></div>
   </div>
 </section>
@@ -316,19 +317,19 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
     <div class="reviews">
       <div class="review"><div class="stars">★★★★★</div><p>"الكفتة بتدوب في البق، والصينية كفت العيلة كلها. الطلب بالواتساب وفر عليا المكالمة."</p><div class="who">— عميل دائم (توضيحي)</div></div>
       <div class="review"><div class="stars">★★★★★</div><p>"أحسن حواوشي في المنطقة، والعيش البلدي طازة. بقيت أطلب من المنيو على طول."</p><div class="who">— أول مرة يجرب (توضيحي)</div></div>
-      <div class="review"><div class="stars">★★★★☆</div><p>"الريش مظبوطة والتتبيلة مختلفة فعلاً. صينية أبو العروسة تجربة تتعاد."</p><div class="who">— عميل (توضيحي)</div></div>
+      <div class="review"><div class="stars">★★★★☆</div><p>"الريش مظبوطة والتتبيلة مختلفة فعلاً. صينية العيلة تجربة تتعاد."</p><div class="who">— عميل (توضيحي)</div></div>
     </div>
   </div>
 </section>
 
 <section class="reveal">
   <div class="container">
-    <span class="demo-note">بيانات من المنيو القديم — هتتأكد من العميل قبل التشغيل</span>
+    <span class="demo-note">العنوان والأرقام من المنيو المطبوع الجديد</span>
     <h2 class="sec-title">المكان والتواصل</h2>
     <p class="sec-sub">الأرقام والعنوان معروضة للتوضيح — زرار الطلب في الصفحة بيستخدم رقم تجريبي.</p>
     <div class="info-grid">
       <div class="info-card"><svg class="ic bic"><use href="#i-pin"/></svg><h3>العنوان</h3><p>حي السوق — أمام الإدارة التعليمية الجديدة</p></div>
-      <div class="info-card"><svg class="ic bic"><use href="#i-phone"/></svg><h3>أرقام المنيو القديم</h3><p>01022962986 — 01095195707</p></div>
+      <div class="info-card"><svg class="ic bic"><use href="#i-phone"/></svg><h3>أرقام الطلب</h3><p>01022962986 — 01095195707</p></div>
       <div class="info-card"><svg class="ic bic"><use href="#i-clock"/></svg><h3>المواعيد</h3><p>هتتحدد مع العميل قبل التشغيل</p></div>
       <div class="info-card"><svg class="ic bic"><use href="#i-bike"/></svg><h3>التوصيل</h3><p>رسوم التوصيل بتتحدد حسب المنطقة</p></div>
     </div>
@@ -349,7 +350,7 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
 
 <footer>
   <div class="container">
-    <p class="demo-mark">صفحة تجريبية لعرض إمكانيات التصميم — المحتوى من منيو قديم قدّمه العميل، والأسعار والعروض والآراء توضيحية وليست للطلب الفعلي. رقم الواتساب في الأزرار تجريبي.</p>
+    <p class="demo-mark">صفحة تجريبية لعرض إمكانيات التصميم — الأصناف والأسعار والعروض من منيو الحديدي المطبوع الجديد. الآراء توضيحية، ورقم الواتساب في الأزرار تجريبي والصفحة ليست للطلب الفعلي.</p>
     <p>مشويات مدحت الحديدي © 2026</p>
   </div>
 </footer>
@@ -383,92 +384,72 @@ footer .demo-mark{color:#ff9a7e;font-weight:700;max-width:70ch;margin:0 auto 8px
 </aside>
 <script>
 const CATS=[
- {id:'grills',name:'المشاوي 🔥'},
- {id:'sandwiches',name:'سندوتشات 🥖'},
- {id:'meals',name:'الوجبات 🍽️'},
- {id:'trays',name:'الصواني 🥘'},
- {id:'tagines',name:'الطواجن 🍲'},
- {id:'extras',name:'الإضافات 🍚'}
+ {id:'grills',name:'المشاوي'},
+ {id:'sandwiches',name:'سندوتشات'},
+ {id:'meals',name:'الوجبات'},
+ {id:'trays',name:'الصواني'}
 ];
 const OFFERS=[
- {name:'عرض المزاج',desc:'2 سندوتش كفتة + سندوتش كبدة + سندوتش سجق + حواوشي',price:150},
- {name:'عرض الـ 200 (1)',desc:'قطعة لحمة + 2 قطعة طرب + كفتة + سجق + أرز',price:200},
- {name:'عرض الـ 200 (2)',desc:'قطعتين شيش + ممبار + كفتة + كباب + أرز',price:200},
- {name:'دلع آخر الأسبوع',desc:'ربع كفتة + ربع طرب + فرخة كاملة + أرز + طحينة + سلطة + شوربة',price:670},
- {name:'صينية الشاويش',desc:'فرخة + نص كفتة + نص كباب + نص ريش + نص ممبار + 2 حواوشي + أرز بسمتي',price:2000}
+ {name:'عرض المزاج',desc:'٢ كفتة + ١ كبدة + ١ سجق + ١ حواوشي',price:150},
+ {name:'عرض الـ120',desc:'٢ كفتة + ١ كبدة + ١ سجق',price:120},
+ {name:'صينية الشاويش (في العرض)',desc:'نص كفتة + ٣ حواوشي',price:400}
 ];
 const MENU=[
  // ===== المشاوي (ربع/نصف/كيلو) =====
- {id:'kebab',cat:'grills',name:'كباب',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[240,480,960],img:'img/kebab.jpg',hot:1},
- {id:'kofta',cat:'grills',name:'كفتة',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[150,300,600],img:'img/kofta.jpg'},
- {id:'tawook',cat:'grills',name:'شيش طاووق',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[110,220,440],img:'img/tawook.jpg'},
- {id:'riash',cat:'grills',name:'ريش',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[240,480,960],img:'img/riash.jpg'},
- {id:'mixed',cat:'grills',name:'مشكل كباب وكفتة',desc:'كباب + كفتة — يُباع بالوزن.',prices:[180,360,720],img:'img/mixed.jpg'},
-  {id:'ferakh',cat:'grills',name:'فراخ',prices:[100,180,360],thumb:'img/thumb-farakh.jpg'},
-  {id:'nefa',cat:'grills',name:'نيفة',prices:[240,480,960],thumb:'img/thumb-nefa.jpg'},
-  {id:'tarb',cat:'grills',name:'طرب',prices:[180,360,720],thumb:'img/thumb-tarb.jpg'},
-  {id:'kabda-gamali',cat:'grills',name:'كبدة جملي',prices:[220,440,880],thumb:'img/thumb-kabda.jpg'},
-  {id:'kabda-agali',cat:'grills',name:'كبدة عجالي',prices:[130,260,500],thumb:'img/thumb-kabda.jpg'},
-  {id:'kabda-dani',cat:'grills',name:'كبدة ضاني',prices:[200,400,800],thumb:'img/thumb-kabda.jpg'},
-  {id:'mombar',cat:'grills',name:'ممبار',prices:[100,200,400],thumb:'img/thumb-mombar.jpg'},
-  {id:'mombar-agali',cat:'grills',name:'ممبار عجالي',prices:[100,200,400],thumb:'img/thumb-mombar.jpg'},
-  {id:'hamam',cat:'grills',name:'حمام محشي',desc:'الوحدة/الحجم هيتأكد من العميل',price:150,thumb:'img/thumb-hamam.jpg'},
+ {id:'kebab',cat:'grills',name:'كباب',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[250,500,1000],img:'img/kebab.jpg',hot:1},
+ {id:'kofta',cat:'grills',name:'كفتة',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[175,350,700],img:'img/kofta.jpg'},
+ {id:'riash',cat:'grills',name:'ريش',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[300,600,1200],img:'img/riash.jpg'},
+ {id:'mixed',cat:'grills',name:'مشكل كباب وكفتة',desc:'كباب + كفتة — يُباع بالوزن.',prices:[200,400,800],img:'img/mixed.jpg'},
+ {id:'ferakh-warak',cat:'grills',name:'فراخ ورك',price:100,thumb:'img/thumb-farakh.jpg'},
+ {id:'ferakh-sadr',cat:'grills',name:'فراخ صدر',price:125},
+ {id:'nos-farkha',cat:'grills',name:'نص فرخة',price:200},
+ {id:'farkha-kamla',cat:'grills',name:'فرخة كاملة',price:360},
+ {id:'tarb',cat:'grills',name:'طرب',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[200,400,800],thumb:'img/thumb-tarb.jpg'},
+ {id:'mombar-dani',cat:'grills',name:'ممبار ضاني',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[125,250,500],thumb:'img/thumb-mombar.jpg'},
+ {id:'kabda-gamali',cat:'grills',name:'كبدة جملي',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[250,500,1000],thumb:'img/thumb-kabda.jpg'},
+ {id:'kabda-agali',cat:'grills',name:'كبدة عجالي',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[150,300,600],thumb:'img/thumb-kabda.jpg'},
+ {id:'moza-dani',cat:'grills',name:'موزة ضاني',price:400},
+ {id:'kabda-dani',cat:'grills',name:'كبدة ضاني',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[250,500,1000],thumb:'img/thumb-kabda.jpg'},
+ {id:'sogo2',cat:'grills',name:'سجق',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[150,300,600]},
+ {id:'goz-hamam',cat:'grills',name:'جوز حمام',price:400,thumb:'img/thumb-hamam.jpg'},
+ {id:'mombar-agali',cat:'grills',name:'ممبار عجالي',desc:'يُباع بالوزن: ربع / نصف / كيلو.',prices:[125,250,500],thumb:'img/thumb-mombar.jpg'},
  // ===== سندوتشات (صغير/وسط/كبير) =====
- {id:'s-hawawshi',cat:'sandwiches',name:'حواوشي',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[40,50,60],img:'img/hawawshi.jpg',hot:1},
- {id:'s-sogo2',cat:'sandwiches',name:'سجق',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[30,35,45],img:'img/sogok.jpg'},
- {id:'s-kabda-esk',cat:'sandwiches',name:'كبدة اسكندراني',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[30,40,50],img:'img/kabda.jpg'},
- {id:'s-kofta',cat:'sandwiches',name:'كفتة',prices:[30,35,45]},
- {id:'s-tarb',cat:'sandwiches',name:'طرب',prices:[50,60,70]},
- {id:'s-kebab',cat:'sandwiches',name:'كباب',prices:[70,100,120]},
- {id:'s-shawerma',cat:'sandwiches',name:'شاورما لحمة',prices:[30,40,50]},
- {id:'s-kabda-agali',cat:'sandwiches',name:'كبدة عجالي',prices:[30,40,50]},
- {id:'s-kabda-zarda',cat:'sandwiches',name:'كبدة زردة',prices:[30,40,50]},
- {id:'s-kabda-gamali',cat:'sandwiches',name:'كبدة جملي',prices:[40,50,60]},
- {id:'s-kabda-dani',cat:'sandwiches',name:'كبدة ضاني',prices:[50,70,80]},
- // ===== الوجبات =====
- {id:'m1',cat:'meals',name:'وجبة رقم 1',desc:'ربع فرخة + ربع كفتة + أرز + سلطة + عيش',price:270},
- {id:'m2',cat:'meals',name:'وجبة رقم 2',desc:'ربع فرخة + ربع طرب + أرز + طحينة + عيش',price:300},
- {id:'m3',cat:'meals',name:'وجبة رقم 3',desc:'ربع شيش طاووق + ربع كفتة + أرز + طحينة + عيش',price:250},
- {id:'m4',cat:'meals',name:'وجبة رقم 4',desc:'ربع فرخة + 2 ق كفتة + أرز + طحينة + سلطة + عيش',price:120},
- {id:'m5',cat:'meals',name:'وجبة رقم 5',desc:'ربع فرخة وراك + أرز + طحينة + خضار + عيش',price:100},
- {id:'m6',cat:'meals',name:'وجبة رقم 6',desc:'ربع كفتة + نص طرب + أرز + طحينة + خضار + عيش',price:320},
- {id:'m7',cat:'meals',name:'وجبة رقم 7',desc:'نص فرخة + نص كفتة + أرز + طحينة + خضار + عيش',price:480},
- {id:'m8',cat:'meals',name:'وجبة رقم 8',desc:'فرد حمام + نص شيش طاووق + سلطة + طحينة + خضار + عيش',price:370},
- {id:'m9',cat:'meals',name:'وجبة رقم 9',desc:'ربع كفتة + نص ممبار + أرز + طحينة + خضار + عيش',price:350},
- {id:'m10',cat:'meals',name:'وجبة رقم 10',desc:'ربع سجق + نص كفتة + أرز + طحينة + خضار + عيش',price:400},
- {id:'m11',cat:'meals',name:'وجبة رقم 11',desc:'ربع ممبار + ربع كفتة + أرز + طحينة + خضار + عيش',price:500},
- {id:'m-hamam',cat:'meals',name:'وجبة جوز حمام',desc:'جوز حمام + أرز + سلطة + طحينة + عيش',price:300},
- {id:'m-sadr',cat:'meals',name:'وجبة صدر',desc:'صدر + أرز + سلطة + طحينة + عيش',price:120},
- {id:'m-nos',cat:'meals',name:'وجبة نص فرخة',desc:'نص فرخة + أرز + سلطة + طحينة + عيش',price:180},
- {id:'m-kamla',cat:'meals',name:'وجبة فرخة كاملة',desc:'فرخة كاملة + أرز + سلطة + طحينة + عيش',price:360},
+ {id:'s-kofta',cat:'sandwiches',name:'كفتة',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[35,45,60]},
+ {id:'s-hawawshi',cat:'sandwiches',name:'حواوشي',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[50,70,100],img:'img/hawawshi.jpg',hot:1},
+ {id:'s-kabda-gamali',cat:'sandwiches',name:'كبدة جملي',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[70,100,120],img:'img/kabda.jpg'},
+ {id:'s-kabda-agali',cat:'sandwiches',name:'كبدة عجالي',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[35,45,60]},
+ {id:'s-sogo2',cat:'sandwiches',name:'سجق',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[35,45,60],img:'img/sogok.jpg'},
+ {id:'s-kebab',cat:'sandwiches',name:'كباب',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[100,120,150]},
+ {id:'s-tarb',cat:'sandwiches',name:'طرب',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[70,80,100]},
+ {id:'s-dani',cat:'sandwiches',name:'ضاني',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[70,80,100]},
+ {id:'s-shish',cat:'sandwiches',name:'شيش',desc:'متوفر بثلاثة أحجام: صغير / وسط / كبير.',prices:[70,90,120]},
+ // ===== الوجبات (كلها + رز + سلطة + عيش + طحينة + شوربة) =====
+ {id:'m1',cat:'meals',name:'٢ قطعة كفتة + ربع فرخة + تمن ممبار',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:225},
+ {id:'m2',cat:'meals',name:'ربع مشكل كباب وكفتة + ربع فرخة',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:300},
+ {id:'m3',cat:'meals',name:'كفتة + طرب + فراخ',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:200},
+ {id:'m4',cat:'meals',name:'كفتة + كباب + ريشة',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:250},
+ {id:'m5',cat:'meals',name:'كفتة + كبدة + سجق',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:200},
+ {id:'m6',cat:'meals',name:'ربع فرخة + قطعتين كفتة',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:180},
+ {id:'m7',cat:'meals',name:'ربع فرخة + ربع كفتة',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:300},
+ {id:'m8',cat:'meals',name:'ربع شيش + ربع كفتة',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:300},
+ {id:'m9',cat:'meals',name:'ربع كفتة + ربع طرب',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:350},
+ {id:'m10',cat:'meals',name:'ربع فرخة + ربع طرب',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:325},
+ {id:'m11',cat:'meals',name:'ربع كفتة + ربع ممبار',desc:'+ رز + سلطة + عيش + طحينة + شوربة',price:250},
+ {id:'m12',cat:'meals',name:'وجبة السناجل',desc:'ربع فرخة + ربع كفتة + رز + سلطة + عيش + طحينة + شوربة',price:175},
  // ===== الصواني =====
- {id:'t-saada',cat:'trays',name:'صينية السعادة',desc:'نص فرخة + ربع كفتة + أرز + سلطة + طحينة',price:350},
- {id:'t-supermix',cat:'trays',name:'وجبة سوبر ميكس',desc:'ربع فرخة + 2 كفتة + 2 كباب + سلطة + طحينة',price:300},
- {id:'t-layali',cat:'trays',name:'صينية ليالي الحظر',desc:'نص فرخة مشوية + تلت كفتة + أرز بسمتي + شوربة + سلطة + طحينة',price:300},
- {id:'t-nemra6',cat:'trays',name:'صينية نمرة 6',desc:'ك كفتة + فرخة + محاشي + ممبار + أرز بسمتي + طحينة + سلطة + عيش + ملوخية',price:1000},
- {id:'t-sohab',cat:'trays',name:'صينية الصحاب',desc:'فرخة كاملة + ك كفتة + 1/2 ك محاشي + 1/2 ك ممبار + طاجن ملوخية + أرز بسمتي + عيش + طحينة',price:1000},
- {id:'t-3ela',cat:'trays',name:'صينية العيلة',desc:'2 فرخة + 1/2 ك كفتة + 1/2 ك ممبار + ك أرز بسمتي + طاجن ملوخية + 4 سمبوسة + طحينة + عيش',price:1300},
- {id:'t-habayeb',cat:'trays',name:'صينية الحبايب',desc:'فرخة مشوية + ك كفتة + 1/2 ك محشي + 1/2 ك ممبار + 4 بروست + حواوشي + مكرونة بشاميل + ك أرز + كول سلو + طحينة + مخلل + عيش',price:1160},
- {id:'t-abo3rosa',cat:'trays',name:'صينية أبو العروسة',desc:'2 فرخة مشوية + نص ك كفتة + نص ك ممبار + نص ك محشي + طاجن ملوخية + أرز بسمتي + 4 طحينة + 2 سلطة + ويسكي حلال + 5 عيش',price:1300},
- {id:'t-3ersein',cat:'trays',name:'صينية العروسين',desc:'بطة 2.5 ك + 4 حمام + 1/2 ك كباب مشكل + 1/2 ك ممبار + 1/2 ك أرز بسمتي + 1/2 ك محشي + طاجن ملوخية + 4 سمبوسة + طحينة + عيش',price:1850},
- // ===== الطواجن =====
- {id:'tg-basal',cat:'tagines',name:'طاجن لحم بالبصل',desc:'لحم مطهو بالبصل والتوابل',price:200},
- {id:'tg-khodar',cat:'tagines',name:'طاجن خضار باللحم',desc:'ملوخية أو بامية أو بطاطس باللحمة',price:200},
- {id:'tg-war2a',cat:'tagines',name:'وجبة ورقة لحمة',desc:'ورقة لحمة بالخضار + أرز + سلطة + طحينة',price:250},
- {id:'tg-fetta',cat:'tagines',name:'وجبة فتة موزة',desc:'موزة ضاني كاملة + فتة + سلطة',price:450},
- // ===== الإضافات =====
- {id:'e-macarona',cat:'extras',name:'مكرونة بشاميل',price:60},
- {id:'e-mombar',cat:'extras',name:'طبق ممبار',price:100},
- {id:'e-ross-basm',cat:'extras',name:'أرز بسمتي',desc:'المنيو القديم فيه سعرين: 35 / 30 — الحجم هيتأكد من العميل',pricetext:'35 / 30',pending:1},
- {id:'e-ross-sh3r',cat:'extras',name:'أرز بالشعرية',desc:'المنيو القديم فيه سعرين: 30 / 25 — الحجم هيتأكد من العميل',pricetext:'30 / 25',pending:1},
- {id:'e-salata',cat:'extras',name:'سلطة',price:10},
- {id:'e-tahina',cat:'extras',name:'طحينة',price:10},
- {id:'e-taboula',cat:'extras',name:'تبولة',price:10},
- {id:'e-baba',cat:'extras',name:'بابا غنوج',price:15},
- {id:'e-kanz',cat:'extras',name:'كانز',price:20},
- {id:'e-maya',cat:'extras',name:'مياه معدنية صغيرة',price:10}
+ {id:'t-saada',cat:'trays',name:'صينية السعادة',desc:'نص فرخة + ربع كفتة + رز + سلطة + عيش + طحينة + شوربة',price:375},
+ {id:'t-hana',cat:'trays',name:'صينية الهنا',desc:'كيلو كفتة + فرخة كاملة + ربع ممبار + ١ حواوشي + رز + سلطة + عيش + طحينة + شوربة',price:1200},
+ {id:'t-3ela',cat:'trays',name:'صينية العيلة',desc:'٢ فرخة + كيلو كفتة + نص كيلو ممبار + ١ بشاميل + ٢ حواوشي + رز + سلطة + عيش + طحينة + شوربة',price:1750},
+ {id:'t-habayeb',cat:'trays',name:'صينية الحبايب',desc:'فرخة كاملة + نص كيلو مشكل كباب وكفتة + ربع سجق + رز + سلطة + عيش + طحينة + شوربة',price:950},
+ {id:'t-akher-espoo3',cat:'trays',name:'عرض آخر الأسبوع',desc:'نص كيلو كفتة + نص كيلو طرب + نص فرخة + رز + سلطة + عيش + طحينة + شوربة',price:900},
+ {id:'t-laylet-dokhla',cat:'trays',name:'صينية ليلة الدخلة',desc:'٢ جوز حمام + نص كيلو كباب وكفتة + نص كيلو ممبار + فرخة كاملة + رز + سلطة + عيش + طحينة + شوربة',price:2000},
+ {id:'t-tagroba',cat:'trays',name:'صينية التجربة',desc:'نص فرخة + نص مشكل كباب وكفتة + ربع طرب + ربع ريش + ربع ممبار + ٢ حواوشي + رز + سلطة + عيش + طحينة + شوربة',price:1500},
+ {id:'t-shawish',cat:'trays',name:'صينية الشاويش',desc:'فرخة كاملة + نص مشكل كباب وكفتة + ١ حواوشي + ربع سجق + رز + سلطة + عيش + طحينة + شوربة',price:1100},
+ {id:'t-single',cat:'trays',name:'صينية سنجل',desc:'نص كفتة + ربع سجق + نص فرخة + رز + سلطة + عيش + طحينة + شوربة',price:700},
+ {id:'t-del3',cat:'trays',name:'صينية الدلع',desc:'نص فرخة + ربع كفتة + ربع ممبار + ١ حواوشي + رز + سلطة + عيش + طحينة + شوربة',price:450}
 ];
 const SIZE_LABELS={grills:['ربع','نصف','كيلو'],sandwiches:['صغير','وسط','كبير']};
+const CAT_NOTES={trays:'متاح نص الكميات لكل الصواني بنص السعر'};
 const WA='201000000000';
 
 let cart={};
@@ -489,25 +470,24 @@ function sizeButtons(it){
 }
 function actionHTML(it){
   if(it.prices){const p=it.prices.find(x=>x!=null);
-    return `<div class="sizes">${sizeButtons(it)}</div><div class="buyline"><div class="price"><span class="curp">${money(p)}</span><small>سعر توضيحي</small></div><button class="add" data-id="${it.id}" data-sized="1">أضف للسلة +</button></div>`;}
+    return `<div class="sizes">${sizeButtons(it)}</div><div class="buyline"><div class="price"><span class="curp">${money(p)}</span></div><button class="add" data-id="${it.id}" data-sized="1">أضف للسلة +</button></div>`;}
   if(it.pending)return `<div class="buyline"><div class="price">${it.pricetext} ج<small>السعر هيتأكد</small></div></div>`;
-  return `<div class="buyline"><div class="price">${money(it.price)}<small>سعر توضيحي</small></div><button class="add" data-id="${it.id}">أضف للسلة +</button></div>`;
+  return `<div class="buyline"><div class="price">${money(it.price)}</div><button class="add" data-id="${it.id}">أضف للسلة +</button></div>`;
 }
 function cardHTML(it){const im=it.thumb||it.img;return `<div class="cd">
   <div class="cd-top">${im?`<div class="th dish-open" data-id="${it.id}"><img src="${im}" alt="${it.name}" loading="lazy">${it.hot?'<span class="hotb"><svg class="ic"><use href="#i-flame"/></svg></span>':''}</div>`:''}
   <div class="cd-tx"><h3 class="dish-open" data-id="${it.id}">${it.name}${it.hot?' <em>الأكثر طلباً</em>':''}</h3>${it.desc?`<p class="desc">${it.desc}</p>`:''}</div></div>
   ${actionHTML(it)}</div>`}
 function rowHTML(it){return cardHTML(it)}
-function renderList(items){
-  grid.innerHTML=items.map(cardHTML).join('');
+function renderList(items,cat){
+  grid.innerHTML=(cat&&CAT_NOTES[cat]?`<div class="cat-note">${CAT_NOTES[cat]}</div>`:'')+items.map(cardHTML).join('');
   tbl.style.display='none';
 }
-function renderMenu(cat){curCat=cat;renderCats();renderList(MENU.filter(i=>i.cat===cat));}
+function renderMenu(cat){curCat=cat;renderCats();renderList(MENU.filter(i=>i.cat===cat),cat);}
 function renderOffers(){
   document.getElementById('offersGrid').innerHTML=OFFERS.map((o,i)=>`<div class="offer">
-    <span class="old-tag">عرض قديم</span>
     <h3>${o.name}</h3><p>${o.desc}</p>
-    <div class="pr"><div class="price">${money(o.price)}<small>توضيحي</small></div>
+    <div class="pr"><div class="price">${money(o.price)}</div>
     <button class="add" data-offer="${i}" style="flex:0 0 auto;margin-top:0">أضف +</button></div></div>`).join('');
 }
 document.getElementById('cats').addEventListener('click',e=>{
