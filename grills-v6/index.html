@@ -179,6 +179,16 @@ footer .demo-mark{color:var(--brick);font-weight:700;max-width:70ch;margin:0 aut
 .reveal.on{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
+
+/* faint line-art watermark on cream background (approved) */
+body::before{content:'';position:fixed;top:90px;left:-80px;width:430px;height:430px;z-index:-1;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg stroke='%2367713a' stroke-width='4.5' fill='none' stroke-linecap='round'%3E%3Cpath d='M58 342 L332 68'/%3E%3Crect x='118' y='240' width='48' height='34' rx='12' transform='rotate(-45 142 257)'/%3E%3Crect x='178' y='180' width='48' height='34' rx='12' transform='rotate(-45 202 197)'/%3E%3Crect x='238' y='120' width='48' height='34' rx='12' transform='rotate(-45 262 137)'/%3E%3Cpath d='M96 342 q34 -8 52 -52'/%3E%3Cpath d='M118 320 l-24 -6 M126 306 l-26 2 M134 292 l-24 8 M140 278 l-22 14'/%3E%3Cpath d='M118 320 l6 -24 M126 306 l12 -22 M134 292 l18 -18 M140 278 l22 -12'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;opacity:.07;transform:rotate(-6deg)}
+body::after{content:'';position:fixed;bottom:4%;right:-100px;width:470px;height:470px;z-index:-1;pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Cg stroke='%2367713a' stroke-width='4.5' fill='none' stroke-linecap='round'%3E%3Cpath d='M58 342 L332 68'/%3E%3Crect x='118' y='240' width='48' height='34' rx='12' transform='rotate(-45 142 257)'/%3E%3Crect x='178' y='180' width='48' height='34' rx='12' transform='rotate(-45 202 197)'/%3E%3Crect x='238' y='120' width='48' height='34' rx='12' transform='rotate(-45 262 137)'/%3E%3Cpath d='M96 342 q34 -8 52 -52'/%3E%3Cpath d='M118 320 l-24 -6 M126 306 l-26 2 M134 292 l-24 8 M140 278 l-22 14'/%3E%3Cpath d='M118 320 l6 -24 M126 306 l12 -22 M134 292 l18 -18 M140 278 l22 -12'/%3E%3C/g%3E%3C/svg%3E") no-repeat center/contain;opacity:.055;transform:rotate(155deg)}
+@media(max-width:880px){
+  body::before{width:300px;height:300px;top:120px;left:-100px}
+  body::after{width:320px;height:320px;right:-120px;bottom:2%}
+}
 /* hero smoke (subtle, CSS-only) */
 .smoke{position:absolute;inset:0;pointer-events:none;z-index:3;overflow:visible}
 .puff{position:absolute;border-radius:50%;filter:blur(14px);
