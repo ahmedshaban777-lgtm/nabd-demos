@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>اسم العلامة | متابعة التغذية</title>
+<style>
+:root{--g:#2f8f5b;--gd:#1f6b42;--gl:#e8f5ee;--o:#f59e3b;--ink:#1c2b24;--mut:#6b7c73;--bg:#f6faf7;--card:#fff;--r:18px}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Segoe UI",Tahoma,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+header{background:#fff;border-bottom:1px solid #e3eee7;display:flex;align-items:center;justify-content:space-between;padding:10px 18px;gap:10px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:22px;color:var(--gd)}.logo span{color:var(--o)}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button{border:0;background:none;padding:8px 14px;border-radius:30px;font:inherit;font-weight:600;color:var(--mut);cursor:pointer}
+nav button.on{background:var(--g);color:#fff}
+.view{display:none;max-width:1050px;margin:auto;padding:22px 16px 60px}.view.on{display:block}
+.hero{background:linear-gradient(135deg,#2f8f5b,#1f6b42);color:#fff;border-radius:28px;padding:44px 28px;display:grid;gap:20px;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;left:-60px;bottom:-60px;width:240px;height:240px;border-radius:50%;background:#ffffff14}
+.hero h1{font-size:clamp(26px,5vw,42px);line-height:1.35}.hero p{opacity:.92;max-width:560px}
+.btn{display:inline-block;border:0;border-radius:30px;padding:12px 26px;font:inherit;font-weight:700;cursor:pointer;background:var(--o);color:#3a2300}
+.btn.alt{background:var(--g);color:#fff}.btn.ghost{background:#fff;color:var(--gd)}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:6px}.stats b{font-size:26px;display:block}
+h2{margin:34px 0 14px;font-size:24px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--card);border-radius:var(--r);padding:20px;box-shadow:0 2px 12px #1f6b4210}
+.card .ic{display:block}.card h3{margin:6px 0}.card p{color:var(--mut);font-size:15px}
+.price{font-size:28px;font-weight:800;color:var(--gd)}.price small{font-size:14px;color:var(--mut);font-weight:400}
+.pop{border:2px solid var(--o);position:relative}.pop:before{content:"موصى بها";position:absolute;top:-12px;right:18px;background:var(--o);color:#3a2300;font-size:12px;font-weight:700;padding:2px 12px;border-radius:20px}
+ul.ck{list-style:none;padding:0;margin:10px 0}ul.ck li:before{content:"✓ ";color:var(--g);font-weight:800}
+.spec{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.av{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#bfe6cf,#2f8f5b);display:grid;place-items:center;font-size:46px;color:#fff;flex:none}
+form label{display:block;font-weight:600;margin:10px 0 4px;font-size:14px}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid #d7e6dc;border-radius:12px;font:inherit;background:#fff}
+.slots{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}.slots button{border:1.5px solid #cfe3d6;background:#fff;border-radius:12px;padding:8px 14px;font:inherit;cursor:pointer}.slots button.on{background:var(--g);color:#fff;border-color:var(--g)}
+.ok{display:none;background:var(--gl);border-radius:14px;padding:14px;margin-top:14px;color:var(--gd);font-weight:600}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:14px 0}
+.kpi{background:#fff;border-radius:var(--r);padding:14px 16px;box-shadow:0 2px 12px #1f6b4210}.kpi small{color:var(--mut)}.kpi b{display:block;font-size:26px;color:var(--gd)}.dn{color:var(--g);font-size:13px;font-weight:700}
+.two{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(310px,1fr))}
+.bar{height:10px;border-radius:10px;background:#e3eee7;overflow:hidden}.bar i{display:block;height:100%;background:var(--g);border-radius:10px}
+.macro{display:flex;justify-content:space-between;font-size:14px;margin:10px 0 4px}
+.meal{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid #edf4ef}.meal:last-child{border:0}
+.meal input{width:22px;height:22px;accent-color:var(--g)}.meal em{margin-right:auto;color:var(--mut);font-style:normal;font-size:13px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:right;padding:10px 8px;border-bottom:1px solid #edf4ef}th{color:var(--mut);font-weight:600;font-size:13px}
+.tag{padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700}.t1{background:#e1f4e8;color:#1f6b42}.t2{background:#fdeccf;color:#8a5200}.t3{background:#fbdede;color:#9b2c2c}
+tr.cl{cursor:pointer}tr.cl:hover{background:#f3faf5}
+.note{text-align:center;color:var(--mut);font-size:12.5px;margin-top:30px}
+footer{background:#1c2b24;color:#cfe0d6;text-align:center;padding:22px;font-size:14px}
+</style></head><body>
+<header><div class="logo">اسم العلامة<span>.</span></div>
+<nav id="nav"><button data-v="home" class="on">الرئيسية</button><button data-v="book">احجز موعد</button><button data-v="me">حسابي</button><button data-v="pro">لوحة الأخصائي</button></nav></header>
+
+<section class="view on" id="v_home">
+<div class="hero"><div><h1>غذاء صحي بخطة تناسبك،<br>ومتابعة معاك خطوة بخطوة</h1><p>متابعة تغذية لوزنك وقياساتك وخطتك الغذائية من موبايلك.</p></div>
+<div><button class="btn" onclick="go('book')">احجز استشارتك</button> <button class="btn ghost" onclick="go('me')">شوف حسابك التجريبي</button></div>
+</div>
+
+<h2>خدماتنا</h2><div class="grid">
+<div class="card"><svg class="ic" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2f8f5b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M5 7l-3 7a3 3 0 006 0zM19 7l-3 7a3 3 0 006 0z"/></svg><h3>إنقاص الوزن</h3><p>خطة تدريجية آمنة بدون حرمان، تناسب نمط يومك.</p></div>
+<div class="card"><svg class="ic" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2f8f5b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 4-12 8-12s8 4 8 12M12 8V3M9 5h6"/></svg><h3>زيادة الوزن وبناء العضلات</h3><p>سعرات وبروتين محسوب حسب هدفك وتمرينك.</p></div>
+<div class="card"><svg class="ic" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2f8f5b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-8-5-8-11a4.5 4.5 0 018-2.8A4.5 4.5 0 0120 10c0 6-8 11-8 11z"/></svg><h3>تغذية علاجية</h3><p>سكر، ضغط، غدة درقية، كوليسترول، وغيرها.</p></div>
+<div class="card"><svg class="ic" viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#2f8f5b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c4 4 6 7 6 10a6 6 0 01-12 0c0-3 2-6 6-10z"/></svg><h3>الحمل والرضاعة</h3><p>احتياجاتك واحتياجات طفلك في خطة واحدة.</p></div></div>
+
+<h2>باقات المتابعة</h2><div class="grid">
+<div class="card"><h3>استشارة واحدة</h3><div class="price"><small>السعر يُحدَّد لاحقًا</small></div><ul class="ck"><li>تقييم الحالة</li><li>خطة غذائية مبدئية</li></ul><button class="btn alt" onclick="go('book')">احجز</button></div>
+<div class="card pop"><h3>متابعة شهرية</h3><div class="price"><small>السعر يُحدَّد لاحقًا</small></div><ul class="ck"><li>خطة تتعدل مع تقدمك</li><li>حساب شخصي لتسجيل الوزن والقياسات</li><li>رسائل مع الأخصائي</li></ul><button class="btn" onclick="go('book')">اشترك</button></div>
+<div class="card"><h3>متابعة ممتدة</h3><div class="price"><small>السعر يُحدَّد لاحقًا</small></div><ul class="ck"><li>كل مميزات الشهرية</li><li>مراجعة دورية للنتائج</li></ul><button class="btn alt" onclick="go('book')">احجز</button></div></div>
+
+<h2>الأخصائي</h2><div class="card spec"><div class="av"><svg class="ic" viewBox="0 0 24 24" width="54" height="54" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.5 3.5-7 8-7s8 2.5 8 7"/></svg></div><div><h3>اسم الأخصائي</h3><p>مكان صورة الأخصائي ونبذة عن مؤهلاته وخبرته.</p></div></div>
+</section>
+
+<section class="view" id="v_book"><h2 style="margin-top:6px">احجز موعدك</h2>
+<div class="card"><form id="bf" onsubmit="return bk(event)">
+<label>الاسم</label><input required placeholder="اسمك">
+<label>رقم الواتساب</label><input required inputmode="tel" placeholder="رقمك">
+<label>الخدمة</label><select><option>إنقاص الوزن</option><option>زيادة الوزن</option><option>تغذية علاجية</option><option>الحمل والرضاعة</option></select>
+<label>اليوم والميعاد</label><div class="slots" id="slots"></div>
+<label>هدفك أو ملاحظات</label><textarea rows="3"></textarea><br>
+<button class="btn alt" type="submit">تأكيد الحجز</button>
+<div class="ok" id="ok">تم تسجيل طلبك في النسخة التجريبية. </div></form></div></section>
+
+<section class="view" id="v_me">
+<div class="top"><div><h2 style="margin:0">أهلًا بك</h2><span style="color:var(--mut)">الأسبوع ٦ من خطة إنقاص الوزن</span></div><button class="btn" onclick="alert('في النسخة التجريبية فقط')">+ سجّل وزن اليوم</button></div>
+<div class="kpis"><div class="kpi"><small>الوزن الحالي</small><b>٧٨٫٤ كجم</b><span class="dn">▼ ٦٫١ منذ البداية</span></div><div class="kpi"><small>الهدف</small><b>٧٢ كجم</b><span class="dn">باقي ٦٫٤</span></div><div class="kpi"><small>محيط الوسط</small><b>٨٢ سم</b><span class="dn">▼ ٧ سم</span></div><div class="kpi"><small>الالتزام الأسبوعي</small><b>٨٦٪</b><span class="dn">ممتاز</span></div></div>
+<div class="two"><div class="card"><h3>تطور الوزن</h3><svg viewBox="0 0 320 150" width="100%" id="chart"></svg></div>
+<div class="card"><h3>القياسات</h3><table><tr><th></th><th>البداية</th><th>الآن</th></tr><tr><td>الصدر</td><td>١٠٠</td><td>٩٥</td></tr><tr><td>الوسط</td><td>٨٩</td><td>٨٢</td></tr><tr><td>الأرداف</td><td>١٠٨</td><td>١٠٣</td></tr><tr><td>الذراع</td><td>٣٤</td><td>٣١</td></tr></table></div></div>
+<h2>خطة النهاردة</h2><div class="two"><div class="card" id="meals"></div>
+<div class="card"><h3>الماكروز</h3><div class="macro"><span>سعرات</span><b id="kc">٠ / ١٤٥٠</b></div><div class="bar"><i id="kb" style="width:0"></i></div><div class="macro"><span>بروتين</span><b>٦٢ / ٩٠ جم</b></div><div class="bar"><i style="width:69%"></i></div><div class="macro"><span>مياه</span><b>٥ / ٨ أكواب</b></div><div class="bar"><i style="width:62%"></i></div>
+<p style="margin-top:16px;background:var(--gl);padding:12px;border-radius:12px;font-size:14px"><b>رسالة من الأخصائي:</b> تقدمك ممتاز. زوّد المياه وكمّل المشي ٣٠ دقيقة.</p></div></div></section>
+
+<section class="view" id="v_pro"><div class="top"><h2 style="margin:0">لوحة الأخصائي</h2><button class="btn alt" onclick="alert('في النسخة التجريبية فقط')">+ مشترك جديد</button></div>
+<div class="kpis"><div class="kpi"><small>مشتركين نشطين</small><b>٤٨</b></div><div class="kpi"><small>مواعيد اليوم</small><b>٦</b></div><div class="kpi"><small>محتاجين تدخّل</small><b>٣</b></div><div class="kpi"><small>متوسط الالتزام</small><b>٧٩٪</b></div></div>
+<div class="two"><div class="card"><h3>المشتركين</h3><table id="cl"><tr><th>الاسم</th><th>الباقة</th><th>التقدم</th><th>الحالة</th></tr></table></div>
+<div class="card"><h3 id="ct">مشترك ١</h3><p style="color:var(--mut)" id="cs">إنقاص الوزن · ٦ أسابيع</p>
+<label style="font-weight:600;font-size:14px">السعرات اليومية</label><input value="1450"><label style="font-weight:600;font-size:14px;display:block;margin-top:8px">ملاحظات الأسبوع</label><textarea rows="3">زيادة البروتين في العشاء وتقليل النشويات بعد الساعة ٨.</textarea><br><br>
+<button class="btn alt" onclick="alert('في النسخة التجريبية فقط')">حفظ وإرسال الخطة للمشترك</button></div></div></section>
+
+<p class="note">نسخة تجريبية: الأسماء والأرقام أمثلة</p>
+<footer>اسم العلامة · متابعة التغذية · رقم واتساب الأخصائي هنا</footer>
+<script>
+const $=s=>document.querySelector(s);
+function go(v){document.querySelectorAll('.view').forEach(e=>e.classList.toggle('on',e.id=='v_'+v));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v==v));scrollTo(0,0);history.replaceState(null,'','#'+v)}
+$('#nav').onclick=e=>{if(e.target.dataset.v)go(e.target.dataset.v)};
+const sl=['السبت ٥ م','الأحد ١١ ص','الأحد ٧ م','الاثنين ٣ م','الثلاثاء ١٠ ص','الأربعاء ٦ م'];
+$('#slots').innerHTML=sl.map((s,i)=>`<button type="button" class="${i?'':'on'}">${s}</button>`).join('');
+$('#slots').onclick=e=>{if(e.target.tagName=='BUTTON'){document.querySelectorAll('#slots button').forEach(b=>b.classList.remove('on'));e.target.classList.add('on')}};
+function bk(e){e.preventDefault();$('#ok').style.display='block';return false}
+const w=[84.5,83.6,82.4,81.5,80.3,79.2,78.4],mn=77,mx=85;
+const pp=w.map((v,i)=>[20+i*46,125-(v-mn)/(mx-mn)*110]);
+$('#chart').innerHTML='<polyline fill="none" stroke="#2f8f5b" stroke-width="3" points="'+pp.map(p=>p.join(',')).join(' ')+'"/>'+pp.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="#fff" stroke="#2f8f5b" stroke-width="2.5"/><text x="${p[0]}" y="${p[1]-9}" font-size="9" text-anchor="middle" fill="#1f6b42">${String(w[i]).replace(".","٫").replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d])}</text><text x="${p[0]}" y="145" font-size="8" text-anchor="middle" fill="#6b7c73">أسبوع ${i+1}</text>`).join('');
+const ml=[['الفطار','فول بزيت الزيتون + بيضة + خبز بلدي',380],['سناك','تفاحة + ١٠ لوزات',160],['الغدا','صدور فراخ مشوية + رز بني + سلطة',520],['سناك','زبادي يوناني',110],['العشا','سمك مشوي + خضار سوتيه',280]];
+$('#meals').innerHTML='<h3>وجبات اليوم</h3>'+ml.map((m,i)=>`<label class="meal"><input type="checkbox" data-k="${m[2]}" ${i<2?'checked':''}><div><b>${m[0]}</b><br><span style="font-size:14px;color:var(--mut)">${m[1]}</span></div><em>${m[2]} سعر</em></label>`).join('');
+function kc(){let t=0;document.querySelectorAll('#meals input:checked').forEach(c=>t+=+c.dataset.k);$('#kc').textContent=t+' / 1450';$('#kb').style.width=t/1450*100+'%'}
+$('#meals').onchange=kc;kc();
+const cl=[['مشترك ١','شهرية','٧٠٪','t1','ملتزمة','إنقاص الوزن · ٦ أسابيع'],['مشترك ٢','ممتدة','٤٥٪','t2','يحتاج متابعة','زيادة وزن · ٣ أسابيع'],['مشترك ٣','شهرية','٢٠٪','t3','لم يسجل ٥ أيام','سكر · أسبوعان'],['مشترك ٤','شهرية','٩٠٪','t1','ملتزم','إنقاص الوزن · ٩ أسابيع'],['مشترك ٥','ممتدة','٦٠٪','t1','ملتزمة','حمل · ١٢ أسبوع']];
+cl.forEach(c=>{const r=document.createElement('tr');r.className='cl';r.innerHTML=`<td><b>${c[0]}</b></td><td>${c[1]}</td><td>${c[2]}</td><td><span class="tag ${c[3]}">${c[4]}</span></td>`;r.onclick=()=>{$('#ct').textContent=c[0];$('#cs').textContent=c[5]};$('#cl').appendChild(r)});
+if(location.hash.length>1&&$('#v_'+location.hash.slice(1)))go(location.hash.slice(1));
+</script></body></html>
